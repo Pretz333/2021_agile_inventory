@@ -141,7 +141,6 @@ D:\sch\agile\2021_agile_inventory\Inventory\bin\Newtonsoft.Json.xml
 D:\sch\agile\2021_agile_inventory\Inventory\bin\Antlr3.Runtime.pdb
 D:\sch\agile\2021_agile_inventory\Inventory\bin\Microsoft.AspNet.FriendlyUrls.xml
 D:\sch\agile\2021_agile_inventory\Inventory\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\sch\agile\2021_agile_inventory\Inventory\obj\Debug\Inventory.csprojAssemblyReference.cache
 D:\sch\agile\2021_agile_inventory\Inventory\obj\Debug\Inventory.csproj.CoreCompileInputs.cache
 D:\sch\agile\2021_agile_inventory\Inventory\obj\Debug\Inventory.csproj.CopyComplete
 D:\sch\agile\2021_agile_inventory\Inventory\obj\Debug\Inventory.dll
