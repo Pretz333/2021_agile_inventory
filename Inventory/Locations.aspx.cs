@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using iTextSharp.text;
-
+using System.Data.SqlClient;
 
 namespace Inventory
 {
@@ -25,6 +25,25 @@ namespace Inventory
         public override void VerifyRenderingInServerForm(Control control)
         {
             /* Verifies that the control is rendered */
+        }
+
+        protected void InsertNew(object sender, EventArgs e)
+        {
+            string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Inventory.mdf;Integrated Security=True;Connect Timeout=30";
+            string name = tbInsert.Text;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = @"INSERT INTO Location (Description) VALUES ('" + name + "');";
+                //cmd.Parameters.Add("@name");
+                //cmd.Parameters["@name"].Value = name;
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.Connection = connection;
+
+                cmd.Connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            Response.Redirect(Request.RawUrl);
         }
 
         [Obsolete]
