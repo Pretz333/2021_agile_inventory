@@ -35,6 +35,10 @@
         <div class="navbar">
             <ul>
                 <li><a runat="server" href="~/">Home</a></li>
+                <li><a runat="server" href="~/Items">Items</a></li>
+                <li><a runat="server" href="~/Locations">Locations</a></li>
+                <li><a runat="server" href="~/Categories">Categories</a></li>
+                <li><a runat="server" href="~/Export">Export</a></li>
                 <!-- Add additional navbar links here -->
             </ul>
         </div>
