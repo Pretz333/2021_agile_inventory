@@ -1,0 +1,52 @@
+/* Header container, the whole left nav bar and logo*/
+header {
+	float: left;
+	width: 160px;
+	
+	padding: 16px;
+}
+
+/*Header Logo*/
+header > h2 {
+	font-size: 32px;
+	font-weight: 600;
+}
+
+/*Navigation section*/
+header > nav {
+	margin-top: 20px;
+	margin-left: -25px;
+}
+
+/*Navigation links*/
+header > nav a {
+	display: block;
+
+	text-align: center;
+	text-decoration: none;
+	font-weight: 600;
+
+	padding-top: 15px;
+	padding-bottom: 15px;
+
+	border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
+
+	color: black;
+	background-color: #e0e0e0;
+}
+
+/* Hover color */
+header > nav a:hover {
+	background-color: #ffd689;
+}
+
+/*Navigation padding between links*/
+header > nav > ul > li {
+	margin-top: 20px;
+}
+
+/*Highlight color for selecte navigation link*/
+.selected {
+	background-color: #ffd689;
+}

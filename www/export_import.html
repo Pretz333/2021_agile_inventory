@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<!--	Main stylesheet	-->
+		<link href="style.css" rel="stylesheet">
+		<!--		Header stylesheet: Nav links, logo	-->
+		<link href="style_header.css" rel="stylesheet">
+		<!--	Tool section stylesheet: Tool action buttons	-->
+		<link href="style_tools.css" rel="stylesheet">		
+		<!--	ListView stylesheet: table view of entries	-->
+		<link href="style_listview.css" rel="stylesheet">
+		<!--	Media queries for the tool section and listview	-->
+		<link href="style_mediaQuery.css" rel="stylesheet">
+		
+		<title>Inventory Manager</title>
+
+	</head>
+	<body>
+		
+		<header>
+			
+			<h2>Inventory Tracker</h2>
+			
+			<nav>
+				<ul>
+					<li><a href="index.html">Inventory</a></li>
+					<li><a href="categories.html">Categories</a></li>
+					<li><a href="locations.html">Locations</a></li>
+					<li><a href="#" class="selected">Export & Import</a></li>
+				</ul>
+			</nav>
+			
+		</header>
+		
+		
+		
+		<section id="tools">
+			<h2>Tools</h2>
+						
+			<div id="toolModule" onClick="toolClick('import')">
+				<div id="toolIcon">
+					<img src="res/ic_import.png">
+				</div>
+				<div id="toolText">
+					Import from a CVS file
+				</div>
+			</div>
+			
+			<div id="toolModule" onClick="toolClick('export')">
+				<div id="toolIcon">
+					<img src="res/ic_export.png">
+				</div>
+				<div id="toolText">
+					Export to a CVS file
+				</div>
+			</div>
+			
+			<div id="toolModule" onClick="toolClick('export_pdf')">
+				<div id="toolIcon">
+					<img src="res/ic_export_pdf.png">
+				</div>
+				<div id="toolText">
+					Export to a PDF file
+				</div>
+			</div>
+			
+		</section>
+		
+		
+		
+		
+<!--	Not entirely sure how it would look here yet	-->
+		
+<!--		<section id="listview">
+			<h2>Locations</h2>
+		
+				Example data	
+			<table>
+				<tr>
+					<th>Primary Key (Dev Only)</th>
+					<th>Location Name</th>
+					<th>Location Description</th>
+				</tr>
+				
+				<tr onclick="itemClick(1)">
+					<td>1</td>
+					<td>Room 21</td>
+					<td>Cleaning products, back of building</td>
+				</tr>
+				
+				<tr onclick="itemClick(2)">
+					<td>2</td>
+					<td>Room 03</td>
+					<td>Ambient food, right of building</td>
+				</tr>
+				
+				<tr onclick="itemClick(3)">
+					<td>3</td>
+					<td>Room 16</td>
+					<td>Maintenance stuff, left of building</td>
+				</tr>
+				
+				
+			</table>
+		</section>-->
+		
+		
+		
+
+		
+<!--	Simple javascript function to tell if an item in the list
+view is clicked since each list view item IS NOT an href tag -->
+		<script type="text/javascript">
+		
+			function itemClick(itemID) {
+				alert("You clicked on itemID: " + itemID);
+				// ... Pull the itemID, or primaryKey of the item from the
+				// database to retrieve details of it.
+				
+			}
+			
+			// Clicks for the tool module
+			function toolClick(toolName) {
+				alert("You clicked on the " + toolName + " tool");
+			}
+			
+		</script>
+		
+
+	</body>
+</html>

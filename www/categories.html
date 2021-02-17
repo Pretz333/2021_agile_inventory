@@ -21,12 +21,11 @@
 		<header>
 			
 			<h2>Inventory Tracker</h2>
-			<small>Build 2/17/2021 3:21PM</small>
 			
 			<nav>
 				<ul>
-					<li><a href="#" class="selected">Inventory</a></li>
-					<li><a href="categories.html">Categories</a></li>
+					<li><a href="index.html">Inventory</a></li>
+					<li><a href="#" class="selected">Categories</a></li>
 					<li><a href="locations.html">Locations</a></li>
 					<li><a href="export_import.html">Export & Import</a></li>
 				</ul>
@@ -38,31 +37,13 @@
 		
 		<section id="tools">
 			<h2>Tools</h2>
-			
-			<div id="toolModule" onClick="toolClick('filter')">
-				<div id="toolIcon">
-					<img src="res/ic_filter.png">
-				</div>
-				<div id="toolText">
-					Filter results by item, category, location, or date
-				</div>
-			</div>
-			
-			<div id="toolModule" onClick="toolClick('search')">
-				<div id="toolIcon">
-					<img src="res/ic_search.png">
-				</div>
-				<div id="toolText">
-					Search for an item, category, or location
-				</div>
-			</div>
-			
+						
 			<div id="toolModule" onClick="toolClick('add')">
 				<div id="toolIcon">
 					<img src="res/ic_add.png">
 				</div>
 				<div id="toolText">
-					Add an item, category, or location
+					Create a new category
 				</div>
 			</div>
 			
@@ -71,7 +52,7 @@
 					<img src="res/ic_remove.png">
 				</div>
 				<div id="toolText">
-					Delete an item, category, or location
+					Delete an existing category
 				</div>
 			</div>
 			
@@ -80,7 +61,7 @@
 					<img src="res/ic_edit.png">
 				</div>
 				<div id="toolText">
-					Edit an item, category, or location
+					Edit an existing category
 				</div>
 			</div>
 			
@@ -89,71 +70,35 @@
 		
 		
 		<section id="listview">
-			<h2>Showing all entries. Note: Highlight an item to modify it</h2>
+			<h2>Categories</h2>
 		
 			<!--	Example data	-->
 			<table>
 				<tr>
 					<th>Primary Key (Dev Only)</th>
-					<th>UPC</th>
-					<th>Name</th>
-					<th>Category</th>
-					<th>Location</th>
-					<th>Count</th>
-					<th>Date Added</th>
+					<th>Category Name</th>
+					<th>Category Description</th>
 				</tr>
 				
 				<tr onclick="itemClick(1)">
 					<td>1</td>
-					<td>104892304854</td>
-					<td>Windex</td>
 					<td>Disenfectant</td>
-					<td>Room 21</td>
-					<td>4</td>
-					<td>Feb 11th 2021</td>
+					<td>Cleaning things</td>
 				</tr>
 				
 				<tr onclick="itemClick(2)">
 					<td>2</td>
-					<td>104892304854</td>
-					<td>Lysol</td>
-					<td>Disenfectant</td>
-					<td>Room 21</td>
-					<td>3</td>
-					<td>Feb 11th 2021</td>
+					<td>Ambient Food</td>
+					<td>Consumable food</td>
 				</tr>
 				
 				<tr onclick="itemClick(3)">
 					<td>3</td>
-					<td>104892304854</td>
-					<td>Towels</td>
 					<td>Health & Beauty</td>
-					<td>Room 21</td>
-					<td>12</td>
-					<td>Feb 10th 2021</td>
+					<td>Health stuff, not sure</td>
 				</tr>
 				
-				<tr onclick="itemClick(4)">
-					<td>4</td>
-					<td>104892304854</td>
-					<td>Poweraid</td>
-					<td>Ambient Food</td>
-					<td>Room 03</td>
-					<td>32</td>
-					<td>Feb 19th 2021</td>
-				</tr>
 				
-				<tr onclick="itemClick(5)">
-					<td>5</td>
-					<td>104892304854</td>
-					<td>Broom</td>
-					<td>Maintenance</td>
-					<td>Room 16</td>
-					<td>2</td>
-					<td>Feb 18th 2021</td>
-				</tr>
-			
-			
 			</table>
 		</section>
 		
