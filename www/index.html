@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>Inventory Manager</title>
+		
+		<style>
+			
+/*			Reset styles */
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			body {
+				font-family: 'Helvetica', 'Arial', sans-serif;
+				background-color: #f0f0f0;
+			}
+			
+			
+			
+			header {
+				float: left;
+				width: 160px;
+				
+				padding: 16px;
+				
+				border: 1px solid red;
+			}
+			
+			header > h2 {
+				font-size: 32px;
+				font-weight: 600;
+			}
+			
+			
+			
+			
+			
+			header > nav {
+				margin-top: 20px;
+				margin-left: -25px;
+			}
+			
+			header > nav a {
+				display: block;
+				
+				text-decoration: none;
+				color: black;
+				font-weight: 600;
+				
+				padding-top: 15px;
+				padding-bottom: 15px;
+				
+				text-align: center;
+				
+				border-top-right-radius: 50px;
+				border-bottom-right-radius: 50px;
+				
+				background-color: #ebebeb;
+			}
+			
+			header > nav > ul > li {
+				margin-top: 20px;
+				border: 1px solid blue;
+			}
+			
+			.selected {
+				background-color: #26ffac;
+			}
+			
+			
+			
+			
+		
+		
+		</style>
+			
+	</head>
+	<body>
+		
+		<header>
+			
+			<h2>Inventory Tracker</h2>
+			<small>Build 2/16/2021 9:19PM</small>
+			
+			<nav>
+				<ul>
+					<li><a href="#" class="selected">Dashboard</a></li>
+					<li><a href="#">Categories</a></li>
+					<li><a href="#">Location</a></li>
+					<li><a href="#">Export & Import</a></li>
+				</ul>
+			</nav>
+			
+		</header>
+		
+		
+		
+		<style>
+			
+			section {
+				float: left;
+				padding: 16px;
+			}
+			
+			section > h2 {
+				color: #919191;
+				
+				margin-left: 10px;
+				
+				font-size: 12px;
+			}
+			
+			
+			
+			#tools {
+				width: 65vw;
+				height: auto;
+				
+				border: 1px solid green;
+			}
+			
+			
+			
+			
+			
+			#toolModule {
+				float: left;
+				
+				width: 180px;
+				height: 55px;
+				
+				margin-top: 10px;
+				margin-left: 10px;
+				
+				background-color: #b9ffe4;
+			}
+			
+			#toolIcon {
+				float: left;
+				width: 55px;
+				height: inherit;
+				
+				background-color: #26ffac;
+				
+				text-align: center;
+			}
+			
+			#toolIcon > img {
+				width: 38px;
+				height: 38px;
+				margin-top: 8px;
+			}
+			
+			#toolText {
+				float: left;
+				width: 115px;
+				height: inherit;
+				
+				text-decoration: none;
+				color: black;
+				
+				padding-top: 7px;
+				padding-left: 5px;
+				
+				text-align: center;
+				font-size: 12px;
+				font-weight: 600;
+			}
+		
+		</style>
+		
+		
+		<section id="tools">
+			<h2>Tools</h2>
+			
+			<div id="toolModule">
+				<div id="toolIcon">
+					<img src="res/ic_filter.png">
+				</div>
+				<div id="toolText">
+					Filter results by item, category, location, or date.
+				</div>
+			</div>
+			
+			<div id="toolModule">
+				<div id="toolIcon">
+					<img src="res/ic_search.png">
+				</div>
+				<div id="toolText">
+					Search for an item, category, or location.
+				</div>
+			</div>
+			
+			<div id="toolModule">
+				<div id="toolIcon">
+					<img src="res/ic_add.png">
+				</div>
+				<div id="toolText">
+					Add an item, category, or location.
+				</div>
+			</div>
+			
+			<div id="toolModule">
+				<div id="toolIcon">
+					<img src="res/ic_remove.png">
+				</div>
+				<div id="toolText">
+					Delete an item, category, or location.
+				</div>
+			</div>
+			
+			<div id="toolModule">
+				<div id="toolIcon">
+					<img src="res/ic_edit.png">
+				</div>
+				<div id="toolText">
+					Edit an item, category, or location.
+				</div>
+			</div>
+			
+		</section>
+		
+		
+		<style>
+			#entries {
+				border: 1px solid purple;
+				width: 65vw;
+				height: auto;
+			}
+			
+			
+			#entries > table {
+				width: 100%;
+				height: auto;
+				margin-top: 10px;
+				background-color: #fff;
+				border: 1px solid gray;
+				
+				border-collapse: collapse;
+				
+			}
+				
+			#entries > table th {
+				font-weight: 600;
+				color: black;
+				text-align: left;
+				padding: 8px;
+				border-right: 1px solid gray;
+			}
+			
+			#entries > table tr {
+				color: #7b7b7b;
+			}
+			
+			#entries > table tr:nth-child(even) {
+				background-color: #e6e6e6;
+			}
+			
+			#entries > table td {
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 10px;
+			}
+			
+			
+		
+		
+		</style>
+		
+		
+		<section id="entries">
+			<h2>Showing all entries. Note: Highlight an item to modify it</h2>
+		
+
+			<table>
+				<tr>
+					<th>Item ID</th>
+					<th>Name</th>
+					<th>Category</th>
+					<th>Location</th>
+					<th>Count</th>
+					<th>Date Added</th>
+				</tr>
+				
+				<tr>
+					<td>#12</td>
+					<td>Windex</td>
+					<td>Disenfectant</td>
+					<td>Room A</td>
+					<td>4</td>
+					<td>Feb 11th 2021</td>
+				</tr>
+				
+				<tr>
+					<td>#13</td>
+					<td>Windex</td>
+					<td>Disenfectant</td>
+					<td>Room A</td>
+					<td>4</td>
+					<td>Feb 11th 2021</td>
+				</tr>
+				
+				<tr>
+					<td>#14</td>
+					<td>Windex</td>
+					<td>Disenfectant</td>
+					<td>Room A</td>
+					<td>4</td>
+					<td>Feb 11th 2021</td>
+				</tr>
+			
+			
+			</table>
+			
+		</section>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</body>
+</html>
