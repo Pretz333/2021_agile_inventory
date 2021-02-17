@@ -1,0 +1,51 @@
+/* List view container */
+#listview {
+	width: 70vw;
+	min-width: 520px;
+	height: auto;
+}
+
+/* Table styles */
+#listview > table {
+	width: 100%;
+	height: auto;
+	
+	margin-top: 10px;
+
+	border-collapse: collapse;
+
+	background-color: #fff;
+	border: 1px solid gray;
+}
+
+/* Table header */
+#listview > table th {
+	font-weight: 600;
+	color: black;
+	text-align: left;
+	padding: 8px;
+	border-right: 1px solid gray;
+}
+
+
+/* Table odd/even highlight colors */
+#listview > table tr:nth-child(even) {
+	background-color: #ededed;
+}
+
+/* Hover color */
+#listview > table tr:hover {
+	background-color: #ffd689;
+	cursor: pointer;
+}
+
+/* Table column padding */
+#listview > table td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	
+	font-size: 12px;
+	font-weight: 600;
+	color: #5c5c5c;
+}
