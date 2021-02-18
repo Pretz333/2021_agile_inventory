@@ -287,6 +287,7 @@ C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\Inve
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\Inventory.csproj.CopyComplete
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\Inventory.dll
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\Inventory.pdb
+<<<<<<< Updated upstream
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\bin\BouncyCastle.Crypto.dll
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\bin\itextsharp.dll
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\bin\System.Buffers.dll
@@ -403,3 +404,5 @@ C:\Users\Fernando\Desktop\2021_agile_inventory\Inventory\obj\Debug\Inventory.csp
 C:\Users\Fernando\Desktop\2021_agile_inventory\Inventory\obj\Debug\Inventory.csproj.CopyComplete
 C:\Users\Fernando\Desktop\2021_agile_inventory\Inventory\obj\Debug\Inventory.dll
 C:\Users\Fernando\Desktop\2021_agile_inventory\Inventory\obj\Debug\Inventory.pdb
+=======
+>>>>>>> Stashed changes
