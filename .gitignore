@@ -6,6 +6,14 @@ Inventory/bin/
 Inventory/obj/
 Inventory/Properties/
 Inventory/.vs/
+Inventory\bin\*
+Inventory\obj\*
+Inventory\Properties\*
+Inventory\.vs\*
+Inventory\bin\
+Inventory\obj\
+Inventory\Properties\
+Inventory\.vs\
 Inventory/Inventory.csproj.user
 *.dll
 *.pdb
