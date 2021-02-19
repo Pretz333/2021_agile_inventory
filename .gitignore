@@ -26,3 +26,14 @@ Inventory/Inventory.csproj.user
 *.dll
 *.pdb
 *.cache
+Inventory/obj/Debug/net5.0/Inventory.assets.cache
+Inventory/obj/Debug/net5.0/win-x64/Inventory.assets.cache
+Inventory/obj/Debug/net5.0/win-x64/Inventory.csproj.FileListAbsolute.txt
+Inventory/obj/Debug/net5.0/win-x64/Inventory.genruntimeconfig.cache
+Inventory/obj/Host/bin/Inventory.exe
+Inventory/obj/Inventory.csproj.nuget.dgspec.json
+Inventory/obj/project.assets.json
+Inventory/obj/project.nuget.cache
+*.cache
+*.exe
+*.json
