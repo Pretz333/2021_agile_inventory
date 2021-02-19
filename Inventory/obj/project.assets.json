@@ -11783,11 +11783,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\sch\\agile\\Inventory\\Inventory.csproj",
+      "projectUniqueName": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.csproj",
       "projectName": "Inventory",
-      "projectPath": "D:\\sch\\agile\\Inventory\\Inventory.csproj",
+      "projectPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.csproj",
       "packagesPath": "C:\\Users\\L\\.nuget\\packages\\",
-      "outputPath": "D:\\sch\\agile\\Inventory\\obj\\",
+      "outputPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\L\\AppData\\Roaming\\NuGet\\NuGet.Config",

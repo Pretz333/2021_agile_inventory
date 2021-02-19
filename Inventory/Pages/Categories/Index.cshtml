@@ -7,6 +7,11 @@
 
 <h1>Categories</h1>
 
+@*
+    Need to use a POST form and assign SelectedID to the result of the post
+    Only show the Edit and Delete links if IsPost && SelectedID != 0
+*@
+
 <p>
     <a asp-page="Create">Create New</a>
 </p>
@@ -20,16 +25,17 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Category) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.CategoryID">Edit</a> |
-                <a asp-page="./Delete" asp-route-id="@item.CategoryID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Category)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CategoryID">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CategoryID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

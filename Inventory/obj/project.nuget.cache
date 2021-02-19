@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6DCR2vXh3Q/ye6lWD/CJa70CKuIICZ1EGRJHcBKw76l91ZLUZEy5l6Ln9ggFR290XhVG9GON1n0GT9bQQqL17A==",
+  "dgSpecHash": "oJ3GknLWq9tHvuOqgcMwV4ZoxjnUEhy9QAuvM2mzxhpKLvEH/hGcRS7dqWtlPKxVEboTj3KOv3ygdx6HWuN9Wg==",
   "success": true,
-  "projectFilePath": "D:\\sch\\agile\\Inventory\\Inventory.csproj",
+  "projectFilePath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\L\\.nuget\\packages\\electronnet.api\\11.5.1\\electronnet.api.11.5.1.nupkg.sha512",
     "C:\\Users\\L\\.nuget\\packages\\engineioclientdotnet\\1.0.5\\engineioclientdotnet.1.0.5.nupkg.sha512",
