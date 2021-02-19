@@ -1,12 +1,5 @@
-.tmp/
-.vs/
-.*/
-*.opensdf
-*.sdf
-*.suo
-*.user
-x64/
-Win32/
-vs2019/*
-build/*
-*.asi
+Inventory/bin/*
+Inventory/obj/*
+Inventory/Properties/*
+Inventory/.vs/*
+Inventory/Inventory.csproj.user
