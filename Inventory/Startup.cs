@@ -54,7 +54,7 @@ namespace Inventory
                 endpoints.MapRazorPages();
             });
 
-            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
+            //Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
     }
 }

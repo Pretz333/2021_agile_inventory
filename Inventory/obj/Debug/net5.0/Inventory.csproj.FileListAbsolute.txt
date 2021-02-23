@@ -1,6 +1,5 @@
 D:\sch\agile\2021_agile_inventory\Inventory\bin\Debug\net5.0\appsettings.Development.json
 D:\sch\agile\2021_agile_inventory\Inventory\bin\Debug\net5.0\appsettings.json
-D:\sch\agile\2021_agile_inventory\Inventory\bin\Debug\net5.0\electron.manifest.json
 D:\sch\agile\2021_agile_inventory\Inventory\bin\Debug\net5.0\Inventory.exe
 D:\sch\agile\2021_agile_inventory\Inventory\bin\Debug\net5.0\Inventory.deps.json
 D:\sch\agile\2021_agile_inventory\Inventory\bin\Debug\net5.0\Inventory.runtimeconfig.json
@@ -192,3 +191,4 @@ D:\sch\agile\2021_agile_inventory\Inventory\obj\Debug\net5.0\Inventory.dll
 D:\sch\agile\2021_agile_inventory\Inventory\obj\Debug\net5.0\ref\Inventory.dll
 D:\sch\agile\2021_agile_inventory\Inventory\obj\Debug\net5.0\Inventory.pdb
 D:\sch\agile\2021_agile_inventory\Inventory\obj\Debug\net5.0\Inventory.genruntimeconfig.cache
+D:\sch\agile\2021_agile_inventory\Inventory\bin\Debug\net5.0\electron.manifest.json

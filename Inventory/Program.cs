@@ -15,8 +15,8 @@ namespace Inventory
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseElectron(args);
-                    webBuilder.UseEnvironment("Development");
+                    //webBuilder.UseElectron(args);
+                    //webBuilder.UseEnvironment("Development");
                     webBuilder.UseStartup<Startup>();
                 });
     }
