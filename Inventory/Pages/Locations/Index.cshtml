@@ -10,7 +10,7 @@
 <section id="tools">
     <h2>Tools</h2>
     <a asp-page="Create">
-        <div id="toolModule">
+        <div id="toolModule" onclick="toolClick('create')">
             <div id="toolIcon">
                 <img src="res/ic_add.png">
             </div>
@@ -20,7 +20,7 @@
         </div>
     </a>
 
-    <div id="toolModule" onClick="toolClick('Delete')">
+    <div id="toolModule" onClick="toolClick('delete')">
         <div id="toolIcon">
             <img src="res/ic_remove.png">
         </div>
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div id="toolModule" onClick="toolClick('Edit')">
+    <div id="toolModule" onClick="toolClick('edit')">
         <div id="toolIcon">
             <img src="res/ic_edit.png">
         </div>
@@ -38,6 +38,10 @@
         </div>
     </div>
 </section>
+
+
+
+
 
 <section id="listview">
     <table>
@@ -61,26 +65,63 @@
     </table>
 </section>
 
+
+
+
+
+
+
 <script type="text/javascript">
 
-    var lastClickedID = 0;
+    // Last clicked item in the list view.
+    // Set to -1, because whole numbers exist
+    // in the database
+    var lastClickedID = -1;
 
-    function itemClick(itemID) {
-        lastClickedID = itemID;
-        if (lastClickedID != 0) {
-            document.querySelector("#row-" + lastClickedID).classList.remove("selected")
-        }
-        document.querySelector("#row-" + itemID).classList.add("selected");
-    }
 
+    // Function that handles onClick events from the tools section
     function toolClick(toolName) {
-        if (lastClickedID == 0) {
-            alert("You must select an row from the table");
+
+        // Check to see if the last clicked item is valid
+        if (lastClickedID > -1) {
+            // Temp code to view button clicks
+            switch (toolName) {
+                case "create":
+                    alert("You clicked the create tool");
+                    break;
+
+                case "edit":
+                    // Take the user to the edit page
+                    window.location = "/Locations/Edit?id=" + lastClickedID;
+                    break;
+
+                case "delete":
+                    // Take the user to the delete page
+                    window.location = "/Locations/Delete?id=" + lastClickedID;
+                    break;
+            }
+
         } else {
-            window.location = "/Locations/" + toolName + "?id=" + lastClickedID;
+            alert("Select an item from the table to preform this action.");
         }
+
     }
 
-    document.querySelector("#Locations").classList.add("selected");
+
+    // Function that handles onClick events for rows in the table (#listview)
+    function itemClick(itemID) {
+
+        // Remove the last selected item if anything was selected
+        if (lastClickedID > -1) {
+            document.querySelector("#row-" + lastClickedID).classList.remove("selected");
+        }
+
+        // Store the last clicked ID
+        lastClickedID = itemID;
+
+        // Highlight the selected item
+        document.querySelector("#row-" + lastClickedID).classList.add("selected");
+
+    }
 
 </script>
