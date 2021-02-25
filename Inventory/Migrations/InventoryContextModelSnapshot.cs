@@ -54,6 +54,8 @@ namespace Inventory.Migrations
 
                     b.HasKey("ItemID");
 
+                    b.HasIndex("CategoryID");
+
                     b.ToTable("Item");
                 });
 
@@ -77,6 +79,17 @@ namespace Inventory.Migrations
                     b.HasOne("Inventory.Models.Location", null)
                         .WithMany("Categories")
                         .HasForeignKey("LocationID");
+                });
+
+            modelBuilder.Entity("Inventory.Models.Item", b =>
+                {
+                    b.HasOne("Inventory.Models.Category", "category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("category");
                 });
 
             modelBuilder.Entity("Inventory.Models.Location", b =>

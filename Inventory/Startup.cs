@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using ElectronNET.API;
 using Microsoft.EntityFrameworkCore;
 using Inventory.Data;
+using System.Threading.Tasks;
 
 namespace Inventory
 {
@@ -24,7 +25,8 @@ namespace Inventory
             services.AddRazorPages();
 
             services.AddDbContext<InventoryContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("InventoryContext")));
+                    options.UseSqlite("Data Source=Inventory.db"));
+                    //options.UseSqlServer(Configuration.GetConnectionString("InventoryContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +55,7 @@ namespace Inventory
                 endpoints.MapRazorPages();
             });
 
-            //Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
+            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
     }
 }

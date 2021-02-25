@@ -2,14 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Inventory.Models;
+using Inventory.Data;
 
 namespace Inventory.Pages.Locations
 {
     public class CreateModel : PageModel
     {
-        private readonly Inventory.Data.InventoryContext _context;
+        private readonly InventoryContext _context;
 
-        public CreateModel(Inventory.Data.InventoryContext context)
+        public CreateModel(InventoryContext context)
         {
             _context = context;
         }
