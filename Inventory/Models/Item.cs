@@ -11,5 +11,6 @@ namespace Inventory.Models
         public int CategoryID { get; set; }
         public string Description { get; set; }
 
+        public Category category { get; set; }
     }
 }

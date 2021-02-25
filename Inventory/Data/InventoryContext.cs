@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Inventory.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventory.Data
 {
@@ -14,5 +15,12 @@ namespace Inventory.Data
         public DbSet<Inventory.Models.Category> Category { get; set; }
 
         public DbSet<Inventory.Models.Item> Item { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        {
+            modelbuilder.Entity<Location>().ToTable("Location");
+            modelbuilder.Entity<Category>().ToTable("Category");
+            modelbuilder.Entity<Item>().ToTable("Item");
+        }
     }
 }
