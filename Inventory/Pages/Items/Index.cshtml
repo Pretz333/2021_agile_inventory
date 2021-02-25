@@ -72,15 +72,15 @@
     var lastClickedID = 0;
 
     function itemClick(itemID) {
-        lastClickedID = itemID;
-        if (lastClickedID != 0) {
-            document.querySelector("#row-" + lastClickedID).classList.remove("selected")
+        if (lastClickedID > 0) {
+            document.querySelector("#row-" + lastClickedID).classList.remove("selected");
         }
         document.querySelector("#row-" + itemID).classList.add("selected");
+        lastClickedID = itemID;
     }
 
     function toolClick(toolName) {
-        if (lastClickedID == 0) {
+        if (lastClickedID < 1) {
             alert("You must select an row from the table");
         } else {
             window.location = "/Items/" + toolName + "?id=" + lastClickedID;

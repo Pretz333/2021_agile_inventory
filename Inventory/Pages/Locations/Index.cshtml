@@ -10,7 +10,7 @@
 <section id="tools">
     <h2>Tools</h2>
     <a asp-page="Create">
-        <div id="toolModule" onclick="toolClick('create')">
+        <div id="toolModule">
             <div id="toolIcon">
                 <img src="res/ic_add.png">
             </div>
@@ -73,55 +73,24 @@
 
 <script type="text/javascript">
 
-    // Last clicked item in the list view.
-    // Set to -1, because whole numbers exist
-    // in the database
-    var lastClickedID = -1;
+    var lastClickedID = 0;
 
-
-    // Function that handles onClick events from the tools section
-    function toolClick(toolName) {
-
-        // Check to see if the last clicked item is valid
-        if (lastClickedID > -1) {
-            // Temp code to view button clicks
-            switch (toolName) {
-                case "create":
-                    alert("You clicked the create tool");
-                    break;
-
-                case "edit":
-                    // Take the user to the edit page
-                    window.location = "/Locations/Edit?id=" + lastClickedID;
-                    break;
-
-                case "delete":
-                    // Take the user to the delete page
-                    window.location = "/Locations/Delete?id=" + lastClickedID;
-                    break;
-            }
-
-        } else {
-            alert("Select an item from the table to preform this action.");
-        }
-
-    }
-
-
-    // Function that handles onClick events for rows in the table (#listview)
     function itemClick(itemID) {
-
-        // Remove the last selected item if anything was selected
-        if (lastClickedID > -1) {
+        if (lastClickedID > 0) {
             document.querySelector("#row-" + lastClickedID).classList.remove("selected");
         }
-
-        // Store the last clicked ID
+        document.querySelector("#row-" + itemID).classList.add("selected");
         lastClickedID = itemID;
-
-        // Highlight the selected item
-        document.querySelector("#row-" + lastClickedID).classList.add("selected");
-
     }
+
+    function toolClick(toolName) {
+        if (lastClickedID < 1) {
+            alert("You must select an row from the table");
+        } else {
+            window.location = "/Locations/" + toolName + "?id=" + lastClickedID;
+        }
+    }
+
+    document.querySelector("#Locations").classList.add("selected");
 
 </script>
