@@ -60,7 +60,7 @@ header > nav > ul > li {
 
 /*Highlight color for selected navigation link*/
 .selected {
-	background-color: #ffd689;
+	background-color: #ffd689 !important;
 }
 
 /*Styles for sections, such as Tools and the list view of all items*/
