@@ -4,40 +4,24 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inventory - @ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Inventory</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/Items/Index">Items</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">Categories</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/Locations/Index">Locations</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-page="/Export">Export</a></li>
-                        <!-- Other navbar links go here -->
-                    </ul>
-                </div>
-            </div>
+        <h2>Inventory</h2>
+        <nav>
+            <ul>
+                <li><a id="Home" asp-area="" asp-page="/Index">Home</a></li>
+                <li><a id="Items"asp-area="" asp-page="/Items/Index">Items</a></li>
+                <li><a id="Categories" asp-area="" asp-page="/Categories/Index">Categories</a></li>
+                <li><a id="Locations" asp-area="" asp-page="/Locations/Index">Locations</a></li>
+                <li><a id="Export" asp-area="" asp-page="/Export">Export</a></li>
+            </ul>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">&copy; 2021 - Inventory</div>
-    </footer>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

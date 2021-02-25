@@ -7,29 +7,80 @@
 
 <h1>Locations</h1>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Location[0].Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Location) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.LocationID">Edit</a> |
-                <a asp-page="./Delete" asp-route-id="@item.LocationID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<section id="tools">
+    <h2>Tools</h2>
+    <a asp-page="Create">
+        <div id="toolModule">
+            <div id="toolIcon">
+                <img src="res/ic_add.png">
+            </div>
+            <div id="toolText">
+                Create a new location
+            </div>
+        </div>
+    </a>
+
+    <div id="toolModule" onClick="toolClick('Delete')">
+        <div id="toolIcon">
+            <img src="res/ic_remove.png">
+        </div>
+        <div id="toolText">
+            Delete an existing location
+        </div>
+    </div>
+
+    <div id="toolModule" onClick="toolClick('Edit')">
+        <div id="toolIcon">
+            <img src="res/ic_edit.png">
+        </div>
+        <div id="toolText">
+            Edit an existing location
+        </div>
+    </div>
+</section>
+
+<section id="listview">
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location[0].Description)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Location)
+            {
+                <tr id="row-@item.LocationID" onclick="itemClick(@item.LocationID)">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+<script type="text/javascript">
+
+    var lastClickedID = 0;
+
+    function itemClick(itemID) {
+        lastClickedID = itemID;
+        if (lastClickedID != 0) {
+            document.querySelector("#row-" + lastClickedID).classList.remove("selected")
+        }
+        document.querySelector("#row-" + itemID).classList.add("selected");
+    }
+
+    function toolClick(toolName) {
+        if (lastClickedID == 0) {
+            alert("You must select an row from the table");
+        } else {
+            window.location = "/Locations/" + toolName + "?id=" + lastClickedID;
+        }
+    }
+
+    document.querySelector("#Locations").classList.add("selected");
+
+</script>
