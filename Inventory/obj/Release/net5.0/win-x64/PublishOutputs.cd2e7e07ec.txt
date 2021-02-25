@@ -34,6 +34,14 @@ D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\lib\jque
 D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\lib\jquery\dist\jquery.min.js
 D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\lib\jquery\dist\jquery.min.map
 D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\lib\jquery\LICENSE.txt
+D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\res\ic_add.png
+D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\res\ic_edit.png
+D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\res\ic_export.png
+D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\res\ic_export_pdf.png
+D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\res\ic_filter.png
+D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\res\ic_import.png
+D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\res\ic_remove.png
+D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\wwwroot\res\ic_search.png
 D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\appsettings.Development.json
 D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\appsettings.json
 D:\sch\agile\2021_agile_inventory\Inventory\obj\desktop\win\bin\electron.manifest.json

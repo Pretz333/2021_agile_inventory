@@ -1,3 +1,5 @@
+Inventory/obj/desktop/win/bin/Inventory.exe
+Inventory/obj/Host/node_modules/electron/dist/electron.exe
 Inventory/bin/**
 Inventory/obj/**
 Inventory/Properties/**
@@ -36,4 +38,3 @@ Inventory/obj/project.assets.json
 Inventory/obj/project.nuget.cache
 *.cache
 *.exe
-*.json

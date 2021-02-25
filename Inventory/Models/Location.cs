@@ -9,5 +9,7 @@ namespace Inventory.Models
     {
         public int LocationID { get; set; }
         public string Description { get; set; }
+
+        public ICollection<Category> Categories { get; set; }
     }
 }
