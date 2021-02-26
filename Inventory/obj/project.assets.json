@@ -8420,19 +8420,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\L\\.nuget\\packages\\": {}
+    "C:\\Users\\gabby\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.csproj",
+      "projectUniqueName": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.csproj",
       "projectName": "Inventory",
-      "projectPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.csproj",
-      "packagesPath": "C:\\Users\\L\\.nuget\\packages\\",
-      "outputPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\obj\\",
+      "projectPath": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.csproj",
+      "packagesPath": "C:\\Users\\gabby\\.nuget\\packages\\",
+      "outputPath": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\L\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gabby\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
