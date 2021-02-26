@@ -67,6 +67,12 @@ h3 {
 	text-align: center;
 }
 
+input[type=submit] {
+	padding: 2px;
+	text-decoration: none;
+	background-color: #ffd689;
+}
+
 /*Highlight color for selected navigation link*/
 .selected {
 	background-color: #ffd689 !important;
@@ -166,13 +172,13 @@ section > h2 {
 
 /* Table header */
 #listview > table th {
+	background-color: #ffd689;
+	text-align: center;
 	font-weight: 600;
 	color: black;
-	text-align: left;
 	padding: 8px;
 	border-right: 1px solid gray;
 }
-
 
 /* Table odd/even highlight colors */
 #listview > table tr:nth-child(even) {
@@ -196,9 +202,18 @@ section > h2 {
 	color: #5c5c5c;
 }
 
+.invInputBox {
+	width: 95%; /* This doesn't space it evenly on different browser sizes */
+}
+
+#mainMenuSave {
+	width: 50%;
+	float: right;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 /* Media queries for the tool section and the list view section to adapt to the width of the display better. Supporting smaller and larger displays. */
-
-
 /* Media query for the toolbar and list view ajusting width percentage */
 @media only screen and (max-width: 800px) {
 	

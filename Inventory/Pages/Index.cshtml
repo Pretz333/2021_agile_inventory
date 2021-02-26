@@ -6,21 +6,33 @@
 
 <h1>Home</h1>
 
-<section id="listview">
-    <table>
-        <thead>
-            <tr>
-                <th>Item</th>
-                <th>Location</th>
-                <th>Expected Count</th>
-                <th>Actual Count</th>
-                <th>Item Last Updated</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</section>
+
+<form method="post">
+    <section id="listview">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item Last Updated</th>
+                    <th>Location</th>
+                    <th>Item</th>
+                    <th>Expected Count</th>
+                    <th>Actual Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="text" class="invInputBox" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <input type="submit" id="mainMenuSave" value="Save" />
+    </section>
+</form>
 
 <script>
     document.querySelector("#Home").classList.add("selected");
