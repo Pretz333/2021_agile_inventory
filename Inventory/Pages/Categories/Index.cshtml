@@ -44,6 +44,9 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Category[0].CategoryID)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Category[0].Description)
                 </th>
             </tr>
@@ -53,6 +56,8 @@
             {
                 <tr id="row-@item.CategoryID" onclick="itemClick(@item.CategoryID)">
                     <td>
+                        @Html.DisplayFor(modelItem => item.CategoryID)
+                    </td><td>
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                 </tr>
