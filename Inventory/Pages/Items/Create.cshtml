@@ -21,15 +21,12 @@
                 <input asp-for="Item.Description" class="form-control" />
                 <span asp-validation-for="Item.Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div>
+                <input type="submit" value="Create" /> |
+                <a asp-page="Index">Back to List</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 <script>

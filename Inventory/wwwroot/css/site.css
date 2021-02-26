@@ -58,6 +58,15 @@ header > nav > ul > li {
 	margin-top: 20px;
 }
 
+h1 {
+	text-align: center;
+	margin: 10px;
+}
+
+h3 {
+	text-align: center;
+}
+
 /*Highlight color for selected navigation link*/
 .selected {
 	background-color: #ffd689 !important;
