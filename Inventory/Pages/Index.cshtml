@@ -4,36 +4,42 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h1>Home</h1>
 
+<section>
+    <h2>Home</h2>
 
-<form method="post">
-    <section id="listview">
-        <table>
-            <thead>
-                <tr>
-                    <th>Item Last Updated</th>
-                    <th>Location</th>
-                    <th>Item</th>
-                    <th>Expected Count</th>
-                    <th>Actual Count</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><input type="text" class="invInputBox" /></td>
-                </tr>
-            </tbody>
-        </table>
-        <br />
-        <input type="submit" id="mainMenuSave" value="Save" />
-    </section>
-</form>
+    <form method="post" action="#">
+        <section id="listview">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Last Updated</th>
+                        <th>Location</th>
+                        <th>Item</th>
+                        <th>Expected Count</th>
+                        <th>Actual Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="number" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
 
-<script>
+            <input type="submit" value="Save" />
+
+        </section>
+    </form>
+
+</section>
+
+<script type="text/javascript">
+    // Highlight the Home link in the nav bar
     document.querySelector("#Home").classList.add("selected");
 </script>
