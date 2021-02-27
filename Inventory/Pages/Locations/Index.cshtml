@@ -5,40 +5,44 @@
     ViewData["Title"] = "Locations";
 }
 
-<h1>Locations</h1>
 
-<section id="tools">
-    <h2>Tools</h2>
-    <a asp-page="Create">
-        <div id="toolModule">
+<section>
+    <h2>Locations</h2>
+
+    <div id="tools">
+
+        <h6>Tools</h6>
+        
+        <a asp-page="Create">
+            <div id="toolModule">
+                <div id="toolIcon">
+                    <img src="res/ic_add.png">
+                </div>
+                <div id="toolText">
+                    Create a new location
+                </div>
+            </div>
+        </a>
+
+        <div id="toolModule" onClick="toolClick('delete')">
             <div id="toolIcon">
-                <img src="res/ic_add.png">
+                <img src="res/ic_remove.png">
             </div>
             <div id="toolText">
-                Create a new location
+                Delete an existing location
             </div>
         </div>
-    </a>
 
-    <div id="toolModule" onClick="toolClick('delete')">
-        <div id="toolIcon">
-            <img src="res/ic_remove.png">
-        </div>
-        <div id="toolText">
-            Delete an existing location
-        </div>
-    </div>
-
-    <div id="toolModule" onClick="toolClick('edit')">
-        <div id="toolIcon">
-            <img src="res/ic_edit.png">
-        </div>
-        <div id="toolText">
-            Edit an existing location
+        <div id="toolModule" onClick="toolClick('edit')">
+            <div id="toolIcon">
+                <img src="res/ic_edit.png">
+            </div>
+            <div id="toolText">
+                Edit an existing location
+            </div>
         </div>
     </div>
 </section>
-
 
 
 

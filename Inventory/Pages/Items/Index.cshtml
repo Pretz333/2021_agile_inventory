@@ -5,39 +5,45 @@
     ViewData["Title"] = "Items";
 }
 
-<h1>Items</h1>
+<section>
+    <h2>Items</h2>
 
-<section id="tools">
-    <h2>Tools</h2>
-    <a asp-page="Create">
-        <div id="toolModule">
+
+    <div id="tools">
+        
+        <h6>Tools</h6>
+
+        <a asp-page="Create">
+            <div id="toolModule">
+                <div id="toolIcon">
+                    <img src="res/ic_add.png">
+                </div>
+                <div id="toolText">
+                    Create a new item
+                </div>
+            </div>
+        </a>
+
+        <div id="toolModule" onClick="toolClick('Delete')">
             <div id="toolIcon">
-                <img src="res/ic_add.png">
+                <img src="res/ic_remove.png">
             </div>
             <div id="toolText">
-                Create a new item
+                Delete an existing item
             </div>
         </div>
-    </a>
 
-    <div id="toolModule" onClick="toolClick('Delete')">
-        <div id="toolIcon">
-            <img src="res/ic_remove.png">
-        </div>
-        <div id="toolText">
-            Delete an existing item
-        </div>
-    </div>
-
-    <div id="toolModule" onClick="toolClick('Edit')">
-        <div id="toolIcon">
-            <img src="res/ic_edit.png">
-        </div>
-        <div id="toolText">
-            Edit an existing item
+        <div id="toolModule" onClick="toolClick('Edit')">
+            <div id="toolIcon">
+                <img src="res/ic_edit.png">
+            </div>
+            <div id="toolText">
+                Edit an existing item
+            </div>
         </div>
     </div>
 </section>
+
 
 <section id="listview">
     <table>

@@ -4,42 +4,50 @@
     ViewData["Title"] = "Export";
 }
 
-<section id="tools">
-    <h2>Tools</h2>
+<section>
+    <h2>Import & Export</h2>
 
-    <div id="toolModule" onClick="toolClick('import')">
-        <div id="toolIcon">
-            <img src="res/ic_import.png">
+    <div id="tools">
+
+        <h6>Tools</h6>
+
+        <div id="toolModule" onClick="toolClick('import')">
+            <div id="toolIcon">
+                <img src="res/ic_import.png">
+            </div>
+            <div id="toolText">
+                Import from a CVS file
+            </div>
         </div>
-        <div id="toolText">
-            Import from a CVS file
+
+        <div id="toolModule" onClick="toolClick('export')">
+            <div id="toolIcon">
+                <img src="res/ic_export.png">
+            </div>
+            <div id="toolText">
+                Export to a CVS file
+            </div>
         </div>
+
+        <div id="toolModule" onClick="toolClick('export_pdf')">
+            <div id="toolIcon">
+                <img src="res/ic_export_pdf.png">
+            </div>
+            <div id="toolText">
+                Export to a PDF file
+            </div>
+        </div>
+
     </div>
-
-    <div id="toolModule" onClick="toolClick('export')">
-        <div id="toolIcon">
-            <img src="res/ic_export.png">
-        </div>
-        <div id="toolText">
-            Export to a CVS file
-        </div>
-    </div>
-
-    <div id="toolModule" onClick="toolClick('export_pdf')">
-        <div id="toolIcon">
-            <img src="res/ic_export_pdf.png">
-        </div>
-        <div id="toolText">
-            Export to a PDF file
-        </div>
-    </div>
-
 </section>
 
 
 <!--	Simple javascript function to tell if an item in the list
 view is clicked since each list view item IS NOT an href tag -->
 <script type="text/javascript">
+
+    // Highlight the link on the nav bar
+    document.querySelector("#Export").classList.add("selected");
 
     // Clicks for the tool module
     function toolClick(toolName) {
