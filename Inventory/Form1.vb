@@ -12,7 +12,6 @@ Public Class Form1
         'This gives the full path into the bin/debug folder
         Dim strPath As String = Application.StartupPath
         Dim intPathLength As Integer = strPath.Length
-        Debug.Write(strPath)
 
         'This strips off the bin/debug folder to point into your project folder.
         strPath = strPath.Substring(0, intPathLength - 25)
