@@ -30,6 +30,7 @@ Partial Class frmDashboard
         Me.btnNavExport = New System.Windows.Forms.Button()
         Me.btnNavItems = New System.Windows.Forms.Button()
         Me.btnNavDashboard = New System.Windows.Forms.Button()
+        Me.lblDashboard = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -37,18 +38,18 @@ Partial Class frmDashboard
         '
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(129, 57)
+        Me.DataGridView1.Location = New System.Drawing.Point(129, 85)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(2)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersWidth = 82
         Me.DataGridView1.RowTemplate.Height = 41
-        Me.DataGridView1.Size = New System.Drawing.Size(639, 416)
+        Me.DataGridView1.Size = New System.Drawing.Size(657, 350)
         Me.DataGridView1.TabIndex = 0
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(129, 14)
+        Me.Label1.Location = New System.Drawing.Point(200, 29)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(107, 20)
@@ -57,7 +58,7 @@ Partial Class frmDashboard
         '
         'srchItem1
         '
-        Me.srchItem1.Location = New System.Drawing.Point(249, 12)
+        Me.srchItem1.Location = New System.Drawing.Point(311, 22)
         Me.srchItem1.Margin = New System.Windows.Forms.Padding(2)
         Me.srchItem1.Name = "srchItem1"
         Me.srchItem1.Size = New System.Drawing.Size(80, 27)
@@ -65,7 +66,7 @@ Partial Class frmDashboard
         '
         'btnNavCategories
         '
-        Me.btnNavCategories.Location = New System.Drawing.Point(12, 145)
+        Me.btnNavCategories.Location = New System.Drawing.Point(12, 173)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
         Me.btnNavCategories.TabIndex = 3
@@ -74,7 +75,7 @@ Partial Class frmDashboard
         '
         'btnNavLocations
         '
-        Me.btnNavLocations.Location = New System.Drawing.Point(13, 189)
+        Me.btnNavLocations.Location = New System.Drawing.Point(13, 217)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
         Me.btnNavLocations.TabIndex = 4
@@ -83,7 +84,7 @@ Partial Class frmDashboard
         '
         'btnNavExport
         '
-        Me.btnNavExport.Location = New System.Drawing.Point(12, 235)
+        Me.btnNavExport.Location = New System.Drawing.Point(12, 263)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
         Me.btnNavExport.TabIndex = 5
@@ -92,7 +93,7 @@ Partial Class frmDashboard
         '
         'btnNavItems
         '
-        Me.btnNavItems.Location = New System.Drawing.Point(12, 101)
+        Me.btnNavItems.Location = New System.Drawing.Point(12, 129)
         Me.btnNavItems.Name = "btnNavItems"
         Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
         Me.btnNavItems.TabIndex = 6
@@ -101,18 +102,29 @@ Partial Class frmDashboard
         '
         'btnNavDashboard
         '
-        Me.btnNavDashboard.Location = New System.Drawing.Point(12, 57)
+        Me.btnNavDashboard.Location = New System.Drawing.Point(12, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
         Me.btnNavDashboard.TabIndex = 7
         Me.btnNavDashboard.Text = "Dashboard"
         Me.btnNavDashboard.UseVisualStyleBackColor = True
         '
+        'lblDashboard
+        '
+        Me.lblDashboard.AutoSize = True
+        Me.lblDashboard.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblDashboard.Location = New System.Drawing.Point(12, 9)
+        Me.lblDashboard.Name = "lblDashboard"
+        Me.lblDashboard.Size = New System.Drawing.Size(183, 46)
+        Me.lblDashboard.TabIndex = 8
+        Me.lblDashboard.Text = "Dashboard"
+        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1173, 484)
+        Me.ClientSize = New System.Drawing.Size(797, 446)
+        Me.Controls.Add(Me.lblDashboard)
         Me.Controls.Add(Me.btnNavDashboard)
         Me.Controls.Add(Me.btnNavItems)
         Me.Controls.Add(Me.btnNavExport)
@@ -123,7 +135,7 @@ Partial Class frmDashboard
         Me.Controls.Add(Me.DataGridView1)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmDashboard"
-        Me.Text = "Home"
+        Me.Text = "Dashboard"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -138,4 +150,5 @@ Partial Class frmDashboard
     Friend WithEvents btnNavExport As Button
     Friend WithEvents btnNavItems As Button
     Friend WithEvents btnNavDashboard As Button
+    Friend WithEvents lblDashboard As Label
 End Class
