@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory\\Inventory.vbproj": {}
+    "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {}
   },
   "projects": {
-    "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory\\Inventory.vbproj": {
+    "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory\\Inventory.vbproj",
+        "projectUniqueName": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
         "projectName": "Inventory",
-        "projectPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory\\Inventory.vbproj",
-        "packagesPath": "C:\\Users\\L\\.nuget\\packages\\",
-        "outputPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory\\obj\\",
+        "projectPath": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
+        "packagesPath": "C:\\Users\\Fernando\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\L\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Fernando\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,6 +39,12 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
