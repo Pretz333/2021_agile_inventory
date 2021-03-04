@@ -41,4 +41,19 @@ Public Class Form1
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles srchItem1.TextChanged
         LoadTable(srchItem1.Text)
     End Sub
+
+    Private Sub btnNavCategories_Click(sender As Object, e As EventArgs) Handles btnNavCategories.Click
+        Me.Hide()
+        frmCategories.Show()
+    End Sub
+
+    Private Sub btnNavLocations_Click(sender As Object, e As EventArgs) Handles btnNavLocations.Click
+        Me.Hide()
+        frmLocations.Show()
+    End Sub
+
+    Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
+        Me.Hide()
+        frmExport.Show()
+    End Sub
 End Class

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {}
+    "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {}
   },
   "projects": {
-    "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {
+    "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
+        "projectUniqueName": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
         "projectName": "Inventory",
-        "projectPath": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
-        "packagesPath": "C:\\Users\\Fernando\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\obj\\",
+        "projectPath": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
+        "packagesPath": "C:\\Users\\gabby\\.nuget\\packages\\",
+        "outputPath": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Fernando\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\gabby\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
