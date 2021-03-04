@@ -9,13 +9,16 @@ Public Class Form1
 
     'set up connection function
     Private Function connectToDb() As SqlConnection
+        'This gives the full path into the bin/debug folder
+        Dim strPath As String = Application.StartupPath
+        Dim intPathLength As Integer = strPath.Length
+        Debug.Write(strPath)
 
-        'connection String
-        Dim connectionString As String = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\Inventory.mdf;Integrated Security=True"
+        'This strips off the bin/debug folder to point into your project folder.
+        strPath = strPath.Substring(0, intPathLength - 25)
 
-
-        'create connection object
-        Dim dbConnection As New SqlConnection(connectionString)
+        Dim strconnection As String = "Server=(LocalDB)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=" + strPath + "Inventory.mdf"
+        Dim dbConnection As New SqlConnection(strconnection)
 
         Return dbConnection
     End Function
@@ -31,7 +34,6 @@ Public Class Form1
         Dim table As New DataTable()
         adapter.Fill(table)
         DataGridView1.DataSource = table
-
 
         dbConnection.Close()
     End Sub
