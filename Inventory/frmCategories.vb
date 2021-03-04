@@ -33,17 +33,26 @@ Public Class frmCategories
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
-        Me.Close()
-        Form1.Show()
+        Me.Hide()
+        frmDashboard.Show()
+    End Sub
+
+    Private Sub btnNavItems_Click(sender As Object, e As EventArgs) Handles btnNavItems.Click
+        Me.Hide()
+        frmItems.Show()
+    End Sub
+
+    Private Sub btnNavCategories_Click(sender As Object, e As EventArgs) Handles btnNavCategories.Click
+        'Already on this page
     End Sub
 
     Private Sub btnNavLocations_Click(sender As Object, e As EventArgs) Handles btnNavLocations.Click
-        Me.Close()
+        Me.Hide()
         frmLocations.Show()
     End Sub
 
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
-        Me.Close()
+        Me.Hide()
         frmExport.Show()
     End Sub
 End Class

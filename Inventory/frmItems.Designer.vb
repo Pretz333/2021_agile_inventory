@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmExport
+Partial Class frmItems
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,91 +22,106 @@ Partial Class frmExport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lblExport = New System.Windows.Forms.Label()
+        Me.lblLocations = New System.Windows.Forms.Label()
+        Me.dgvItems = New System.Windows.Forms.DataGridView()
         Me.btnNavDashboard = New System.Windows.Forms.Button()
+        Me.btnNavItems = New System.Windows.Forms.Button()
         Me.btnNavCategories = New System.Windows.Forms.Button()
         Me.btnNavLocations = New System.Windows.Forms.Button()
-        Me.btnNavItems = New System.Windows.Forms.Button()
         Me.btnNavExport = New System.Windows.Forms.Button()
+        CType(Me.dgvItems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'lblExport
+        'lblLocations
         '
-        Me.lblExport.AutoSize = True
-        Me.lblExport.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblExport.Location = New System.Drawing.Point(12, 9)
-        Me.lblExport.Name = "lblExport"
-        Me.lblExport.Size = New System.Drawing.Size(117, 46)
-        Me.lblExport.TabIndex = 0
-        Me.lblExport.Text = "Export"
+        Me.lblLocations.AutoSize = True
+        Me.lblLocations.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblLocations.Location = New System.Drawing.Point(12, 9)
+        Me.lblLocations.Name = "lblLocations"
+        Me.lblLocations.Size = New System.Drawing.Size(102, 46)
+        Me.lblLocations.TabIndex = 1
+        Me.lblLocations.Text = "Items"
+        '
+        'dgvItems
+        '
+        Me.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvItems.Location = New System.Drawing.Point(112, 85)
+        Me.dgvItems.Name = "dgvItems"
+        Me.dgvItems.RowHeadersWidth = 51
+        Me.dgvItems.RowTemplate.Height = 29
+        Me.dgvItems.Size = New System.Drawing.Size(676, 353)
+        Me.dgvItems.TabIndex = 2
         '
         'btnNavDashboard
         '
-        Me.btnNavDashboard.Location = New System.Drawing.Point(12, 93)
+        Me.btnNavDashboard.Location = New System.Drawing.Point(12, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavDashboard.TabIndex = 1
+        Me.btnNavDashboard.TabIndex = 3
         Me.btnNavDashboard.Text = "Dashboard"
         Me.btnNavDashboard.UseVisualStyleBackColor = True
         '
+        'btnNavItems
+        '
+        Me.btnNavItems.Location = New System.Drawing.Point(12, 130)
+        Me.btnNavItems.Name = "btnNavItems"
+        Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
+        Me.btnNavItems.TabIndex = 7
+        Me.btnNavItems.Text = "Items"
+        Me.btnNavItems.UseVisualStyleBackColor = True
+        '
         'btnNavCategories
         '
-        Me.btnNavCategories.Location = New System.Drawing.Point(12, 181)
+        Me.btnNavCategories.Location = New System.Drawing.Point(12, 174)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavCategories.TabIndex = 2
+        Me.btnNavCategories.TabIndex = 8
         Me.btnNavCategories.Text = "Categories"
         Me.btnNavCategories.UseVisualStyleBackColor = True
         '
         'btnNavLocations
         '
-        Me.btnNavLocations.Location = New System.Drawing.Point(12, 225)
+        Me.btnNavLocations.Location = New System.Drawing.Point(12, 218)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavLocations.TabIndex = 3
+        Me.btnNavLocations.TabIndex = 9
         Me.btnNavLocations.Text = "Locations"
         Me.btnNavLocations.UseVisualStyleBackColor = True
         '
-        'btnNavItems
-        '
-        Me.btnNavItems.Location = New System.Drawing.Point(12, 137)
-        Me.btnNavItems.Name = "btnNavItems"
-        Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavItems.TabIndex = 9
-        Me.btnNavItems.Text = "Items"
-        Me.btnNavItems.UseVisualStyleBackColor = True
-        '
         'btnNavExport
         '
-        Me.btnNavExport.Location = New System.Drawing.Point(12, 269)
+        Me.btnNavExport.Location = New System.Drawing.Point(12, 262)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
         Me.btnNavExport.TabIndex = 10
         Me.btnNavExport.Text = "Export"
         Me.btnNavExport.UseVisualStyleBackColor = True
         '
-        'frmExport
+        'frmItems
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.btnNavExport)
-        Me.Controls.Add(Me.btnNavItems)
         Me.Controls.Add(Me.btnNavLocations)
         Me.Controls.Add(Me.btnNavCategories)
+        Me.Controls.Add(Me.btnNavItems)
         Me.Controls.Add(Me.btnNavDashboard)
-        Me.Controls.Add(Me.lblExport)
-        Me.Name = "frmExport"
-        Me.Text = "frmExport"
+        Me.Controls.Add(Me.dgvItems)
+        Me.Controls.Add(Me.lblLocations)
+        Me.Name = "frmItems"
+        Me.Text = "Items"
+        CType(Me.dgvItems, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents lblExport As Label
+    Friend WithEvents lblLocations As Label
+    Friend WithEvents dgvItems As DataGridView
     Friend WithEvents btnNavDashboard As Button
+    Friend WithEvents btnNavItems As Button
     Friend WithEvents btnNavCategories As Button
     Friend WithEvents btnNavLocations As Button
-    Friend WithEvents btnNavItems As Button
     Friend WithEvents btnNavExport As Button
 End Class

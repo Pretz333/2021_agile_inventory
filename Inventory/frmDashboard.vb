@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class Form1
+Public Class frmDashboard
 
     'load table from database, in this case item table
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -40,6 +40,15 @@ Public Class Form1
     'basic search option
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles srchItem1.TextChanged
         LoadTable(srchItem1.Text)
+    End Sub
+
+    Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
+        'Already on this page
+    End Sub
+
+    Private Sub btnNavItems_Click(sender As Object, e As EventArgs) Handles btnNavItems.Click
+        Me.Hide()
+        frmItems.Show()
     End Sub
 
     Private Sub btnNavCategories_Click(sender As Object, e As EventArgs) Handles btnNavCategories.Click

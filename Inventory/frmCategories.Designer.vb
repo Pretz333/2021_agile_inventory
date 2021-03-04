@@ -27,24 +27,26 @@ Partial Class frmCategories
         Me.btnNavDashboard = New System.Windows.Forms.Button()
         Me.btnNavLocations = New System.Windows.Forms.Button()
         Me.btnNavExport = New System.Windows.Forms.Button()
+        Me.btnNavItems = New System.Windows.Forms.Button()
+        Me.btnNavCategories = New System.Windows.Forms.Button()
         CType(Me.dgvCategories, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dgvCategories
         '
         Me.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCategories.Location = New System.Drawing.Point(131, 85)
+        Me.dgvCategories.Location = New System.Drawing.Point(113, 85)
         Me.dgvCategories.Name = "dgvCategories"
         Me.dgvCategories.RowHeadersWidth = 51
         Me.dgvCategories.RowTemplate.Height = 29
-        Me.dgvCategories.Size = New System.Drawing.Size(563, 266)
+        Me.dgvCategories.Size = New System.Drawing.Size(675, 353)
         Me.dgvCategories.TabIndex = 0
         '
         'lblCategories
         '
         Me.lblCategories.AutoSize = True
         Me.lblCategories.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblCategories.Location = New System.Drawing.Point(13, 13)
+        Me.lblCategories.Location = New System.Drawing.Point(12, 9)
         Me.lblCategories.Name = "lblCategories"
         Me.lblCategories.Size = New System.Drawing.Size(180, 46)
         Me.lblCategories.TabIndex = 1
@@ -61,7 +63,7 @@ Partial Class frmCategories
         '
         'btnNavLocations
         '
-        Me.btnNavLocations.Location = New System.Drawing.Point(13, 136)
+        Me.btnNavLocations.Location = New System.Drawing.Point(13, 221)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
         Me.btnNavLocations.TabIndex = 3
@@ -70,25 +72,45 @@ Partial Class frmCategories
         '
         'btnNavExport
         '
-        Me.btnNavExport.Location = New System.Drawing.Point(13, 192)
+        Me.btnNavExport.Location = New System.Drawing.Point(12, 267)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
         Me.btnNavExport.TabIndex = 4
         Me.btnNavExport.Text = "Export"
         Me.btnNavExport.UseVisualStyleBackColor = True
         '
+        'btnNavItems
+        '
+        Me.btnNavItems.Location = New System.Drawing.Point(13, 130)
+        Me.btnNavItems.Name = "btnNavItems"
+        Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
+        Me.btnNavItems.TabIndex = 5
+        Me.btnNavItems.Text = "Items"
+        Me.btnNavItems.UseVisualStyleBackColor = True
+        '
+        'btnNavCategories
+        '
+        Me.btnNavCategories.Location = New System.Drawing.Point(13, 174)
+        Me.btnNavCategories.Name = "btnNavCategories"
+        Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
+        Me.btnNavCategories.TabIndex = 6
+        Me.btnNavCategories.Text = "Categories"
+        Me.btnNavCategories.UseVisualStyleBackColor = True
+        '
         'frmCategories
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnNavCategories)
+        Me.Controls.Add(Me.btnNavItems)
         Me.Controls.Add(Me.btnNavExport)
         Me.Controls.Add(Me.btnNavLocations)
         Me.Controls.Add(Me.btnNavDashboard)
         Me.Controls.Add(Me.lblCategories)
         Me.Controls.Add(Me.dgvCategories)
         Me.Name = "frmCategories"
-        Me.Text = "frmCategories"
+        Me.Text = "Categories"
         CType(Me.dgvCategories, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -100,4 +122,6 @@ Partial Class frmCategories
     Friend WithEvents btnNavDashboard As Button
     Friend WithEvents btnNavLocations As Button
     Friend WithEvents btnNavExport As Button
+    Friend WithEvents btnNavItems As Button
+    Friend WithEvents btnNavCategories As Button
 End Class
