@@ -32,12 +32,9 @@ Public Class frmLocations
         If searchTerm IsNot String.Empty Then
             Command.Append(" WHERE Description LIKE '%" + searchTerm + "%'")
         End If
-        Dim cmd As New SqlCommand(selectStatement, dbConnection)
-        cmd.CommandType = CommandType.Text
-        Dim dataAdapter As New SqlDataAdapter(cmd)
-        Dim dataTable As New DataTable()
-        dataAdapter.Fill(dataTable)
-        dvgLocations.DataSource = dataTable
+        dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
+        dataAdapter.Fill(ds)
+        dvgLocations.DataSource = ds.Tables(0)
         dbConnection.Close()
     End Sub
 
