@@ -2,7 +2,7 @@
 
 Public Class frmLocations
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
-        LoadTableData()
+        LoadTableData(String.Empty)
     End Sub
 
     'Set up connection to database
@@ -20,18 +20,26 @@ Public Class frmLocations
         Return dbConnection
     End Function
 
-    Public Sub LoadTableData()
+    Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
         dbConnection.Open()
         Dim selectStatement As String = "SELECT * FROM Location"
-        Dim cmdCategory As New SqlCommand(selectStatement, dbConnection)
-        cmdCategory.CommandType = CommandType.Text
-        Dim dataAdapter As New SqlDataAdapter(cmdCategory)
+        If searchTerm IsNot String.Empty Then
+            Command.Append(" WHERE Description LIKE '%" + searchTerm + "%'")
+        End If
+        Dim cmd As New SqlCommand(selectStatement, dbConnection)
+        cmd.CommandType = CommandType.Text
+        Dim dataAdapter As New SqlDataAdapter(cmd)
         Dim dataTable As New DataTable()
         dataAdapter.Fill(dataTable)
         dvgLocations.DataSource = dataTable
         dbConnection.Close()
     End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        LoadTableData(txtSearch.Text)
+    End Sub
+
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
         Me.Close()
         frmDashboard.Show()

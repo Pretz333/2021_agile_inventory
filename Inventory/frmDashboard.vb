@@ -4,11 +4,11 @@ Public Class frmDashboard
 
     'load table from database, in this case item table
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'LoadTable("")
+        'LoadTableData(String.Empty)
     End Sub
 
     'set up connection function
-    Private Function connectToDb() As SqlConnection
+    Private Function ConnectToDb() As SqlConnection
         'This gives the full path into the bin/debug folder
         Dim strPath As String = Application.StartupPath
         Dim intPathLength As Integer = strPath.Length
@@ -22,12 +22,18 @@ Public Class frmDashboard
         Return dbConnection
     End Function
 
-    Public Sub LoadTable(ByVal tableR As String)
-        Dim dbConnection As SqlConnection = connectToDb()
+    Public Sub LoadTableData(ByVal searchTerm As String)
+        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim command As String = "SELECT * FROM InventoryMain"
         dbConnection.Open()
 
-        'select query to find the item that was looked for
-        Dim adapter As New SqlDataAdapter("select t1.description as Item, t2.description as Cat from item as t1 left join category as t2 on t1.CategoryId = t2.CategoryiD   where t1.description like '%" & txtSearch.Text & "%'", dbConnection)
+        If searchTerm IsNot "" Then
+            'select query to find the item that was looked for
+            command.Append(" WHERE Description LIKE '%" + searchTerm + "%'")
+            'Dim adapter As New SqlDataAdapter("select t1.description as Item, t2.description as Cat from item as t1 left join category as t2 on t1.CategoryId = t2.CategoryiD   where t1.description like '%" & searchTerm & "%'", dbConnection)
+        End If
+
+        Dim adapter As New SqlDataAdapter(command, dbConnection)
 
         'Fill the colum with the data from the database
         Dim table As New DataTable()
@@ -37,9 +43,9 @@ Public Class frmDashboard
         dbConnection.Close()
     End Sub
 
-    'basic search option
-    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        LoadTable(txtSearch.Text)
+    'Basic search
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        LoadTableData(txtSearch.Text)
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click

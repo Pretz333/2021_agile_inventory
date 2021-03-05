@@ -29,8 +29,8 @@ Partial Class frmLocations
         Me.dvgLocations = New System.Windows.Forms.DataGridView()
         Me.btnNavItems = New System.Windows.Forms.Button()
         Me.btnNavLocations = New System.Windows.Forms.Button()
-        Me.lblSearch = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
         CType(Me.dvgLocations, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -100,31 +100,30 @@ Partial Class frmLocations
         Me.btnNavLocations.Text = "Locations"
         Me.btnNavLocations.UseVisualStyleBackColor = True
         '
-        'lblSearch
-        '
-        Me.lblSearch.AutoSize = True
-        Me.lblSearch.Location = New System.Drawing.Point(112, 58)
-        Me.lblSearch.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblSearch.Name = "lblSearch"
-        Me.lblSearch.Size = New System.Drawing.Size(56, 20)
-        Me.lblSearch.TabIndex = 0
-        Me.lblSearch.Text = "Search:"
-        '
         'txtSearch
         '
-        Me.txtSearch.Location = New System.Drawing.Point(172, 55)
+        Me.txtSearch.Location = New System.Drawing.Point(112, 56)
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(211, 27)
         Me.txtSearch.TabIndex = 1
+        '
+        'btnSearch
+        '
+        Me.btnSearch.Location = New System.Drawing.Point(328, 55)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(94, 29)
+        Me.btnSearch.TabIndex = 8
+        Me.btnSearch.Text = "Search"
+        Me.btnSearch.UseVisualStyleBackColor = True
         '
         'frmLocations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txtSearch)
-        Me.Controls.Add(Me.lblSearch)
         Me.Controls.Add(Me.btnNavLocations)
         Me.Controls.Add(Me.btnNavItems)
         Me.Controls.Add(Me.dvgLocations)
@@ -147,6 +146,6 @@ Partial Class frmLocations
     Friend WithEvents dvgLocations As DataGridView
     Friend WithEvents btnNavItems As Button
     Friend WithEvents btnNavLocations As Button
-    Friend WithEvents lblSearch As Label
     Friend WithEvents txtSearch As TextBox
+    Friend WithEvents btnSearch As Button
 End Class
