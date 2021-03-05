@@ -108,12 +108,12 @@ Partial Class frmLocations
         Me.txtSearch.Location = New System.Drawing.Point(112, 56)
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(211, 27)
+        Me.txtSearch.Size = New System.Drawing.Size(277, 27)
         Me.txtSearch.TabIndex = 1
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(328, 55)
+        Me.btnSearch.Location = New System.Drawing.Point(394, 55)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(94, 29)
         Me.btnSearch.TabIndex = 2
@@ -122,7 +122,7 @@ Partial Class frmLocations
         '
         'btnCreate
         '
-        Me.btnCreate.Location = New System.Drawing.Point(452, 55)
+        Me.btnCreate.Location = New System.Drawing.Point(494, 55)
         Me.btnCreate.Name = "btnCreate"
         Me.btnCreate.Size = New System.Drawing.Size(94, 29)
         Me.btnCreate.TabIndex = 3
@@ -131,7 +131,7 @@ Partial Class frmLocations
         '
         'btnEdit
         '
-        Me.btnEdit.Location = New System.Drawing.Point(574, 55)
+        Me.btnEdit.Location = New System.Drawing.Point(594, 55)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(94, 29)
         Me.btnEdit.TabIndex = 4

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmItems
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmItems
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.lblItems = New System.Windows.Forms.Label()
         Me.dgvItems = New System.Windows.Forms.DataGridView()
@@ -108,12 +108,12 @@ Partial Class frmItems
         Me.txtSearch.Location = New System.Drawing.Point(112, 56)
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(211, 27)
+        Me.txtSearch.Size = New System.Drawing.Size(277, 27)
         Me.txtSearch.TabIndex = 1
         '
         'btnSearch
         '
-        Me.btnSearch.Location = New System.Drawing.Point(328, 55)
+        Me.btnSearch.Location = New System.Drawing.Point(394, 55)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(94, 29)
         Me.btnSearch.TabIndex = 2
@@ -131,7 +131,7 @@ Partial Class frmItems
         '
         'btnEdit
         '
-        Me.btnEdit.Location = New System.Drawing.Point(574, 55)
+        Me.btnEdit.Location = New System.Drawing.Point(594, 55)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(94, 29)
         Me.btnEdit.TabIndex = 4
@@ -140,7 +140,7 @@ Partial Class frmItems
         '
         'btnCreate
         '
-        Me.btnCreate.Location = New System.Drawing.Point(452, 55)
+        Me.btnCreate.Location = New System.Drawing.Point(494, 55)
         Me.btnCreate.Name = "btnCreate"
         Me.btnCreate.Size = New System.Drawing.Size(94, 29)
         Me.btnCreate.TabIndex = 3

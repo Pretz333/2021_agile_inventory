@@ -5,8 +5,6 @@ Public Class frmCreates
 
     Private Sub cmbList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbList.SelectedIndexChanged
         btnCreate.Visible = True
-
-
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnCreate.Click
