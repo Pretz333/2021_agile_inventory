@@ -1,6 +1,9 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class frmLocations
+    Dim ds As New DataSet
+    Dim dataAdapter As SqlDataAdapter
+
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadTableData(String.Empty)
     End Sub
@@ -40,26 +43,17 @@ Public Class frmLocations
         LoadTableData(txtSearch.Text)
     End Sub
 
-    Private Sub btnCreate_Click(sender As Object, e As EventArgs) Handles btnCreate.Click
-        Dim name As String = InputBox("Please enter the Location name below.", "Create New Location")
-        Dim dbConnection As SqlConnection = ConnectToDb()
-        dbConnection.Open()
-        Dim sqlString As String = "INSERT INTO Location (Description) VALUES(@name)"
-        Dim saveCommand As New SqlCommand(sqlString, dbConnection)
-        saveCommand.Parameters.AddWithValue("@name", name)
-
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            If saveCommand.ExecuteNonQuery > 0 Then
-                MessageBox.Show("Category was successfully saved.")
-            Else
-                MessageBox.Show("Category was not saved.")
+            Dim cmd As SqlCommandBuilder = New SqlCommandBuilder(dataAdapter)
+            Dim changes As DataSet = ds.GetChanges()
+            If changes IsNot Nothing Then
+                dataAdapter.Update(changes)
+                MsgBox("Changes Saved")
             End If
         Catch ex As Exception
-            MessageBox.Show("There was a problem connecting to the database: " + ex.Message)
+            MsgBox(ex.ToString)
         End Try
-
-        Me.Dispose(True)
-        frmDashboard.Show()
     End Sub
 
     Private Sub dvgLocations_Click(sender As Object, e As EventArgs) Handles dvgLocations.Click

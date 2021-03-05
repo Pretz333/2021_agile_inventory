@@ -31,9 +31,7 @@ Partial Class frmItems
         Me.btnNavExport = New System.Windows.Forms.Button()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.btnEdit = New System.Windows.Forms.Button()
-        Me.btnCreate = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         CType(Me.dgvItems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -120,41 +118,21 @@ Partial Class frmItems
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
-        'btnDelete
+        'btnSave
         '
-        Me.btnDelete.Location = New System.Drawing.Point(694, 55)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(94, 29)
-        Me.btnDelete.TabIndex = 5
-        Me.btnDelete.Text = "Delete"
-        Me.btnDelete.UseVisualStyleBackColor = True
-        '
-        'btnEdit
-        '
-        Me.btnEdit.Location = New System.Drawing.Point(594, 55)
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Size = New System.Drawing.Size(94, 29)
-        Me.btnEdit.TabIndex = 4
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.UseVisualStyleBackColor = True
-        '
-        'btnCreate
-        '
-        Me.btnCreate.Location = New System.Drawing.Point(494, 55)
-        Me.btnCreate.Name = "btnCreate"
-        Me.btnCreate.Size = New System.Drawing.Size(94, 29)
-        Me.btnCreate.TabIndex = 3
-        Me.btnCreate.Text = "Create"
-        Me.btnCreate.UseVisualStyleBackColor = True
+        Me.btnSave.Location = New System.Drawing.Point(666, 55)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(122, 29)
+        Me.btnSave.TabIndex = 5
+        Me.btnSave.Text = "Save Changes"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
         'frmItems
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.btnCreate)
-        Me.Controls.Add(Me.btnEdit)
-        Me.Controls.Add(Me.btnDelete)
+        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.btnNavExport)
@@ -181,7 +159,5 @@ Partial Class frmItems
     Friend WithEvents btnNavExport As Button
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnSearch As Button
-    Friend WithEvents btnDelete As Button
-    Friend WithEvents btnEdit As Button
-    Friend WithEvents btnCreate As Button
+    Friend WithEvents btnSave As Button
 End Class
