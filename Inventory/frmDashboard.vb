@@ -1,8 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class frmDashboard
-
-    'load table from database, in this case item table
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles Me.Load
         'LoadTableData(String.Empty)
     End Sub

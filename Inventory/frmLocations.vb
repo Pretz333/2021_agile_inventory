@@ -40,6 +40,29 @@ Public Class frmLocations
         LoadTableData(txtSearch.Text)
     End Sub
 
+    Private Sub btnCreate_Click(sender As Object, e As EventArgs) Handles btnCreate.Click
+        Dim name As String = InputBox("Please enter the Location name below.", "Create New Location")
+        Dim dbConnection As SqlConnection = ConnectToDb()
+        dbConnection.Open()
+        Dim sqlString As String = "INSERT INTO Location (Description) VALUES(@name)"
+        Dim saveCommand As New SqlCommand(sqlString, dbConnection)
+        saveCommand.Parameters.AddWithValue("@name", name)
+
+
+        Try
+            If saveCommand.ExecuteNonQuery > 0 Then
+                MessageBox.Show("Category was successfully saved.")
+            Else
+                MessageBox.Show("Category was not saved.")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("There was a problem connecting to the database: " + ex.Message)
+        End Try
+
+        Me.Dispose(True)
+        frmDashboard.Show()
+    End Sub
+
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
         Me.Close()
         frmDashboard.Show()

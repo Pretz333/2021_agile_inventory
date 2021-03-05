@@ -41,11 +41,12 @@ Public Class frmCategories
     End Sub
 
     Private Sub btnCreate_Click(sender As Object, e As EventArgs) Handles btnCreate.Click
+        Dim name As String = InputBox("Please enter the Category name below.", "Create New Category")
         Dim dbConnection As SqlConnection = ConnectToDb()
         dbConnection.Open()
-        Dim sqlString As String = "INSERT INTO Category (Description) VALUES(@crtBox)"
+        Dim sqlString As String = "INSERT INTO Category (Description) VALUES(@name)"
         Dim saveCommand As New SqlCommand(sqlString, dbConnection)
-        'saveCommand.Parameters.AddWithValue("@crtBox", crtBox.Text.ToString())
+        saveCommand.Parameters.AddWithValue("@name", name)
 
 
         Try
@@ -55,10 +56,9 @@ Public Class frmCategories
                 MessageBox.Show("Category was not saved.")
             End If
         Catch ex As Exception
-            MessageBox.Show("There was a problem connecting to the database" + ex.Message)
+            MessageBox.Show("There was a problem connecting to the database: " + ex.Message)
         End Try
 
-        MsgBox("Category has been added")
         Me.Dispose(True)
         frmDashboard.Show()
     End Sub
