@@ -74,5 +74,7 @@ Public Class frmDashboard
 
     Private Sub frmCreate_Click(sender As Object, e As EventArgs) Handles frmCreate.Click
         Me.Hide()
+        frmCreate.Show()
+
     End Sub
 End Class
