@@ -454,19 +454,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\L\\.nuget\\packages\\": {}
+    "C:\\Users\\Fernando\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
+      "projectUniqueName": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
       "projectName": "Inventory",
-      "projectPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
-      "packagesPath": "C:\\Users\\L\\.nuget\\packages\\",
-      "outputPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\obj\\",
+      "projectPath": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
+      "packagesPath": "C:\\Users\\Fernando\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Fernando\\Documents\\GitHub\\2021_agile_inventory\\Inventory\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\L\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Fernando\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

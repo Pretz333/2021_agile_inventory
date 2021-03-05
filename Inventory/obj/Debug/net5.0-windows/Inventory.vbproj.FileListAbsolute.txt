@@ -6,7 +6,6 @@ C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\bin\Debug\net5
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\bin\Debug\net5.0-windows\ref\Inventory.dll
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\bin\Debug\net5.0-windows\Inventory.pdb
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.vbprojAssemblyReference.cache
-C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.Form1.resources
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.vbproj.GenerateResource.cache
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.AssemblyInfoInputs.cache
@@ -51,3 +50,9 @@ C:\ASPNET\AgileProgramming\2021_agile_inventory\Inventory\obj\Debug\net5.0-windo
 C:\ASPNET\AgileProgramming\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmCategories.resources
 C:\ASPNET\AgileProgramming\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmExport.resources
 C:\ASPNET\AgileProgramming\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmLocations.resources
+C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmCategories.resources
+C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmCreate.resources
+C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmDashboard.resources
+C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmExport.resources
+C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmItems.resources
+C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmLocations.resources

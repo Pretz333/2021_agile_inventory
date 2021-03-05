@@ -71,4 +71,8 @@ Public Class frmDashboard
         Me.Hide()
         frmExport.Show()
     End Sub
+
+    Private Sub frmCreate_Click(sender As Object, e As EventArgs) Handles frmCreate.Click
+        Me.Hide()
+    End Sub
 End Class
