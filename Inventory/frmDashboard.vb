@@ -3,8 +3,8 @@
 Public Class frmDashboard
 
     'load table from database, in this case item table
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
-        LoadTable("")
+    Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'LoadTable("")
     End Sub
 
     'set up connection function
@@ -38,7 +38,7 @@ Public Class frmDashboard
     End Sub
 
     'basic search option
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         LoadTable(txtSearch.Text)
     End Sub
 

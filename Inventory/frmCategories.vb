@@ -1,12 +1,12 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class frmCategories
-    Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadCategoryTableData()
+    Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
+        LoadTableData()
     End Sub
 
     'Set up connection to database
-    Private Function connectToDb() As SqlConnection
+    Private Function ConnectToDb() As SqlConnection
         'This gives the full path into the bin/debug folder
         Dim strPath As String = Application.StartupPath
         Dim intPathLength As Integer = strPath.Length
@@ -20,8 +20,8 @@ Public Class frmCategories
         Return dbConnection
     End Function
 
-    Public Sub LoadCategoryTableData()
-        Dim dbConnection As SqlConnection = connectToDb()
+    Public Sub LoadTableData()
+        Dim dbConnection As SqlConnection = ConnectToDb()
         dbConnection.Open()
         Dim selectStatement As String = "SELECT * FROM Category"
         Dim cmdCategory As New SqlCommand(selectStatement, dbConnection)
@@ -30,6 +30,7 @@ Public Class frmCategories
         Dim dataTable As New DataTable()
         dataAdapter.Fill(dataTable)
         dgvCategories.DataSource = dataTable
+        dbConnection.Close()
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
