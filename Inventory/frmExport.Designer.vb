@@ -45,7 +45,7 @@ Partial Class frmExport
         Me.btnNavDashboard.Location = New System.Drawing.Point(9, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavDashboard.TabIndex = 1
+        Me.btnNavDashboard.TabIndex = 2
         Me.btnNavDashboard.Text = "Dashboard"
         Me.btnNavDashboard.UseVisualStyleBackColor = True
         '
@@ -54,7 +54,7 @@ Partial Class frmExport
         Me.btnNavCategories.Location = New System.Drawing.Point(9, 175)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavCategories.TabIndex = 2
+        Me.btnNavCategories.TabIndex = 4
         Me.btnNavCategories.Text = "Categories"
         Me.btnNavCategories.UseVisualStyleBackColor = True
         '
@@ -63,7 +63,7 @@ Partial Class frmExport
         Me.btnNavLocations.Location = New System.Drawing.Point(9, 220)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavLocations.TabIndex = 3
+        Me.btnNavLocations.TabIndex = 5
         Me.btnNavLocations.Text = "Locations"
         Me.btnNavLocations.UseVisualStyleBackColor = True
         '
@@ -72,16 +72,16 @@ Partial Class frmExport
         Me.btnNavItems.Location = New System.Drawing.Point(9, 130)
         Me.btnNavItems.Name = "btnNavItems"
         Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavItems.TabIndex = 9
+        Me.btnNavItems.TabIndex = 3
         Me.btnNavItems.Text = "Items"
         Me.btnNavItems.UseVisualStyleBackColor = True
         '
         'btnNavExport
         '
-        Me.btnNavExport.Location = New System.Drawing.Point(9, 260)
+        Me.btnNavExport.Location = New System.Drawing.Point(9, 265)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavExport.TabIndex = 10
+        Me.btnNavExport.TabIndex = 6
         Me.btnNavExport.Text = "Export"
         Me.btnNavExport.UseVisualStyleBackColor = True
         '

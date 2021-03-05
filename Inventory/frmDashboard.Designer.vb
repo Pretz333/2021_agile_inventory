@@ -44,31 +44,32 @@ Partial Class frmDashboard
         Me.dgvDashboard.RowTemplate.Height = 41
         Me.dgvDashboard.Size = New System.Drawing.Size(676, 353)
         Me.dgvDashboard.TabIndex = 0
+        Me.dgvDashboard.TabStop = False
         '
         'lblSearch
         '
         Me.lblSearch.AutoSize = True
-        Me.lblSearch.Location = New System.Drawing.Point(112, 56)
+        Me.lblSearch.Location = New System.Drawing.Point(112, 58)
         Me.lblSearch.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblSearch.Name = "lblSearch"
         Me.lblSearch.Size = New System.Drawing.Size(56, 20)
-        Me.lblSearch.TabIndex = 1
+        Me.lblSearch.TabIndex = 0
         Me.lblSearch.Text = "Search:"
         '
         'txtSearch
         '
-        Me.txtSearch.Location = New System.Drawing.Point(172, 53)
+        Me.txtSearch.Location = New System.Drawing.Point(172, 55)
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(211, 27)
-        Me.txtSearch.TabIndex = 2
+        Me.txtSearch.TabIndex = 1
         '
         'btnNavCategories
         '
         Me.btnNavCategories.Location = New System.Drawing.Point(9, 175)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavCategories.TabIndex = 3
+        Me.btnNavCategories.TabIndex = 4
         Me.btnNavCategories.Text = "Categories"
         Me.btnNavCategories.UseVisualStyleBackColor = True
         '
@@ -77,7 +78,7 @@ Partial Class frmDashboard
         Me.btnNavLocations.Location = New System.Drawing.Point(9, 220)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavLocations.TabIndex = 4
+        Me.btnNavLocations.TabIndex = 5
         Me.btnNavLocations.Text = "Locations"
         Me.btnNavLocations.UseVisualStyleBackColor = True
         '
@@ -86,7 +87,7 @@ Partial Class frmDashboard
         Me.btnNavExport.Location = New System.Drawing.Point(9, 265)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavExport.TabIndex = 5
+        Me.btnNavExport.TabIndex = 6
         Me.btnNavExport.Text = "Export"
         Me.btnNavExport.UseVisualStyleBackColor = True
         '
@@ -95,7 +96,7 @@ Partial Class frmDashboard
         Me.btnNavItems.Location = New System.Drawing.Point(9, 130)
         Me.btnNavItems.Name = "btnNavItems"
         Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavItems.TabIndex = 6
+        Me.btnNavItems.TabIndex = 3
         Me.btnNavItems.Text = "Items"
         Me.btnNavItems.UseVisualStyleBackColor = True
         '
@@ -104,7 +105,7 @@ Partial Class frmDashboard
         Me.btnNavDashboard.Location = New System.Drawing.Point(9, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavDashboard.TabIndex = 7
+        Me.btnNavDashboard.TabIndex = 2
         Me.btnNavDashboard.Text = "Dashboard"
         Me.btnNavDashboard.UseVisualStyleBackColor = True
         '
@@ -115,7 +116,7 @@ Partial Class frmDashboard
         Me.lblDashboard.Location = New System.Drawing.Point(12, 9)
         Me.lblDashboard.Name = "lblDashboard"
         Me.lblDashboard.Size = New System.Drawing.Size(183, 46)
-        Me.lblDashboard.TabIndex = 8
+        Me.lblDashboard.TabIndex = 0
         Me.lblDashboard.Text = "Dashboard"
         '
         'frmDashboard
