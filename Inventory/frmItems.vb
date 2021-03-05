@@ -64,8 +64,8 @@ Public Class frmItems
         frmDashboard.Show()
     End Sub
 
-    Private Sub dgvCategories_Click(sender As Object, e As EventArgs) Handles dgvCategories.Click
-        dgvCategories.DefaultCellStyle.SelectionBackColor = Color.Orange
+    Private Sub dgvItems_Click(sender As Object, e As EventArgs) Handles dgvItems.Click
+        dgvItems.DefaultCellStyle.SelectionBackColor = Color.Orange
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
