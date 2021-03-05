@@ -22,7 +22,7 @@ Partial Class frmItems
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.lblLocations = New System.Windows.Forms.Label()
+        Me.lblItems = New System.Windows.Forms.Label()
         Me.dgvItems = New System.Windows.Forms.DataGridView()
         Me.btnNavDashboard = New System.Windows.Forms.Button()
         Me.btnNavItems = New System.Windows.Forms.Button()
@@ -32,15 +32,15 @@ Partial Class frmItems
         CType(Me.dgvItems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'lblLocations
+        'lblItems
         '
-        Me.lblLocations.AutoSize = True
-        Me.lblLocations.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblLocations.Location = New System.Drawing.Point(12, 9)
-        Me.lblLocations.Name = "lblLocations"
-        Me.lblLocations.Size = New System.Drawing.Size(102, 46)
-        Me.lblLocations.TabIndex = 1
-        Me.lblLocations.Text = "Items"
+        Me.lblItems.AutoSize = True
+        Me.lblItems.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
+        Me.lblItems.Location = New System.Drawing.Point(12, 9)
+        Me.lblItems.Name = "lblItems"
+        Me.lblItems.Size = New System.Drawing.Size(102, 46)
+        Me.lblItems.TabIndex = 1
+        Me.lblItems.Text = "Items"
         '
         'dgvItems
         '
@@ -54,7 +54,7 @@ Partial Class frmItems
         '
         'btnNavDashboard
         '
-        Me.btnNavDashboard.Location = New System.Drawing.Point(12, 85)
+        Me.btnNavDashboard.Location = New System.Drawing.Point(9, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
         Me.btnNavDashboard.TabIndex = 3
@@ -63,7 +63,7 @@ Partial Class frmItems
         '
         'btnNavItems
         '
-        Me.btnNavItems.Location = New System.Drawing.Point(12, 130)
+        Me.btnNavItems.Location = New System.Drawing.Point(9, 130)
         Me.btnNavItems.Name = "btnNavItems"
         Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
         Me.btnNavItems.TabIndex = 7
@@ -72,7 +72,7 @@ Partial Class frmItems
         '
         'btnNavCategories
         '
-        Me.btnNavCategories.Location = New System.Drawing.Point(12, 174)
+        Me.btnNavCategories.Location = New System.Drawing.Point(9, 175)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
         Me.btnNavCategories.TabIndex = 8
@@ -81,7 +81,7 @@ Partial Class frmItems
         '
         'btnNavLocations
         '
-        Me.btnNavLocations.Location = New System.Drawing.Point(12, 218)
+        Me.btnNavLocations.Location = New System.Drawing.Point(9, 220)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
         Me.btnNavLocations.TabIndex = 9
@@ -90,7 +90,7 @@ Partial Class frmItems
         '
         'btnNavExport
         '
-        Me.btnNavExport.Location = New System.Drawing.Point(12, 262)
+        Me.btnNavExport.Location = New System.Drawing.Point(9, 265)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
         Me.btnNavExport.TabIndex = 10
@@ -108,7 +108,7 @@ Partial Class frmItems
         Me.Controls.Add(Me.btnNavItems)
         Me.Controls.Add(Me.btnNavDashboard)
         Me.Controls.Add(Me.dgvItems)
-        Me.Controls.Add(Me.lblLocations)
+        Me.Controls.Add(Me.lblItems)
         Me.Name = "frmItems"
         Me.Text = "Items"
         CType(Me.dgvItems, System.ComponentModel.ISupportInitialize).EndInit()
@@ -117,7 +117,7 @@ Partial Class frmItems
 
     End Sub
 
-    Friend WithEvents lblLocations As Label
+    Friend WithEvents lblItems As Label
     Friend WithEvents dgvItems As DataGridView
     Friend WithEvents btnNavDashboard As Button
     Friend WithEvents btnNavItems As Button

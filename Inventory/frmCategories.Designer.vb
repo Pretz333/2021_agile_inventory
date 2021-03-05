@@ -35,11 +35,11 @@ Partial Class frmCategories
         'dgvCategories
         '
         Me.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCategories.Location = New System.Drawing.Point(113, 85)
+        Me.dgvCategories.Location = New System.Drawing.Point(112, 85)
         Me.dgvCategories.Name = "dgvCategories"
         Me.dgvCategories.RowHeadersWidth = 51
         Me.dgvCategories.RowTemplate.Height = 29
-        Me.dgvCategories.Size = New System.Drawing.Size(675, 353)
+        Me.dgvCategories.Size = New System.Drawing.Size(676, 353)
         Me.dgvCategories.TabIndex = 0
         '
         'lblCategories
@@ -54,7 +54,7 @@ Partial Class frmCategories
         '
         'btnNavDashboard
         '
-        Me.btnNavDashboard.Location = New System.Drawing.Point(13, 85)
+        Me.btnNavDashboard.Location = New System.Drawing.Point(9, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
         Me.btnNavDashboard.TabIndex = 2
@@ -63,7 +63,7 @@ Partial Class frmCategories
         '
         'btnNavLocations
         '
-        Me.btnNavLocations.Location = New System.Drawing.Point(13, 221)
+        Me.btnNavLocations.Location = New System.Drawing.Point(9, 220)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
         Me.btnNavLocations.TabIndex = 3
@@ -72,7 +72,7 @@ Partial Class frmCategories
         '
         'btnNavExport
         '
-        Me.btnNavExport.Location = New System.Drawing.Point(12, 267)
+        Me.btnNavExport.Location = New System.Drawing.Point(9, 265)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
         Me.btnNavExport.TabIndex = 4
@@ -81,7 +81,7 @@ Partial Class frmCategories
         '
         'btnNavItems
         '
-        Me.btnNavItems.Location = New System.Drawing.Point(13, 130)
+        Me.btnNavItems.Location = New System.Drawing.Point(9, 130)
         Me.btnNavItems.Name = "btnNavItems"
         Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
         Me.btnNavItems.TabIndex = 5
@@ -90,7 +90,7 @@ Partial Class frmCategories
         '
         'btnNavCategories
         '
-        Me.btnNavCategories.Location = New System.Drawing.Point(13, 174)
+        Me.btnNavCategories.Location = New System.Drawing.Point(9, 175)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
         Me.btnNavCategories.TabIndex = 6

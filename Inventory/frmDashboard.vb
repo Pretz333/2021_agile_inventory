@@ -27,19 +27,19 @@ Public Class frmDashboard
         dbConnection.Open()
 
         'select query to find the item that was looked for
-        Dim adapter As New SqlDataAdapter("select t1.description as Item, t2.description as Cat from item as t1 left join category as t2 on t1.CategoryId = t2.CategoryiD   where t1.description like '%" & srchItem1.Text & "%'", dbConnection)
+        Dim adapter As New SqlDataAdapter("select t1.description as Item, t2.description as Cat from item as t1 left join category as t2 on t1.CategoryId = t2.CategoryiD   where t1.description like '%" & txtSearch.Text & "%'", dbConnection)
 
         'Fill the colum with the data from the database
         Dim table As New DataTable()
         adapter.Fill(table)
-        DataGridView1.DataSource = table
+        dgvDashboard.DataSource = table
 
         dbConnection.Close()
     End Sub
 
     'basic search option
-    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles srchItem1.TextChanged
-        LoadTable(srchItem1.Text)
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        LoadTable(txtSearch.Text)
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click

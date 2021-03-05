@@ -44,7 +44,7 @@ Partial Class frmLocations
         '
         'btnNavDashboard
         '
-        Me.btnNavDashboard.Location = New System.Drawing.Point(12, 85)
+        Me.btnNavDashboard.Location = New System.Drawing.Point(9, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
         Me.btnNavDashboard.TabIndex = 1
@@ -53,7 +53,7 @@ Partial Class frmLocations
         '
         'btnNavCategories
         '
-        Me.btnNavCategories.Location = New System.Drawing.Point(12, 173)
+        Me.btnNavCategories.Location = New System.Drawing.Point(9, 175)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
         Me.btnNavCategories.TabIndex = 2
@@ -62,7 +62,7 @@ Partial Class frmLocations
         '
         'btnNavExport
         '
-        Me.btnNavExport.Location = New System.Drawing.Point(12, 261)
+        Me.btnNavExport.Location = New System.Drawing.Point(9, 260)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
         Me.btnNavExport.TabIndex = 3
@@ -81,7 +81,7 @@ Partial Class frmLocations
         '
         'btnNavItems
         '
-        Me.btnNavItems.Location = New System.Drawing.Point(12, 129)
+        Me.btnNavItems.Location = New System.Drawing.Point(9, 130)
         Me.btnNavItems.Name = "btnNavItems"
         Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
         Me.btnNavItems.TabIndex = 8
@@ -90,7 +90,7 @@ Partial Class frmLocations
         '
         'btnNavLocations
         '
-        Me.btnNavLocations.Location = New System.Drawing.Point(12, 217)
+        Me.btnNavLocations.Location = New System.Drawing.Point(9, 220)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
         Me.btnNavLocations.TabIndex = 10
