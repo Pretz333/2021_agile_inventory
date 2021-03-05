@@ -48,7 +48,6 @@ Public Class frmLocations
         Dim saveCommand As New SqlCommand(sqlString, dbConnection)
         saveCommand.Parameters.AddWithValue("@name", name)
 
-
         Try
             If saveCommand.ExecuteNonQuery > 0 Then
                 MessageBox.Show("Category was successfully saved.")
@@ -61,6 +60,10 @@ Public Class frmLocations
 
         Me.Dispose(True)
         frmDashboard.Show()
+    End Sub
+
+    Private Sub dvgLocations_Click(sender As Object, e As EventArgs) Handles dvgLocations.Click
+        dvgLocations.DefaultCellStyle.SelectionBackColor = Color.Orange
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click

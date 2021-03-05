@@ -50,7 +50,6 @@ Public Class frmItems
         saveCommand.Parameters.AddWithValue("@catId", catId)
         saveCommand.Parameters.AddWithValue("@name", name)
 
-
         Try
             If saveCommand.ExecuteNonQuery > 0 Then
                 MessageBox.Show("Item was successfully saved.")
@@ -63,6 +62,10 @@ Public Class frmItems
 
         Me.Dispose(True)
         frmDashboard.Show()
+    End Sub
+
+    Private Sub dgvCategories_Click(sender As Object, e As EventArgs) Handles dgvCategories.Click
+        dgvCategories.DefaultCellStyle.SelectionBackColor = Color.Orange
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
