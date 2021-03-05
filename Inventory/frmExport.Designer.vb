@@ -26,13 +26,15 @@ Partial Class frmExport
         Me.btnNavDashboard = New System.Windows.Forms.Button()
         Me.btnNavCategories = New System.Windows.Forms.Button()
         Me.btnNavLocations = New System.Windows.Forms.Button()
+        Me.btnNavItems = New System.Windows.Forms.Button()
+        Me.btnNavExport = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'lblExport
         '
         Me.lblExport.AutoSize = True
         Me.lblExport.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblExport.Location = New System.Drawing.Point(13, 13)
+        Me.lblExport.Location = New System.Drawing.Point(12, 9)
         Me.lblExport.Name = "lblExport"
         Me.lblExport.Size = New System.Drawing.Size(117, 46)
         Me.lblExport.TabIndex = 0
@@ -40,42 +42,62 @@ Partial Class frmExport
         '
         'btnNavDashboard
         '
-        Me.btnNavDashboard.Location = New System.Drawing.Point(13, 93)
+        Me.btnNavDashboard.Location = New System.Drawing.Point(9, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavDashboard.TabIndex = 1
+        Me.btnNavDashboard.TabIndex = 2
         Me.btnNavDashboard.Text = "Dashboard"
         Me.btnNavDashboard.UseVisualStyleBackColor = True
         '
         'btnNavCategories
         '
-        Me.btnNavCategories.Location = New System.Drawing.Point(13, 149)
+        Me.btnNavCategories.Location = New System.Drawing.Point(9, 175)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavCategories.TabIndex = 2
+        Me.btnNavCategories.TabIndex = 4
         Me.btnNavCategories.Text = "Categories"
         Me.btnNavCategories.UseVisualStyleBackColor = True
         '
         'btnNavLocations
         '
-        Me.btnNavLocations.Location = New System.Drawing.Point(13, 202)
+        Me.btnNavLocations.Location = New System.Drawing.Point(9, 220)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavLocations.TabIndex = 3
+        Me.btnNavLocations.TabIndex = 5
         Me.btnNavLocations.Text = "Locations"
         Me.btnNavLocations.UseVisualStyleBackColor = True
+        '
+        'btnNavItems
+        '
+        Me.btnNavItems.Location = New System.Drawing.Point(9, 130)
+        Me.btnNavItems.Name = "btnNavItems"
+        Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
+        Me.btnNavItems.TabIndex = 3
+        Me.btnNavItems.Text = "Items"
+        Me.btnNavItems.UseVisualStyleBackColor = True
+        '
+        'btnNavExport
+        '
+        Me.btnNavExport.Location = New System.Drawing.Point(9, 265)
+        Me.btnNavExport.Name = "btnNavExport"
+        Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
+        Me.btnNavExport.TabIndex = 6
+        Me.btnNavExport.Text = "Export"
+        Me.btnNavExport.UseVisualStyleBackColor = True
         '
         'frmExport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnNavExport)
+        Me.Controls.Add(Me.btnNavItems)
         Me.Controls.Add(Me.btnNavLocations)
         Me.Controls.Add(Me.btnNavCategories)
         Me.Controls.Add(Me.btnNavDashboard)
         Me.Controls.Add(Me.lblExport)
         Me.Name = "frmExport"
-        Me.Text = "frmExport"
+        Me.Text = "Export"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -85,4 +107,6 @@ Partial Class frmExport
     Friend WithEvents btnNavDashboard As Button
     Friend WithEvents btnNavCategories As Button
     Friend WithEvents btnNavLocations As Button
+    Friend WithEvents btnNavItems As Button
+    Friend WithEvents btnNavExport As Button
 End Class
