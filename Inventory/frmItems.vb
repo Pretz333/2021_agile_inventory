@@ -1,8 +1,14 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class frmItems
+    Dim ds As New DataSet
+    Dim dataAdapter As SqlDataAdapter
+
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadTableData(String.Empty)
+        dgvItems.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvItems.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvItems.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
     End Sub
 
     'Set up connection to database
@@ -27,17 +33,31 @@ Public Class frmItems
         If searchTerm IsNot String.Empty Then
             Command.Append(" WHERE Description LIKE '%" + searchTerm + "%'")
         End If
-        Dim cmd As New SqlCommand(selectStatement, dbConnection)
-        cmd.CommandType = CommandType.Text
-        Dim dataAdapter As New SqlDataAdapter(cmd)
-        Dim dataTable As New DataTable()
-        dataAdapter.Fill(dataTable)
-        dgvItems.DataSource = dataTable
+        dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
+        dataAdapter.Fill(ds)
+        dgvItems.DataSource = ds.Tables(0)
         dbConnection.Close()
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Try
+            Dim cmd As SqlCommandBuilder = New SqlCommandBuilder(dataAdapter)
+            Dim changes As DataSet = ds.GetChanges()
+            If changes IsNot Nothing Then
+                dataAdapter.Update(changes)
+                MsgBox("Changes Saved")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub dgvItems_Click(sender As Object, e As EventArgs) Handles dgvItems.Click
+        dgvItems.DefaultCellStyle.SelectionBackColor = Color.Orange
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click

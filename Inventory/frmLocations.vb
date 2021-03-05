@@ -1,8 +1,13 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class frmLocations
+    Dim ds As New DataSet
+    Dim dataAdapter As SqlDataAdapter
+
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadTableData(String.Empty)
+        dvgLocations.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dvgLocations.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
     End Sub
 
     'Set up connection to database
@@ -38,6 +43,23 @@ Public Class frmLocations
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Try
+            Dim cmd As SqlCommandBuilder = New SqlCommandBuilder(dataAdapter)
+            Dim changes As DataSet = ds.GetChanges()
+            If changes IsNot Nothing Then
+                dataAdapter.Update(changes)
+                MsgBox("Changes Saved")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+
+    Private Sub dvgLocations_Click(sender As Object, e As EventArgs) Handles dvgLocations.Click
+        dvgLocations.DefaultCellStyle.SelectionBackColor = Color.Orange
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click

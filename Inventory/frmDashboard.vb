@@ -1,8 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class frmDashboard
-
-    'load table from database, in this case item table
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles Me.Load
         'LoadTableData(String.Empty)
     End Sub
@@ -24,7 +22,7 @@ Public Class frmDashboard
 
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
-        Dim command As String = "SELECT * FROM InventoryMain"
+        Dim command As String = "SELECT * FROM InventoryMain" 'add joins to not display IDs
         dbConnection.Open()
 
         If searchTerm IsNot "" Then
@@ -70,11 +68,5 @@ Public Class frmDashboard
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
         Me.Hide()
         frmExport.Show()
-    End Sub
-
-    Private Sub frmCreate_Click(sender As Object, e As EventArgs) Handles frmCreate.Click
-        Me.Hide()
-        frmCreates.Show()
-
     End Sub
 End Class
