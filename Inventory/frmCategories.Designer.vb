@@ -123,7 +123,7 @@ Partial Class frmCategories
         Me.btnSave.Location = New System.Drawing.Point(666, 55)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(122, 29)
-        Me.btnSave.TabIndex = 11
+        Me.btnSave.TabIndex = 5
         Me.btnSave.Text = "Save Changes"
         Me.btnSave.UseVisualStyleBackColor = True
         '

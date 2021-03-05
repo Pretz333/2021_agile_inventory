@@ -6,6 +6,9 @@ Public Class frmItems
 
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadTableData(String.Empty)
+        dgvItems.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvItems.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvItems.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
     End Sub
 
     'Set up connection to database
