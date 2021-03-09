@@ -3,6 +3,7 @@
 Public Class frmDashboard
     Dim ds As New DataSet
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.CenterToScreen()
         'LoadTableData(String.Empty)
     End Sub
 
@@ -54,22 +55,22 @@ Public Class frmDashboard
     End Sub
 
     Private Sub btnNavItems_Click(sender As Object, e As EventArgs) Handles btnNavItems.Click
-        Me.Close()
         frmItems.Show()
+        Me.Hide()
     End Sub
 
     Private Sub btnNavCategories_Click(sender As Object, e As EventArgs) Handles btnNavCategories.Click
-        Me.Close()
         frmCategories.Show()
+        Me.Hide()
     End Sub
 
     Private Sub btnNavLocations_Click(sender As Object, e As EventArgs) Handles btnNavLocations.Click
-        Me.Close()
         frmLocations.Show()
+        Me.Hide()
     End Sub
 
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
-        Me.Close()
+        Me.Hide()
         frmExport.Show()
     End Sub
 End Class

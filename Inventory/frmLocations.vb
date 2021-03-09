@@ -5,6 +5,7 @@ Public Class frmLocations
     Dim dataAdapter As SqlDataAdapter
 
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.CenterToScreen()
         LoadTableData(String.Empty)
         dvgLocations.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         dvgLocations.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
@@ -62,18 +63,18 @@ Public Class frmLocations
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
-        Me.Close()
         frmDashboard.Show()
+        Me.Close()
     End Sub
 
     Private Sub btnNavItems_Click(sender As Object, e As EventArgs) Handles btnNavItems.Click
-        Me.Close()
         frmItems.Show()
+        Me.Close()
     End Sub
 
     Private Sub btnNavCategories_Click(sender As Object, e As EventArgs) Handles btnNavCategories.Click
-        Me.Close()
         frmCategories.Show()
+        Me.Close()
     End Sub
 
     Private Sub btnNavLocations_Click(sender As Object, e As EventArgs) Handles btnNavLocations.Click
@@ -81,7 +82,7 @@ Public Class frmLocations
     End Sub
 
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
-        Me.Close()
         frmExport.Show()
+        Me.Close()
     End Sub
 End Class
