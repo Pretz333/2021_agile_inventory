@@ -24,7 +24,6 @@ Partial Class frmItems
     Private Sub InitializeComponent()
         Me.lblItems = New System.Windows.Forms.Label()
         Me.dgvItems = New System.Windows.Forms.DataGridView()
-        Me.Categories = New System.Windows.Forms.DataGridViewComboBoxColumn()
         Me.btnNavDashboard = New System.Windows.Forms.Button()
         Me.btnNavItems = New System.Windows.Forms.Button()
         Me.btnNavCategories = New System.Windows.Forms.Button()
@@ -49,7 +48,6 @@ Partial Class frmItems
         'dgvItems
         '
         Me.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvItems.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Categories})
         Me.dgvItems.Location = New System.Drawing.Point(112, 85)
         Me.dgvItems.Name = "dgvItems"
         Me.dgvItems.RowHeadersWidth = 51
@@ -57,15 +55,6 @@ Partial Class frmItems
         Me.dgvItems.Size = New System.Drawing.Size(676, 353)
         Me.dgvItems.TabIndex = 0
         Me.dgvItems.TabStop = False
-        '
-        'Categories
-        '
-        Me.Categories.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox
-        Me.Categories.HeaderText = "Categories"
-        Me.Categories.Items.AddRange(New Object() {"Select Category"})
-        Me.Categories.MinimumWidth = 10
-        Me.Categories.Name = "Categories"
-        Me.Categories.Width = 200
         '
         'btnNavDashboard
         '
@@ -115,7 +104,7 @@ Partial Class frmItems
         'txtSearch
         '
         Me.txtSearch.Location = New System.Drawing.Point(112, 56)
-        Me.txtSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(277, 27)
         Me.txtSearch.TabIndex = 1
@@ -171,5 +160,4 @@ Partial Class frmItems
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnSearch As Button
     Friend WithEvents btnSave As Button
-    Friend WithEvents Categories As DataGridViewComboBoxColumn
 End Class

@@ -2,17 +2,21 @@
 
 Public Class frmItems
     Dim ds As New DataSet
-    Dim ct As New DataTable
     Dim dataAdapter As SqlDataAdapter
-    Dim catAdapter As SqlDataAdapter
 
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.CenterToParent()
         LoadTableData(String.Empty)
-        PopulateDropdown()
+        'ItemID Column
         dgvItems.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dgvItems.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dgvItems.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dgvItems.Columns.Item(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dgvItems.Columns("ItemID").DisplayIndex = 0
+        'Category Description Column
+        Dim categoryColumn As DataGridViewComboBoxColumn = GetCategoryComboBoxColumn()
+        dgvItems.Columns.Add(categoryColumn)
+        dgvItems.Columns("Category").DisplayIndex = 1
+        'Item Description Column
+        dgvItems.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dgvItems.Columns("Description").DisplayIndex = 2
     End Sub
 
     'Set up connection to database
@@ -30,52 +34,39 @@ Public Class frmItems
         Return dbConnection
     End Function
 
-    Private Sub PopulateDropdown()
-        Dim dbConnection As SqlConnection = ConnectToDb()
-        dbConnection.Open()
-        Dim selectCat As String = "Select * from Category"
-        catAdapter = New SqlDataAdapter(selectCat, dbConnection)
-        catAdapter.Fill(ct)
-        Categories.DisplayMember = "Description"
-        Categories.ValueMember = "Description"
-        Categories.DataSource = ct
-        dbConnection.Close()
-    End Sub
-
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
         dbConnection.Open()
-        Dim selectStatement As String = "SELECT ItemId, Item.Description, Category.Description FROM Item INNER JOIN Category on item.CategoryId = Category.CategoryId"
+        Dim selectStatement As String = "SELECT Item.ItemID, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]"
         If searchTerm IsNot String.Empty Then
-            selectStatement.Append(" WHERE item.Description LIKE '%" + searchTerm + "%'")
+            Command.Append(" WHERE Item.Description LIKE '%" + searchTerm + "%'")
         End If
         dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
-
         dataAdapter.Fill(ds)
         dgvItems.DataSource = ds.Tables(0)
         dbConnection.Close()
     End Sub
 
-    'Events for the change in dropdownlist
-    Private Sub dgvItems_CellContentClick(ByVal sender As System.Object, ByVal e As DataGridViewEditingControlShowingEventArgs) Handles dgvItems.EditingControlShowing
-        ' Only do this for the dropdown, not the input fields
-        If e.Control.GetType().ToString() = "System.Windows.Forms.DataGridViewComboBoxEditingControl" Then
-            Dim editingComboBox As ComboBox = e.Control
-            AddHandler editingComboBox.SelectedIndexChanged, AddressOf editingComboBox_SelectedIndexChanged
-        End If
-    End Sub
-
-    'Get the CategoryID of the selected item from dropdown list
-    Private Sub editingComboBox_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs)
-        Dim editingComboBox As ComboBox = TryCast(sender, ComboBox)
+    Private Function GetCategoryComboBoxColumn() As DataGridViewComboBoxColumn
+        Dim dataTable As New DataTable
+        Dim cboColumnCategory As New DataGridViewComboBoxColumn
         Dim dbConnection As SqlConnection = ConnectToDb()
-        dbConnection.Open()
-        Dim selectStatement As String = "SELECT CategoryID from Category WHERE Description = '" + editingComboBox.Text + "'"
-        Dim cmd As SqlCommand = New SqlCommand(selectStatement, dbConnection)
-        Dim id As Integer = cmd.ExecuteScalar()
-        MsgBox(id.ToString())
-        dbConnection.Close()
-    End Sub
+        Using dbConnection
+            Dim categorySelectStatement As String = "SELECT Description FROM Category"
+            dataAdapter = New SqlDataAdapter(categorySelectStatement, dbConnection)
+            dataAdapter.Fill(dataTable)
+
+            For Each dataRow As DataRow In dataTable.Rows
+                cboColumnCategory.Items.Add(dataRow("Description"))
+            Next
+
+            cboColumnCategory.HeaderText = "Category"
+            cboColumnCategory.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            cboColumnCategory.Name = "Category"
+
+            Return cboColumnCategory
+        End Using
+    End Function
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
@@ -121,5 +112,4 @@ Public Class frmItems
         Me.Hide()
         frmExport.Show()
     End Sub
-
 End Class
