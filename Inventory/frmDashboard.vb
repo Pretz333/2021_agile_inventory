@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class frmDashboard
+    Dim ds As New DataSet
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles Me.Load
         'LoadTableData(String.Empty)
     End Sub
@@ -27,7 +28,8 @@ Public Class frmDashboard
 
         If searchTerm IsNot "" Then
             'select query to find the item that was looked for
-            command.Append(" WHERE Description LIKE '%" + searchTerm + "%'")
+            command += " WHERE Description LIKE '%" + searchTerm + "%'"
+            ds.Tables.Clear()
             'Dim adapter As New SqlDataAdapter("select t1.description as Item, t2.description as Cat from item as t1 left join category as t2 on t1.CategoryId = t2.CategoryiD   where t1.description like '%" & searchTerm & "%'", dbConnection)
         End If
 
@@ -44,6 +46,7 @@ Public Class frmDashboard
     'Basic search
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
+        txtSearch.Clear()
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click

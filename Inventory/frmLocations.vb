@@ -30,7 +30,8 @@ Public Class frmLocations
         dbConnection.Open()
         Dim selectStatement As String = "SELECT * FROM Location"
         If searchTerm IsNot String.Empty Then
-            Command.Append(" WHERE Description LIKE '%" + searchTerm + "%'")
+            selectStatement += " WHERE Description LIKE '%" + searchTerm + "%'"
+            ds.Tables.Clear()
         End If
         dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
         dataAdapter.Fill(ds)
@@ -40,6 +41,7 @@ Public Class frmLocations
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
+        txtSearch.Clear()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click

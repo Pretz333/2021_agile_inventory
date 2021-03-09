@@ -39,7 +39,8 @@ Public Class frmItems
         dbConnection.Open()
         Dim selectStatement As String = "SELECT Item.ItemID, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]"
         If searchTerm IsNot String.Empty Then
-            Command.Append(" WHERE Item.Description LIKE '%" + searchTerm + "%'")
+            selectStatement += " WHERE Item.Description LIKE '%" + searchTerm + "%'"
+            ds.Tables.Clear()
         End If
         dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
         dataAdapter.Fill(ds)
@@ -70,6 +71,7 @@ Public Class frmItems
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
+        txtSearch.Clear()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
