@@ -6,9 +6,16 @@ Public Class frmItems
 
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         LoadTableData(String.Empty)
+        'ItemID Column
         dgvItems.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dgvItems.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvItems.Columns("ItemID").DisplayIndex = 0
+        'Category Description Column
+        Dim categoryColumn As DataGridViewComboBoxColumn = GetCategoryComboBoxColumn()
+        dgvItems.Columns.Add(categoryColumn)
+        dgvItems.Columns("Category").DisplayIndex = 1
+        'Item Description Column
         dgvItems.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dgvItems.Columns("Description").DisplayIndex = 2
     End Sub
 
     'Set up connection to database
@@ -29,15 +36,36 @@ Public Class frmItems
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
         dbConnection.Open()
-        Dim selectStatement As String = "SELECT * FROM Item"
+        Dim selectStatement As String = "SELECT Item.ItemID, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]"
         If searchTerm IsNot String.Empty Then
-            Command.Append(" WHERE Description LIKE '%" + searchTerm + "%'")
+            Command.Append(" WHERE Item.Description LIKE '%" + searchTerm + "%'")
         End If
         dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
         dataAdapter.Fill(ds)
         dgvItems.DataSource = ds.Tables(0)
         dbConnection.Close()
     End Sub
+
+    Private Function GetCategoryComboBoxColumn() As DataGridViewComboBoxColumn
+        Dim dataTable As New DataTable
+        Dim cboColumnCategory As New DataGridViewComboBoxColumn
+        Dim dbConnection As SqlConnection = ConnectToDb()
+        Using dbConnection
+            Dim categorySelectStatement As String = "SELECT Description FROM Category"
+            dataAdapter = New SqlDataAdapter(categorySelectStatement, dbConnection)
+            dataAdapter.Fill(dataTable)
+
+            For Each dataRow As DataRow In dataTable.Rows
+                cboColumnCategory.Items.Add(dataRow("Description"))
+            Next
+
+            cboColumnCategory.HeaderText = "Category"
+            cboColumnCategory.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+            cboColumnCategory.Name = "Category"
+
+            Return cboColumnCategory
+        End Using
+    End Function
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
