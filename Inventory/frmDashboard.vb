@@ -51,22 +51,22 @@ Public Class frmDashboard
     End Sub
 
     Private Sub btnNavItems_Click(sender As Object, e As EventArgs) Handles btnNavItems.Click
-        Me.Hide()
+        Me.Close()
         frmItems.Show()
     End Sub
 
     Private Sub btnNavCategories_Click(sender As Object, e As EventArgs) Handles btnNavCategories.Click
-        Me.Hide()
+        Me.Close()
         frmCategories.Show()
     End Sub
 
     Private Sub btnNavLocations_Click(sender As Object, e As EventArgs) Handles btnNavLocations.Click
-        Me.Hide()
+        Me.Close()
         frmLocations.Show()
     End Sub
 
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
-        Me.Hide()
+        Me.Close()
         frmExport.Show()
     End Sub
 End Class

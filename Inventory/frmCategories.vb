@@ -28,10 +28,10 @@ Public Class frmCategories
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
         dbConnection.Open()
+        ds.Tables.Clear()
         Dim selectStatement As String = "SELECT * FROM Category"
         If searchTerm IsNot String.Empty Then
             selectStatement += " WHERE Description LIKE '%" + searchTerm + "%'"
-            ds.Tables.Clear()
         End If
         dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
         dataAdapter.Fill(ds)
@@ -62,12 +62,12 @@ Public Class frmCategories
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
-        Me.Hide()
+        Me.Close()
         frmDashboard.Show()
     End Sub
 
     Private Sub btnNavItems_Click(sender As Object, e As EventArgs) Handles btnNavItems.Click
-        Me.Hide()
+        Me.Close()
         frmItems.Show()
     End Sub
 
@@ -76,12 +76,12 @@ Public Class frmCategories
     End Sub
 
     Private Sub btnNavLocations_Click(sender As Object, e As EventArgs) Handles btnNavLocations.Click
-        Me.Hide()
+        Me.Close()
         frmLocations.Show()
     End Sub
 
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
-        Me.Hide()
+        Me.Close()
         frmExport.Show()
     End Sub
 End Class

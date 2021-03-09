@@ -37,9 +37,10 @@ Public Class frmItems
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
         dbConnection.Open()
+        ds.Tables.Clear()
         Dim selectStatement As String = "SELECT Item.ItemID, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]"
         If searchTerm IsNot String.Empty Then
-            Command.Append(" WHERE Item.Description LIKE '%" + searchTerm + "%'")
+            selectStatement += " WHERE Item.Description LIKE '%" + searchTerm + "%'"
         End If
         dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
         dataAdapter.Fill(ds)
@@ -70,6 +71,7 @@ Public Class frmItems
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
+        txtSearch.Clear()
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -90,7 +92,7 @@ Public Class frmItems
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
-        Me.Hide()
+        Me.Close()
         frmDashboard.Show()
     End Sub
 
@@ -99,17 +101,17 @@ Public Class frmItems
     End Sub
 
     Private Sub btnNavCategories_Click(sender As Object, e As EventArgs) Handles btnNavCategories.Click
-        Me.Hide()
+        Me.Close()
         frmCategories.Show()
     End Sub
 
     Private Sub btnNavLocations_Click(sender As Object, e As EventArgs) Handles btnNavLocations.Click
-        Me.Hide()
+        Me.Close()
         frmLocations.Show()
     End Sub
 
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
-        Me.Hide()
+        Me.Close()
         frmExport.Show()
     End Sub
 End Class
