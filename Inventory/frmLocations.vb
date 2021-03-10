@@ -102,7 +102,31 @@ Public Class frmLocations
                 MsgBox("That Location was not recognized, please try again.")
             Else
                 Dim insertCmd As SqlCommand = New SqlCommand("INSERT INTO CategoryLocation (LocationId, CategoryId) VALUES (" + LocationId + ", " + CategoryId + ")", dbConnection)
-                MsgBox(insertCmd.ExecuteNonQuery().ToString() + " row affected")
+                MsgBox(insertCmd.ExecuteNonQuery().ToString() + " row affected") 'IF >0 UPDATE INVENTORYMAIN
+            End If
+        Catch
+            MsgBox("Something went wrong, please try again.")
+        End Try
+        dbConnection.Close()
+    End Sub
+
+    Private Sub btnDisassociate_Click(sender As Object, e As EventArgs) Handles btnDisassociate.Click
+        Dim dbConnection As SqlConnection = ConnectToDb()
+        dbConnection.Open()
+        Try
+            Dim categoryDesc As String = InputBox("Category to remove from a location", "Remove Category from a Location")
+            Dim locationDesc As String = InputBox("Location to remove the Category from", "Remove Category from a Location")
+            Dim catCmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + categoryDesc + "%'", dbConnection)
+            Dim locCmd As SqlCommand = New SqlCommand("SELECT LocationID FROM Location WHERE Description LIKE '%" + locationDesc + "%'", dbConnection)
+            Dim CategoryId = catCmd.ExecuteScalar().ToString()
+            Dim LocationId = locCmd.ExecuteScalar().ToString()
+            If CategoryId Is Nothing Then
+                MsgBox("That Category was not recognized, please try again.")
+            ElseIf LocationId Is Nothing Then
+                MsgBox("That Location was not recognized, please try again.")
+            Else
+                Dim removeCmd As SqlCommand = New SqlCommand("DELETE FROM CategoryLocation WHERE LocationId =" + LocationId + " AND CategoryId = " + CategoryId, dbConnection)
+                MsgBox(removeCmd.ExecuteNonQuery().ToString() + " row affected") 'IF >0 UPDATE INVENTORYMAIN
             End If
         Catch
             MsgBox("Something went wrong, please try again.")
