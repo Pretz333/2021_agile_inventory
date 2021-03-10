@@ -102,7 +102,9 @@ Public Class frmLocations
                 MsgBox("That Location was not recognized, please try again.")
             Else
                 Dim insertCmd As SqlCommand = New SqlCommand("INSERT INTO CategoryLocation (LocationID, CategoryID) VALUES (" + LocationId + ", " + CategoryId + ")", dbConnection)
-                MsgBox(insertCmd.ExecuteNonQuery().ToString() + " row affected") 'IF >0 UPDATE INVENTORYMAIN
+                If insertCmd.ExecuteNonQuery() > 0 Then
+
+                End If
             End If
         Catch
             MsgBox("Something went wrong, please try again.")
@@ -126,7 +128,9 @@ Public Class frmLocations
                 MsgBox("That Location was not recognized, please try again.")
             Else
                 Dim removeCmd As SqlCommand = New SqlCommand("DELETE FROM CategoryLocation WHERE LocationID =" + LocationId + " AND CategoryID = " + CategoryId, dbConnection)
-                MsgBox(removeCmd.ExecuteNonQuery().ToString() + " row affected") 'IF >0 UPDATE INVENTORYMAIN
+                If removeCmd.ExecuteNonQuery() > 0 Then
+                    'Update InventoryMain
+                End If
             End If
         Catch
             MsgBox("Something went wrong, please try again.")

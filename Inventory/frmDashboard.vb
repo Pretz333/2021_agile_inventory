@@ -1,13 +1,27 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class frmDashboard
+    Dim dataAdapter As New SqlDataAdapter
     Dim ds As New DataSet
+
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.CenterToScreen()
-        'LoadTableData(String.Empty)
+        LoadTableData(String.Empty)
+
+        'Location Column
+        dgvDashboard.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvDashboard.Columns.Item(0).HeaderText = "Location"
+        'Item Column
+        dgvDashboard.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvDashboard.Columns.Item(1).HeaderText = "Item"
+        'Expected Count Column
+        dgvDashboard.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvDashboard.Columns.Item(2).HeaderText = "Expected Count"
+        'Actual Count Column
+        dgvDashboard.Columns.Item(3).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        dgvDashboard.Columns.Item(3).HeaderText = "Actual Count"
     End Sub
 
-    'set up connection function
     Private Function ConnectToDb() As SqlConnection
         'This gives the full path into the bin/debug folder
         Dim strPath As String = Application.StartupPath
@@ -24,21 +38,15 @@ Public Class frmDashboard
 
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
-        Dim command As String = "SELECT * FROM InventoryMain" 'add joins to not display IDs
+        Dim selectStatement As String = "SELECT Location.Description, Item.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Item on InventoryMain.ItemID = Item.ItemID INNER JOIN Location on InventoryMain.LocationID = Location.LocationID"
         ds.Tables.Clear()
         dbConnection.Open()
-
-        If searchTerm IsNot "" Then
-            command += " WHERE Description LIKE '%" + searchTerm + "%'"
+        If searchTerm IsNot String.Empty Then
+            selectStatement += " WHERE Description LIKE '%" + searchTerm + "%'"
         End If
-
-        Dim adapter As New SqlDataAdapter(command, dbConnection)
-
-        'Fill the colum with the data from the database
-        Dim table As New DataTable()
-        adapter.Fill(table)
-        dgvDashboard.DataSource = table
-
+        dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
+        dataAdapter.Fill(ds)
+        dgvDashboard.DataSource = ds.Tables(0)
         dbConnection.Close()
     End Sub
 
@@ -46,6 +54,10 @@ Public Class frmDashboard
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         LoadTableData(txtSearch.Text)
         txtSearch.Clear()
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click

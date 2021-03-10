@@ -31,6 +31,7 @@ Partial Class frmDashboard
         Me.btnNavDashboard = New System.Windows.Forms.Button()
         Me.lblDashboard = New System.Windows.Forms.Label()
         Me.btnSearch = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         CType(Me.dgvDashboard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -52,14 +53,14 @@ Partial Class frmDashboard
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(211, 27)
-        Me.txtSearch.TabIndex = 2
+        Me.txtSearch.TabIndex = 1
         '
         'btnNavCategories
         '
         Me.btnNavCategories.Location = New System.Drawing.Point(9, 175)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavCategories.TabIndex = 5
+        Me.btnNavCategories.TabIndex = 6
         Me.btnNavCategories.Text = "Categories"
         Me.btnNavCategories.UseVisualStyleBackColor = True
         '
@@ -68,7 +69,7 @@ Partial Class frmDashboard
         Me.btnNavLocations.Location = New System.Drawing.Point(9, 220)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavLocations.TabIndex = 6
+        Me.btnNavLocations.TabIndex = 7
         Me.btnNavLocations.Text = "Locations"
         Me.btnNavLocations.UseVisualStyleBackColor = True
         '
@@ -77,7 +78,7 @@ Partial Class frmDashboard
         Me.btnNavExport.Location = New System.Drawing.Point(9, 265)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavExport.TabIndex = 7
+        Me.btnNavExport.TabIndex = 8
         Me.btnNavExport.Text = "Export"
         Me.btnNavExport.UseVisualStyleBackColor = True
         '
@@ -86,7 +87,7 @@ Partial Class frmDashboard
         Me.btnNavItems.Location = New System.Drawing.Point(9, 130)
         Me.btnNavItems.Name = "btnNavItems"
         Me.btnNavItems.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavItems.TabIndex = 4
+        Me.btnNavItems.TabIndex = 5
         Me.btnNavItems.Text = "Items"
         Me.btnNavItems.UseVisualStyleBackColor = True
         '
@@ -95,7 +96,7 @@ Partial Class frmDashboard
         Me.btnNavDashboard.Location = New System.Drawing.Point(9, 85)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(94, 29)
-        Me.btnNavDashboard.TabIndex = 3
+        Me.btnNavDashboard.TabIndex = 4
         Me.btnNavDashboard.Text = "Dashboard"
         Me.btnNavDashboard.UseVisualStyleBackColor = True
         '
@@ -103,7 +104,7 @@ Partial Class frmDashboard
         '
         Me.lblDashboard.AutoSize = True
         Me.lblDashboard.Font = New System.Drawing.Font("Segoe UI", 20.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point)
-        Me.lblDashboard.Location = New System.Drawing.Point(12, 9)
+        Me.lblDashboard.Location = New System.Drawing.Point(3, 3)
         Me.lblDashboard.Name = "lblDashboard"
         Me.lblDashboard.Size = New System.Drawing.Size(183, 46)
         Me.lblDashboard.TabIndex = 0
@@ -118,11 +119,21 @@ Partial Class frmDashboard
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(666, 55)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(122, 29)
+        Me.btnSave.TabIndex = 3
+        Me.btnSave.Text = "Update Counts"
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.lblDashboard)
         Me.Controls.Add(Me.btnNavDashboard)
@@ -150,4 +161,5 @@ Partial Class frmDashboard
     Friend WithEvents btnNavDashboard As Button
     Friend WithEvents lblDashboard As Label
     Friend WithEvents btnSearch As Button
+    Friend WithEvents btnSave As Button
 End Class
