@@ -109,14 +109,14 @@ Partial Class frmLocations
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(277, 27)
-        Me.txtSearch.TabIndex = 1
+        Me.txtSearch.TabIndex = 3
         '
         'btnSearch
         '
         Me.btnSearch.Location = New System.Drawing.Point(394, 55)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(94, 29)
-        Me.btnSearch.TabIndex = 2
+        Me.btnSearch.TabIndex = 4
         Me.btnSearch.Text = "Search"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
@@ -134,7 +134,7 @@ Partial Class frmLocations
         Me.btnAssociate.Location = New System.Drawing.Point(346, 20)
         Me.btnAssociate.Name = "btnAssociate"
         Me.btnAssociate.Size = New System.Drawing.Size(198, 29)
-        Me.btnAssociate.TabIndex = 0
+        Me.btnAssociate.TabIndex = 1
         Me.btnAssociate.Text = "Add Category to Location"
         Me.btnAssociate.UseVisualStyleBackColor = True
         '
@@ -143,7 +143,7 @@ Partial Class frmLocations
         Me.btnDisassociate.Location = New System.Drawing.Point(550, 20)
         Me.btnDisassociate.Name = "btnDisassociate"
         Me.btnDisassociate.Size = New System.Drawing.Size(238, 29)
-        Me.btnDisassociate.TabIndex = 1
+        Me.btnDisassociate.TabIndex = 2
         Me.btnDisassociate.Text = "Remove Category from Location"
         Me.btnDisassociate.UseVisualStyleBackColor = True
         '
