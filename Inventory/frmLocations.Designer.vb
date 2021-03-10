@@ -32,6 +32,7 @@ Partial Class frmLocations
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnAssociate = New System.Windows.Forms.Button()
         CType(Me.dvgLocations, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -127,11 +128,21 @@ Partial Class frmLocations
         Me.btnSave.Text = "Save Changes"
         Me.btnSave.UseVisualStyleBackColor = True
         '
+        'btnAssociate
+        '
+        Me.btnAssociate.Location = New System.Drawing.Point(590, 20)
+        Me.btnAssociate.Name = "btnAssociate"
+        Me.btnAssociate.Size = New System.Drawing.Size(198, 29)
+        Me.btnAssociate.TabIndex = 0
+        Me.btnAssociate.Text = "Add Category to Location"
+        Me.btnAssociate.UseVisualStyleBackColor = True
+        '
         'frmLocations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnAssociate)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txtSearch)
@@ -160,4 +171,5 @@ Partial Class frmLocations
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnSearch As Button
     Friend WithEvents btnSave As Button
+    Friend WithEvents btnAssociate As Button
 End Class
