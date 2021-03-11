@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\gabby\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\gabby\\.nuget\\packages"
+      "C:\\Users\\pivot\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\pivot\\.nuget\\packages"
     ]
   }
 }
