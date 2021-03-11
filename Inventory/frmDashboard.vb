@@ -83,4 +83,35 @@ Public Class frmDashboard
         Me.Hide()
         frmExport.Show()
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim zero As Integer = 0
+
+        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim selectStatement As String = "Update inventoryMain set ActualCount = @val "
+
+        ds.Tables.Clear()
+        dbConnection.Open()
+        Dim saveCommand As New SqlCommand(selectStatement, dbConnection)
+
+        saveCommand.Parameters.AddWithValue("@val", zero)
+
+
+        Try
+            If saveCommand.ExecuteNonQuery > 0 Then
+                MessageBox.Show("Actual Count reset to 0 for all items.")
+            Else
+                MessageBox.Show("items not reset.")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Ooops, there was a problem connecting to the database" + ex.Message)
+        End Try
+
+
+        dbConnection.Close()
+        Dim frmDashboard As New frmDashboard
+        frmDashboard.Show()
+        Me.Dispose(False)
+    End Sub
 End Class
