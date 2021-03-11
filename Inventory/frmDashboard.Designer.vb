@@ -41,7 +41,7 @@ Partial Class frmDashboard
         Me.dgvDashboard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvDashboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDashboard.Location = New System.Drawing.Point(182, 136)
-        Me.dgvDashboard.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.dgvDashboard.Margin = New System.Windows.Forms.Padding(5)
         Me.dgvDashboard.Name = "dgvDashboard"
         Me.dgvDashboard.RowHeadersWidth = 51
         Me.dgvDashboard.RowTemplate.Height = 41
@@ -59,7 +59,7 @@ Partial Class frmDashboard
         'btnNavCategories
         '
         Me.btnNavCategories.Location = New System.Drawing.Point(15, 280)
-        Me.btnNavCategories.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnNavCategories.Margin = New System.Windows.Forms.Padding(5)
         Me.btnNavCategories.Name = "btnNavCategories"
         Me.btnNavCategories.Size = New System.Drawing.Size(153, 46)
         Me.btnNavCategories.TabIndex = 6
@@ -69,7 +69,7 @@ Partial Class frmDashboard
         'btnNavLocations
         '
         Me.btnNavLocations.Location = New System.Drawing.Point(15, 352)
-        Me.btnNavLocations.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnNavLocations.Margin = New System.Windows.Forms.Padding(5)
         Me.btnNavLocations.Name = "btnNavLocations"
         Me.btnNavLocations.Size = New System.Drawing.Size(153, 46)
         Me.btnNavLocations.TabIndex = 7
@@ -79,7 +79,7 @@ Partial Class frmDashboard
         'btnNavExport
         '
         Me.btnNavExport.Location = New System.Drawing.Point(15, 424)
-        Me.btnNavExport.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnNavExport.Margin = New System.Windows.Forms.Padding(5)
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(153, 46)
         Me.btnNavExport.TabIndex = 8
@@ -89,7 +89,7 @@ Partial Class frmDashboard
         'btnNavItems
         '
         Me.btnNavItems.Location = New System.Drawing.Point(15, 208)
-        Me.btnNavItems.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnNavItems.Margin = New System.Windows.Forms.Padding(5)
         Me.btnNavItems.Name = "btnNavItems"
         Me.btnNavItems.Size = New System.Drawing.Size(153, 46)
         Me.btnNavItems.TabIndex = 5
@@ -99,7 +99,7 @@ Partial Class frmDashboard
         'btnNavDashboard
         '
         Me.btnNavDashboard.Location = New System.Drawing.Point(15, 136)
-        Me.btnNavDashboard.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnNavDashboard.Margin = New System.Windows.Forms.Padding(5)
         Me.btnNavDashboard.Name = "btnNavDashboard"
         Me.btnNavDashboard.Size = New System.Drawing.Size(153, 46)
         Me.btnNavDashboard.TabIndex = 4
@@ -120,7 +120,7 @@ Partial Class frmDashboard
         'btnSearch
         '
         Me.btnSearch.Location = New System.Drawing.Point(533, 88)
-        Me.btnSearch.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnSearch.Margin = New System.Windows.Forms.Padding(5)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(153, 46)
         Me.btnSearch.TabIndex = 2
@@ -130,7 +130,7 @@ Partial Class frmDashboard
         'btnSave
         '
         Me.btnSave.Location = New System.Drawing.Point(1082, 88)
-        Me.btnSave.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(5)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(198, 46)
         Me.btnSave.TabIndex = 3
@@ -139,11 +139,11 @@ Partial Class frmDashboard
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(790, 88)
+        Me.Button1.Location = New System.Drawing.Point(756, 90)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(150, 46)
+        Me.Button1.Size = New System.Drawing.Size(256, 46)
         Me.Button1.TabIndex = 9
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "Reset Actual Counts"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'frmDashboard
