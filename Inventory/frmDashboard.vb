@@ -42,7 +42,7 @@ Public Class frmDashboard
         ds.Tables.Clear()
         dbConnection.Open()
         If searchTerm IsNot String.Empty Then
-            selectStatement += " WHERE Description LIKE '%" + searchTerm + "%'"
+            selectStatement += " WHERE Item.Description LIKE '%" + searchTerm + "%' OR Location.Description LIKE '%" + searchTerm + "%'"
         End If
         dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
         dataAdapter.Fill(ds)
