@@ -13,6 +13,7 @@ Public Class frmItems
         'Category Description Column
         Dim categoryColumn As DataGridViewComboBoxColumn = GetCategoryComboBoxColumn()
         dgvItems.Columns.Add(categoryColumn)
+        dgvItems.Columns("Category").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
         dgvItems.Columns("Category").DisplayIndex = 1
         'Item Description Column
         dgvItems.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
@@ -62,7 +63,6 @@ Public Class frmItems
             Next
 
             cboColumnCategory.HeaderText = "Category"
-            cboColumnCategory.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             cboColumnCategory.Name = "Category"
 
             Return cboColumnCategory

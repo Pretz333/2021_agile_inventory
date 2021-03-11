@@ -89,7 +89,7 @@ Public Class frmDashboard
         Dim zero As Integer = 0
 
         Dim dbConnection As SqlConnection = ConnectToDb()
-        Dim selectStatement As String = "Update inventoryMain set ActualCount = @val "
+        Dim selectStatement As String = "Update InventoryMain set ActualCount = @val "
 
         ds.Tables.Clear()
         dbConnection.Open()
@@ -100,12 +100,12 @@ Public Class frmDashboard
 
         Try
             If saveCommand.ExecuteNonQuery > 0 Then
-                MessageBox.Show("Actual Count reset to 0 for all items.")
+                MessageBox.Show("Actual Count reset to zero for all items.")
             Else
                 MessageBox.Show("items not reset.")
             End If
         Catch ex As Exception
-            MessageBox.Show("Ooops, there was a problem connecting to the database" + ex.Message)
+            MessageBox.Show("Oops, there was a problem connecting to the database" + ex.Message)
         End Try
 
 
