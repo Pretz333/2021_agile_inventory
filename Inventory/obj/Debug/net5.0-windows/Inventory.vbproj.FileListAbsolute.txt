@@ -54,7 +54,6 @@ C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmExport.resources
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmItems.resources
 C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmLocations.resources
-C:\Users\Fernando\Documents\GitHub\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmCreates.resources
 C:\ASPNET\AgileProgramming\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmDashboard.resources
 C:\ASPNET\AgileProgramming\2021_agile_inventory\Inventory\obj\Debug\net5.0-windows\Inventory.frmItems.resources
 C:\Users\pivot\Desktop\Github Inventory Project\2021_agile_inventory\Inventory\bin\Debug\net5.0-windows\Inventory.exe
