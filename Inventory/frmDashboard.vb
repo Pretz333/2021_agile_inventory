@@ -112,4 +112,8 @@ Public Class frmDashboard
         frmDashboard.Show()
         Me.Dispose(False)
     End Sub
+
+    Private Sub dgvDashboard_Click(sender As Object, e As EventArgs) Handles dgvDashboard.Click
+        dgvDashboard.DefaultCellStyle.SelectionBackColor = Color.Orange
+    End Sub
 End Class

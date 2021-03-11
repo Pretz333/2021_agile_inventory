@@ -51,7 +51,7 @@ Partial Class frmDashboard
         'txtSearch
         '
         Me.txtSearch.Location = New System.Drawing.Point(112, 56)
-        Me.txtSearch.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(211, 27)
         Me.txtSearch.TabIndex = 1
@@ -132,7 +132,7 @@ Partial Class frmDashboard
         'btnResetCounts
         '
         Me.btnResetCounts.Location = New System.Drawing.Point(465, 56)
-        Me.btnResetCounts.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnResetCounts.Margin = New System.Windows.Forms.Padding(2)
         Me.btnResetCounts.Name = "btnResetCounts"
         Me.btnResetCounts.Size = New System.Drawing.Size(158, 29)
         Me.btnResetCounts.TabIndex = 3
@@ -155,7 +155,7 @@ Partial Class frmDashboard
         Me.Controls.Add(Me.btnNavCategories)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.dgvDashboard)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmDashboard"
         Me.Text = "Dashboard"
         CType(Me.dgvDashboard, System.ComponentModel.ISupportInitialize).EndInit()
