@@ -49,6 +49,8 @@ Partial Class frmItems
         '
         'dgvItems
         '
+        Me.dgvItems.AllowUserToAddRows = False
+        Me.dgvItems.AllowUserToDeleteRows = False
         Me.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvItems.Location = New System.Drawing.Point(112, 85)
         Me.dgvItems.Name = "dgvItems"

@@ -75,7 +75,7 @@ Public Class frmItems
         Dim CategoryID As String
         Try
             dbConnection.Open()
-            For i As Integer = 0 To dgvItems.Rows.Count - 2 'The last row is blank
+            For i As Integer = 0 To dgvItems.Rows.Count - 1
                 cmd.CommandText = "SELECT CategoryID FROM Category WHERE Description LIKE '%" + dgvItems.Rows.Item(i).Cells(1).Value.ToString() + "%'"
                 CategoryID = cmd.ExecuteScalar().ToString()
                 If CategoryID Is Nothing Then
