@@ -82,9 +82,7 @@ Public Class frmItems
                     MsgBox("The Category on Row #" + i.ToString() + " was unrecognized.")
                 Else
                     cmd.CommandText = "UPDATE Item SET CategoryID = " + CategoryID + ", Description = '" + dgvItems.Rows.Item(i).Cells(2).Value.ToString() + "' WHERE ItemID = " + dgvItems.Rows(i).Cells(0).Value.ToString()
-                    If cmd.ExecuteNonQuery() > 0 Then
-                        MsgBox("Success!")
-                    End If
+                    cmd.ExecuteNonQuery()
                 End If
             Next
         Catch ex As Exception
@@ -119,5 +117,44 @@ Public Class frmItems
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
         frmExport.Show()
         Me.Close()
+    End Sub
+
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim itemDescription As String = InputBox("Please type in the description of the item:", "Add new Item")
+        Dim itemCategory As String = InputBox("Please search for a category to add the item to:", "Add new Item")
+        Try
+            dbConnection.Open()
+            Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + itemCategory + "%'", dbConnection)
+            Dim CategoryID = cmd.ExecuteScalar()
+            If CategoryID Is Nothing Then
+                MsgBox("That Category was Unrecognized, please try again.")
+            Else
+                cmd.CommandText = "INSERT INTO Item (CategoryID, Description) VALUES (" + CategoryID.ToString() + ", '" + itemDescription + "')"
+                If cmd.ExecuteNonQuery > 0 Then
+                    MsgBox("Success!")
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox("Something went wrong, please try again")
+        End Try
+        dbConnection.Close()
+        LoadTableData(String.Empty)
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim ItemID As String = InputBox("Please type in the ItemID of the item:", "Delete a Item")
+        Try
+            dbConnection.Open()
+            Dim cmd As SqlCommand = New SqlCommand("DELETE FROM Item WHERE ItemID = " + ItemID, dbConnection)
+            If cmd.ExecuteNonQuery > 0 Then
+                MsgBox("Success!")
+            End If
+        Catch ex As Exception
+            MsgBox("Something went wrong, please try again")
+        End Try
+        dbConnection.Close()
+        LoadTableData(String.Empty)
     End Sub
 End Class
