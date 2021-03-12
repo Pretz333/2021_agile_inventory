@@ -57,7 +57,27 @@ Public Class frmDashboard
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Dim dbConnection As SqlConnection = ConnectToDb()
 
+        Dim cmd As New SqlCommand("", dbConnection)
+        Dim LocationID As String
+        Dim ItemID As String
+        Try
+            dbConnection.Open()
+            For i As Integer = 0 To dgvDashboard.Rows.Count - 2 'The last row is blank
+                cmd.CommandText = "SELECT LocationID FROM Location WHERE Description = '" + dgvDashboard.Rows.Item(i).Cells(0).Value.ToString() + "'"
+                LocationID = cmd.ExecuteScalar().ToString()
+                cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = '" + dgvDashboard.Rows.Item(i).Cells(1).Value.ToString() + "'"
+                ItemID = cmd.ExecuteScalar().ToString()
+                cmd.CommandText = "UPDATE InventoryMain SET ExpectedCount = " + dgvDashboard.Rows.Item(i).Cells(2).Value.ToString() + ", ActualCount = " + dgvDashboard.Rows.Item(i).Cells(3).Value.ToString() + "WHERE LocationID = " + LocationID + " AND ItemID = " + ItemID
+                If cmd.ExecuteNonQuery() > 0 Then
+                    MsgBox("Success!", "Success!")
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox("Something went wrong, please try again", "Error")
+        End Try
+        dbConnection.Close()
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
