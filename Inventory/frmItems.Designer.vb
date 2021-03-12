@@ -32,6 +32,8 @@ Partial Class frmItems
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
         CType(Me.dgvItems, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -120,18 +122,38 @@ Partial Class frmItems
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(666, 55)
+        Me.btnSave.Location = New System.Drawing.Point(694, 55)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(122, 29)
+        Me.btnSave.Size = New System.Drawing.Size(94, 29)
         Me.btnSave.TabIndex = 5
-        Me.btnSave.Text = "Save Changes"
+        Me.btnSave.Text = "Save Edits"
         Me.btnSave.UseVisualStyleBackColor = True
+        '
+        'btnAdd
+        '
+        Me.btnAdd.Location = New System.Drawing.Point(494, 55)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(94, 29)
+        Me.btnAdd.TabIndex = 3
+        Me.btnAdd.Text = "Add New"
+        Me.btnAdd.UseVisualStyleBackColor = True
+        '
+        'btnDelete
+        '
+        Me.btnDelete.Location = New System.Drawing.Point(594, 55)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(94, 29)
+        Me.btnDelete.TabIndex = 4
+        Me.btnDelete.Text = "Delete"
+        Me.btnDelete.UseVisualStyleBackColor = True
         '
         'frmItems
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnDelete)
+        Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txtSearch)
@@ -160,4 +182,6 @@ Partial Class frmItems
     Friend WithEvents txtSearch As TextBox
     Friend WithEvents btnSearch As Button
     Friend WithEvents btnSave As Button
+    Friend WithEvents btnAdd As Button
+    Friend WithEvents btnDelete As Button
 End Class

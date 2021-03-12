@@ -7,17 +7,11 @@ Public Class frmItems
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.CenterToScreen()
         LoadTableData(String.Empty)
-        'ItemID Column
         dgvItems.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-        dgvItems.Columns("ItemID").DisplayIndex = 0
-        'Category Description Column
-        Dim categoryColumn As DataGridViewComboBoxColumn = GetCategoryComboBoxColumn()
-        dgvItems.Columns.Add(categoryColumn)
-        dgvItems.Columns("Category").AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader
-        dgvItems.Columns("Category").DisplayIndex = 1
-        'Item Description Column
+        dgvItems.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
+        dgvItems.Columns.Item(1).HeaderText = "Category"
         dgvItems.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        dgvItems.Columns("Description").DisplayIndex = 2
+        dgvItems.Columns.Item(2).HeaderText = "Description"
     End Sub
 
     'Set up connection to database
@@ -39,7 +33,7 @@ Public Class frmItems
         Dim dbConnection As SqlConnection = ConnectToDb()
         dbConnection.Open()
         ds.Tables.Clear()
-        Dim selectStatement As String = "SELECT Item.ItemID, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]"
+        Dim selectStatement As String = "SELECT Item.ItemID, Category.Description, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]"
         If searchTerm IsNot String.Empty Then
             selectStatement += " WHERE Item.Description LIKE '%" + searchTerm + "%'"
         End If
@@ -75,16 +69,28 @@ Public Class frmItems
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Dim dbConnection As SqlConnection = ConnectToDb()
+
+        Dim cmd As New SqlCommand("", dbConnection)
+        Dim CategoryID As String
         Try
-            Dim cmd As SqlCommandBuilder = New SqlCommandBuilder(dataAdapter)
-            Dim changes As DataSet = ds.GetChanges()
-            If changes IsNot Nothing Then
-                dataAdapter.Update(changes)
-                MsgBox("Changes Saved")
-            End If
+            dbConnection.Open()
+            For i As Integer = 0 To dgvItems.Rows.Count - 2 'The last row is blank
+                cmd.CommandText = "SELECT CategoryID FROM Category WHERE Description LIKE '%" + dgvItems.Rows.Item(i).Cells(1).Value.ToString() + "%'"
+                CategoryID = cmd.ExecuteScalar().ToString()
+                If CategoryID Is Nothing Then
+                    MsgBox("The Category on Row #" + i.ToString() + " was unrecognized.")
+                Else
+                    cmd.CommandText = "UPDATE Item SET CategoryID = " + CategoryID + ", Description = '" + dgvItems.Rows.Item(i).Cells(2).Value.ToString() + "' WHERE ItemID = " + dgvItems.Rows(i).Cells(0).Value.ToString()
+                    If cmd.ExecuteNonQuery() > 0 Then
+                        MsgBox("Success!")
+                    End If
+                End If
+            Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            MsgBox("Something went wrong, please try again", "Error")
         End Try
+        dbConnection.Close()
     End Sub
 
     Private Sub dgvItems_Click(sender As Object, e As EventArgs) Handles dgvItems.Click

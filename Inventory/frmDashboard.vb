@@ -69,7 +69,7 @@ Public Class frmDashboard
                 LocationID = cmd.ExecuteScalar().ToString()
                 cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = '" + dgvDashboard.Rows.Item(i).Cells(1).Value.ToString() + "'"
                 ItemID = cmd.ExecuteScalar().ToString()
-                cmd.CommandText = "UPDATE InventoryMain SET ExpectedCount = " + dgvDashboard.Rows.Item(i).Cells(2).Value.ToString() + ", ActualCount = " + dgvDashboard.Rows.Item(i).Cells(3).Value.ToString() + "WHERE LocationID = " + LocationID + " AND ItemID = " + ItemID
+                cmd.CommandText = "UPDATE InventoryMain SET ExpectedCount = " + dgvDashboard.Rows.Item(i).Cells(2).Value.ToString() + ", ActualCount = " + dgvDashboard.Rows.Item(i).Cells(3).Value.ToString() + " WHERE LocationID = " + LocationID + " AND ItemID = " + ItemID
                 If cmd.ExecuteNonQuery() > 0 Then
                     MsgBox("Success!", "Success!")
                 End If
