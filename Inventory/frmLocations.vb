@@ -101,6 +101,7 @@ Public Class frmLocations
             Else
                 cmd.CommandText = "INSERT INTO CategoryLocation (LocationID, CategoryID) VALUES (" + LocationID + ", " + CategoryID + ")"
                 If cmd.ExecuteNonQuery() > 0 Then
+                    MsgBox("Success!")
                     cmd.CommandText = "SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID
                     Dim items As List(Of String) = New List(Of String)
                     Dim reader As SqlDataReader = cmd.ExecuteReader()
@@ -136,6 +137,7 @@ Public Class frmLocations
             Else
                 cmd.CommandText = "DELETE FROM CategoryLocation WHERE LocationID = " + LocationID + " AND CategoryID = " + CategoryID
                 If cmd.ExecuteNonQuery() > 0 Then
+                    MsgBox("Success!")
                     cmd.CommandText = "SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID
                     Dim items As List(Of String) = New List(Of String)
                     Dim reader As SqlDataReader = cmd.ExecuteReader()

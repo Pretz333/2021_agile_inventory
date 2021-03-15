@@ -152,6 +152,7 @@ Public Class frmItems
                         cmd.CommandText = "INSERT INTO InventoryMain (LocationID, ItemID, ExpectedCount, ActualCount) VALUES (" + locations.Item(i) + ", " + ItemID + ", 0, 0)"
                         cmd.ExecuteNonQuery()
                     Next
+                    frmDashboard.LoadTableData(String.Empty)
                 End If
             End If
         Catch ex As Exception
@@ -170,6 +171,7 @@ Public Class frmItems
             If cmd.ExecuteNonQuery > 0 Then
                 MsgBox("Success!")
                 cmd.CommandText = "DELETE FROM InventoryMain WHERE ItemID = " + ItemID
+                frmDashboard.LoadTableData(String.Empty)
             End If
         Catch ex As Exception
             MsgBox("Something went wrong, please try again")
