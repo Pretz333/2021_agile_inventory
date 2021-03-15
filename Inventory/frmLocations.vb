@@ -91,9 +91,9 @@ Public Class frmLocations
         dbConnection.Open()
         Try
             Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to add to a Location", "Add Category to a Location") + "%'", dbConnection)
-            Dim CategoryID = cmd.ExecuteScalar().ToString()
+            Dim CategoryID As String = cmd.ExecuteScalar().ToString()
             cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE '%" + InputBox("Search for a Location to add the Category to", "Add Category to a Location") + "%'"
-            Dim LocationID = cmd.ExecuteScalar().ToString()
+            Dim LocationID As String = cmd.ExecuteScalar().ToString()
             If CategoryID Is Nothing Then
                 MsgBox("That Category was not recognized, please try again.")
             ElseIf LocationID Is Nothing Then
@@ -101,9 +101,9 @@ Public Class frmLocations
             Else
                 cmd.CommandText = "INSERT INTO CategoryLocation (LocationID, CategoryID) VALUES (" + LocationID + ", " + CategoryID + ")"
                 If cmd.ExecuteNonQuery() > 0 Then
-                    Dim getItems As SqlCommand = New SqlCommand("SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID, dbConnection)
+                    cmd.CommandText = "SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID
                     Dim items As List(Of String) = New List(Of String)
-                    Dim reader As SqlDataReader = getItems.ExecuteReader()
+                    Dim reader As SqlDataReader = cmd.ExecuteReader()
                     While reader.Read()
                         items.Add(reader.Item(0).ToString())
                     End While
@@ -126,9 +126,9 @@ Public Class frmLocations
         dbConnection.Open()
         Try
             Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to remove from a Location", "Remove Category from a Location") + "%'", dbConnection)
-            Dim CategoryID = cmd.ExecuteScalar().ToString()
+            Dim CategoryID As String = cmd.ExecuteScalar().ToString()
             cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE '%" + InputBox("Search for a Location to Remove the Category from", "Remove Category from a Location") + "%'"
-            Dim LocationID = cmd.ExecuteScalar().ToString()
+            Dim LocationID As String = cmd.ExecuteScalar().ToString()
             If CategoryID Is Nothing Then
                 MsgBox("That Category was not recognized, please try again.")
             ElseIf LocationID Is Nothing Then
@@ -136,15 +136,15 @@ Public Class frmLocations
             Else
                 cmd.CommandText = "DELETE FROM CategoryLocation WHERE LocationID = " + LocationID + " AND CategoryID = " + CategoryID
                 If cmd.ExecuteNonQuery() > 0 Then
-                    Dim getItems As SqlCommand = New SqlCommand("SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID, dbConnection)
+                    cmd.CommandText = "SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID
                     Dim items As List(Of String) = New List(Of String)
-                    Dim reader As SqlDataReader = getItems.ExecuteReader()
+                    Dim reader As SqlDataReader = cmd.ExecuteReader()
                     While reader.Read()
                         items.Add(reader.Item(0).ToString())
                     End While
                     reader.Close()
                     For i As Integer = 0 To (items.Count - 1)
-                        cmd.CommandText = "DELETE FROM InventoryMain WHERE LocationID = " + LocationID + " AND ItemID = " + items.Item(i).ToString()
+                        cmd.CommandText = "DELETE FROM InventoryMain WHERE LocationID = " + LocationID + " AND ItemID = " + items.Item(i)
                         cmd.ExecuteNonQuery()
                     Next
                 End If
