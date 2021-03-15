@@ -110,7 +110,7 @@ Public Class frmLocations
                     End While
                     reader.Close()
                     For i As Integer = 0 To (items.Count - 1)
-                        cmd.CommandText = "INSERT INTO InventoryMain (LocationID, ItemID, ExpectedCount) VALUES (" + LocationID + ", " + items.Item(i).ToString() + ", 0)"
+                        cmd.CommandText = "INSERT INTO InventoryMain (LocationID, ItemID, ExpectedCount, ActualCount) VALUES (" + LocationID + ", " + items.Item(i).ToString() + ", 0, 0)"
                         cmd.ExecuteNonQuery()
                     Next
                 End If

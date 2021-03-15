@@ -70,12 +70,13 @@ Public Class frmDashboard
                 cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = '" + dgvDashboard.Rows.Item(i).Cells(1).Value.ToString() + "'"
                 ItemID = cmd.ExecuteScalar().ToString()
                 cmd.CommandText = "UPDATE InventoryMain SET ExpectedCount = " + dgvDashboard.Rows.Item(i).Cells(2).Value.ToString() + ", ActualCount = " + dgvDashboard.Rows.Item(i).Cells(3).Value.ToString() + " WHERE LocationID = " + LocationID + " AND ItemID = " + ItemID
-                If cmd.ExecuteNonQuery() > 0 Then
-                    MsgBox("Success!", "Success!")
+                If cmd.ExecuteNonQuery() = 0 Then
+                    Throw New ArgumentException("Update Failed.")
                 End If
             Next
+            MsgBox("Success!") 'If it fails, it'll be caught by the try-catch
         Catch ex As Exception
-            MsgBox("Something went wrong, please try again", "Error")
+            MsgBox("Something went wrong, please try again")
         End Try
         dbConnection.Close()
     End Sub

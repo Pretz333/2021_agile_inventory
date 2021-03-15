@@ -131,12 +131,12 @@ Partial Class frmDashboard
         '
         'btnResetCounts
         '
-        Me.btnResetCounts.Location = New System.Drawing.Point(465, 56)
+        Me.btnResetCounts.Location = New System.Drawing.Point(551, 55)
         Me.btnResetCounts.Margin = New System.Windows.Forms.Padding(2)
         Me.btnResetCounts.Name = "btnResetCounts"
-        Me.btnResetCounts.Size = New System.Drawing.Size(158, 29)
+        Me.btnResetCounts.Size = New System.Drawing.Size(110, 29)
         Me.btnResetCounts.TabIndex = 3
-        Me.btnResetCounts.Text = "Reset Actual Counts"
+        Me.btnResetCounts.Text = "Reset Counts"
         Me.btnResetCounts.UseVisualStyleBackColor = True
         '
         'frmDashboard
