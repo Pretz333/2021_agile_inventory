@@ -87,21 +87,25 @@ Public Class frmDashboard
     Private Sub btnNavItems_Click(sender As Object, e As EventArgs) Handles btnNavItems.Click
         frmItems.Show()
         Me.Hide()
+        Me.CenterToScreen()
     End Sub
 
     Private Sub btnNavCategories_Click(sender As Object, e As EventArgs) Handles btnNavCategories.Click
         frmCategories.Show()
         Me.Hide()
+        Me.CenterToScreen()
     End Sub
 
     Private Sub btnNavLocations_Click(sender As Object, e As EventArgs) Handles btnNavLocations.Click
         frmLocations.Show()
         Me.Hide()
+        Me.CenterToScreen()
     End Sub
 
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
         Me.Hide()
         frmExport.Show()
+        Me.CenterToScreen()
     End Sub
 
     Private Sub btnResetCounts_Click(sender As Object, e As EventArgs) Handles btnResetCounts.Click
