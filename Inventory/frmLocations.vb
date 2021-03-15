@@ -117,6 +117,7 @@ Public Class frmLocations
         Catch
             MsgBox("Something went wrong, please try again.")
         End Try
+        frmDashboard.LoadTableData(String.Empty)
         dbConnection.Close()
     End Sub
 
@@ -151,6 +152,7 @@ Public Class frmLocations
         Catch
             MsgBox("Something went wrong, please try again.")
         End Try
+        frmDashboard.LoadTableData(String.Empty)
         dbConnection.Close()
     End Sub
 End Class
