@@ -126,13 +126,32 @@ Public Class frmItems
         Try
             dbConnection.Open()
             Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + itemCategory + "%'", dbConnection)
-            Dim CategoryID = cmd.ExecuteScalar()
+            Dim CategoryID As String = cmd.ExecuteScalar().ToString()
             If CategoryID Is Nothing Then
                 MsgBox("That Category was Unrecognized, please try again.")
             Else
-                cmd.CommandText = "INSERT INTO Item (CategoryID, Description) VALUES (" + CategoryID.ToString() + ", '" + itemDescription + "')"
-                If cmd.ExecuteNonQuery > 0 Then
+                cmd.CommandText = "INSERT INTO Item (CategoryID, Description) VALUES (" + CategoryID + ", '" + itemDescription + "')"
+                If cmd.ExecuteNonQuery() > 0 Then
                     MsgBox("Success!")
+
+                    'Get the ItemID
+                    cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = '" + itemDescription + "'"
+                    Dim ItemID As String = cmd.ExecuteScalar().ToString()
+
+                    'Query CategoryLocation for all locations that use the CategoryID of the item
+                    cmd.CommandText = "SELECT LocationID FROM CategoryLocation WHERE CategoryID = " + CategoryID
+                    Dim reader As SqlDataReader = cmd.ExecuteReader()
+                    Dim locations As List(Of String) = New List(Of String)
+                    While reader.Read()
+                        locations.Add(reader.Item(0).ToString())
+                    End While
+                    reader.Close()
+
+                    'Insert into InventoryMain LocationID, ItemID
+                    For i As Integer = 0 To (locations.Count - 1)
+                        cmd.CommandText = "INSERT INTO InventoryMain (LocationID, ItemID, ExpectedCount, ActualCount) VALUES (" + locations.Item(i) + ", " + ItemID + ", 0, 0)"
+                        cmd.ExecuteNonQuery()
+                    Next
                 End If
             End If
         Catch ex As Exception
@@ -150,6 +169,7 @@ Public Class frmItems
             Dim cmd As SqlCommand = New SqlCommand("DELETE FROM Item WHERE ItemID = " + ItemID, dbConnection)
             If cmd.ExecuteNonQuery > 0 Then
                 MsgBox("Success!")
+                cmd.CommandText = "DELETE FROM InventoryMain WHERE ItemID = " + ItemID
             End If
         Catch ex As Exception
             MsgBox("Something went wrong, please try again")
