@@ -12,6 +12,8 @@ Public Class frmItems
         dgvItems.Columns.Item(1).HeaderText = "Category"
         dgvItems.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         dgvItems.Columns.Item(2).HeaderText = "Description"
+        ' Disable the itemId column to prevent errors when saving
+        dgvItems.Columns.Item(0).ReadOnly = True
     End Sub
 
     'Set up connection to database
@@ -77,16 +79,16 @@ Public Class frmItems
             dbConnection.Open()
             For i As Integer = 0 To dgvItems.Rows.Count - 1
                 cmd.CommandText = "SELECT CategoryID FROM Category WHERE Description LIKE '%" + dgvItems.Rows.Item(i).Cells(1).Value.ToString() + "%'"
-                CategoryID = cmd.ExecuteScalar().ToString()
+                CategoryID = cmd.ExecuteScalar()
                 If CategoryID Is Nothing Then
-                    MsgBox("The Category on Row #" + i.ToString() + " was unrecognized.")
+                    MessageBox.Show("The category you entered on row '" + i.ToString + "' doesn't exist", "Oops")
                 Else
                     cmd.CommandText = "UPDATE Item SET CategoryID = " + CategoryID + ", Description = '" + dgvItems.Rows.Item(i).Cells(2).Value.ToString() + "' WHERE ItemID = " + dgvItems.Rows(i).Cells(0).Value.ToString()
                     cmd.ExecuteNonQuery()
                 End If
             Next
         Catch ex As Exception
-            MsgBox("Something went wrong, please try again", "Error")
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
         dbConnection.Close()
     End Sub
@@ -126,17 +128,17 @@ Public Class frmItems
         Try
             dbConnection.Open()
             Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + itemCategory + "%'", dbConnection)
-            Dim CategoryID As String = cmd.ExecuteScalar().ToString()
+            Dim CategoryID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
-                MsgBox("That Category was Unrecognized, please try again.")
+                MessageBox.Show("The category you entered doesn't exist.", "Oops")
             Else
                 cmd.CommandText = "INSERT INTO Item (CategoryID, Description) VALUES (" + CategoryID + ", '" + itemDescription + "')"
                 If cmd.ExecuteNonQuery() > 0 Then
-                    MsgBox("Success!")
+                    MessageBox.Show("Successfully added!", "Changes Saved")
 
                     'Get the ItemID
                     cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = '" + itemDescription + "'"
-                    Dim ItemID As String = cmd.ExecuteScalar().ToString()
+                    Dim ItemID As String = cmd.ExecuteScalar()
 
                     'Query CategoryLocation for all locations that use the CategoryID of the item
                     cmd.CommandText = "SELECT LocationID FROM CategoryLocation WHERE CategoryID = " + CategoryID
@@ -156,7 +158,7 @@ Public Class frmItems
                 End If
             End If
         Catch ex As Exception
-            MsgBox("Something went wrong, please try again")
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
         dbConnection.Close()
         LoadTableData(String.Empty)
@@ -169,12 +171,12 @@ Public Class frmItems
             dbConnection.Open()
             Dim cmd As SqlCommand = New SqlCommand("DELETE FROM Item WHERE ItemID = " + ItemID, dbConnection)
             If cmd.ExecuteNonQuery > 0 Then
-                MsgBox("Success!")
+                MessageBox.Show("Successfully deleted", "Changss Saved")
                 cmd.CommandText = "DELETE FROM InventoryMain WHERE ItemID = " + ItemID
                 frmDashboard.LoadTableData(String.Empty)
             End If
         Catch ex As Exception
-            MsgBox("Something went wrong, please try again")
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
         dbConnection.Close()
         LoadTableData(String.Empty)

@@ -9,6 +9,8 @@ Public Class frmLocations
         LoadTableData(String.Empty)
         dvgLocations.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         dvgLocations.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        ' Disable the locationID column to prevent errors when saving
+        dvgLocations.Columns.Item(0).ReadOnly = True
     End Sub
 
     'Set up connection to database
@@ -51,10 +53,10 @@ Public Class frmLocations
             Dim changes As DataSet = ds.GetChanges()
             If changes IsNot Nothing Then
                 dataAdapter.Update(changes)
-                MsgBox("Changes Saved")
+                MessageBox.Show("Your changes were saved", "Changes Saved")
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
     End Sub
 
@@ -91,17 +93,17 @@ Public Class frmLocations
         dbConnection.Open()
         Try
             Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to add to a Location", "Add Category to a Location") + "%'", dbConnection)
-            Dim CategoryID As String = cmd.ExecuteScalar().ToString()
+            Dim CategoryID As String = cmd.ExecuteScalar()
             cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE '%" + InputBox("Search for a Location to add the Category to", "Add Category to a Location") + "%'"
-            Dim LocationID As String = cmd.ExecuteScalar().ToString()
+            Dim LocationID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
-                MsgBox("That Category was not recognized, please try again.")
+                MessageBox.Show("The category you entered does not exist!", "Oops")
             ElseIf LocationID Is Nothing Then
-                MsgBox("That Location was not recognized, please try again.")
+                MessageBox.Show("The location you entered does not exist!", "Oops")
             Else
                 cmd.CommandText = "INSERT INTO CategoryLocation (LocationID, CategoryID) VALUES (" + LocationID + ", " + CategoryID + ")"
                 If cmd.ExecuteNonQuery() > 0 Then
-                    MsgBox("Success!")
+                    MessageBox.Show("Your changes were saved", "Changes Saved")
                     cmd.CommandText = "SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID
                     Dim items As List(Of String) = New List(Of String)
                     Dim reader As SqlDataReader = cmd.ExecuteReader()
@@ -115,8 +117,8 @@ Public Class frmLocations
                     Next
                 End If
             End If
-        Catch
-            MsgBox("Something went wrong, please try again.")
+        Catch ex As Exception
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
         frmDashboard.LoadTableData(String.Empty)
         dbConnection.Close()
@@ -127,17 +129,17 @@ Public Class frmLocations
         dbConnection.Open()
         Try
             Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to remove from a Location", "Remove Category from a Location") + "%'", dbConnection)
-            Dim CategoryID As String = cmd.ExecuteScalar().ToString()
+            Dim CategoryID As String = cmd.ExecuteScalar()
             cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE '%" + InputBox("Search for a Location to Remove the Category from", "Remove Category from a Location") + "%'"
-            Dim LocationID As String = cmd.ExecuteScalar().ToString()
+            Dim LocationID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
-                MsgBox("That Category was not recognized, please try again.")
+                MessageBox.Show("The category you entered does not exist!", "Oops")
             ElseIf LocationID Is Nothing Then
-                MsgBox("That Location was not recognized, please try again.")
+                MessageBox.Show("The location you entered does not exist!", "Oops")
             Else
                 cmd.CommandText = "DELETE FROM CategoryLocation WHERE LocationID = " + LocationID + " AND CategoryID = " + CategoryID
                 If cmd.ExecuteNonQuery() > 0 Then
-                    MsgBox("Success!")
+                    MessageBox.Show("Your changes were saved", "Changes Saved")
                     cmd.CommandText = "SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID
                     Dim items As List(Of String) = New List(Of String)
                     Dim reader As SqlDataReader = cmd.ExecuteReader()
@@ -151,8 +153,8 @@ Public Class frmLocations
                     Next
                 End If
             End If
-        Catch
-            MsgBox("Something went wrong, please try again.")
+        Catch ex As Exception
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
         frmDashboard.LoadTableData(String.Empty)
         dbConnection.Close()
