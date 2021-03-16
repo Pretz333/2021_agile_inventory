@@ -27,17 +27,51 @@ Public Class frmCategories
     End Function
 
     Public Sub LoadTableData(ByVal searchTerm As String)
-        Dim dbConnection As SqlConnection = ConnectToDb()
-        dbConnection.Open()
+
         ds.Tables.Clear()
         Dim selectStatement As String = "SELECT * FROM Category"
+
+
         If searchTerm IsNot String.Empty Then
-            selectStatement += " WHERE Description LIKE '%" + searchTerm + "%'"
+            Dim srh As String = "' hello'"
+            Dim dbConnection As SqlConnection = ConnectToDb()
+            Dim srchSelectStatement As String = "Select * from category where description = @val "
+
+            dbConnection.Open()
+
+            Dim saveCommand As New SqlCommand(srchSelectStatement, dbConnection)
+
+            saveCommand.Parameters.AddWithValue("@val", srh)
+
+
+            Try
+                If saveCommand.ExecuteNonQuery > 0 Then
+                    dataAdapter = New SqlDataAdapter(srchSelectStatement, dbConnection)
+                    dataAdapter.Fill(ds)
+                    dgvCategories.DataSource = ds.Tables(0)
+                    dbConnection.Close()
+                Else
+                    MessageBox.Show("items not Found" + saveCommand.CommandText)
+
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Ooops, there was a problem connecting to the database" + ex.Message)
+            End Try
+
+
+
+        Else
+            Dim dbConnection As SqlConnection = ConnectToDb()
+            dbConnection.Open()
+            dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
+            dataAdapter.Fill(ds)
+            dgvCategories.DataSource = ds.Tables(0)
+            dbConnection.Close()
+
+
         End If
-        dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
-        dataAdapter.Fill(ds)
-        dgvCategories.DataSource = ds.Tables(0)
-        dbConnection.Close()
+
+
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
