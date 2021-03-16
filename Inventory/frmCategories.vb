@@ -9,6 +9,8 @@ Public Class frmCategories
         LoadTableData(String.Empty)
         dgvCategories.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         dgvCategories.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        ' Disable the categoryID column to prevent errors when saving
+        dgvCategories.Columns.Item(0).ReadOnly = True
     End Sub
 
     'Set up connection to database
@@ -51,10 +53,10 @@ Public Class frmCategories
             Dim changes As DataSet = ds.GetChanges()
             If changes IsNot Nothing Then
                 dataAdapter.Update(changes)
-                MsgBox("Changes Saved")
+                MessageBox.Show("Your changes were saved.", "Changes Saved")
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
     End Sub
 

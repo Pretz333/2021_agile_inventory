@@ -11,9 +11,11 @@ Public Class frmDashboard
         'Location Column
         dgvDashboard.Columns.Item(0).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         dgvDashboard.Columns.Item(0).HeaderText = "Location"
+        dgvDashboard.Columns.Item(0).ReadOnly = True
         'Item Column
         dgvDashboard.Columns.Item(1).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         dgvDashboard.Columns.Item(1).HeaderText = "Item"
+        dgvDashboard.Columns.Item(1).ReadOnly = True
         'Expected Count Column
         dgvDashboard.Columns.Item(2).AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
         dgvDashboard.Columns.Item(2).HeaderText = "Expected Count"
@@ -62,23 +64,57 @@ Public Class frmDashboard
         Dim cmd As New SqlCommand("", dbConnection)
         Dim LocationID As String
         Dim ItemID As String
+
         Try
             dbConnection.Open()
             For i As Integer = 0 To dgvDashboard.Rows.Count - 2 'The last row is blank
                 cmd.CommandText = "SELECT LocationID FROM Location WHERE Description = '" + dgvDashboard.Rows.Item(i).Cells(0).Value.ToString() + "'"
-                LocationID = cmd.ExecuteScalar().ToString()
+                LocationID = cmd.ExecuteScalar()
                 cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = '" + dgvDashboard.Rows.Item(i).Cells(1).Value.ToString() + "'"
-                ItemID = cmd.ExecuteScalar().ToString()
-                cmd.CommandText = "UPDATE InventoryMain SET ExpectedCount = " + dgvDashboard.Rows.Item(i).Cells(2).Value.ToString() + ", ActualCount = " + dgvDashboard.Rows.Item(i).Cells(3).Value.ToString() + " WHERE LocationID = " + LocationID + " AND ItemID = " + ItemID
-                If cmd.ExecuteNonQuery() = 0 Then
-                    Throw New ArgumentException("Update Failed.")
+                ItemID = cmd.ExecuteScalar()
+
+                ' Get the expected count and actual count cells from the table
+                Dim sExpectedCount As Integer = dgvDashboard.Rows.Item(i).Cells(2).Value
+                Dim sActualCount As Integer = dgvDashboard.Rows.Item(i).Cells(3).Value
+
+                ' Check to make sure the numbers are positive, not negative.
+                If sExpectedCount < 0 Or sActualCount < 0 Then
+                    ' Throw an exception preventing the rest of the code from executing
+                    Throw New Exception("number_positive_exception")
                 End If
+
+                cmd.CommandText = "UPDATE InventoryMain SET ExpectedCount = " + sExpectedCount.ToString + ", ActualCount = " + sActualCount.ToString + " WHERE LocationID = " + LocationID + " AND ItemID = " + ItemID
+                If cmd.ExecuteNonQuery() = 0 Then
+                    Throw New Exception("update_failed")
+                End If
+
             Next
-            MsgBox("Success!") 'If it fails, it'll be caught by the try-catch
+            MessageBox.Show("Successfully updated counts!", "Changes Saved") 'If it fails, it'll be caught by the try-catch
         Catch ex As Exception
-            MsgBox("Something went wrong, please try again")
+
+
+            ' See which exception happened to give the user a more in-depth answer
+            If ex.Message.ToString.Equals("number_positive_exception") Then
+                MessageBox.Show("Your item counts can only be positive numbers. E.g. 24", "Oops")
+            ElseIf ex.Message.ToString.Equals("update_failed") Then
+                MessageBox.Show("None of the rows were updated", "Oops")
+            Else
+                MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
+            End If
+
         End Try
         dbConnection.Close()
+    End Sub
+
+    ' This event handles errors regarding the Expected Count and Actual Count cells.
+    ' If data entered contains a character that isn't an Integer, this method will run.
+    Private Sub dgvDashboard_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles dgvDashboard.DataError
+        ' If the user entered a String instead of an Integer, show them this error
+        If e.Exception.GetType.ToString.Equals("System.FormatException") Then
+            MessageBox.Show("Oops, only numbers are allowed in your Expected Count and Actual Count cells.", "Oops...")
+        Else
+            MessageBox.Show("Something bad happened. Here's the details: " + e.Exception.ToString, "Error")
+        End If
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
@@ -123,12 +159,12 @@ Public Class frmDashboard
 
         Try
             If saveCommand.ExecuteNonQuery > 0 Then
-                MessageBox.Show("Actual Count reset to zero for all items.")
+                MessageBox.Show("All item counts were successfuly set to zero.", "Task Complete")
             Else
-                MessageBox.Show("Items not reset.")
+                MessageBox.Show("Sorry, it looks like the counts couldn't be reset!", "Task Failed")
             End If
         Catch ex As Exception
-            MessageBox.Show("Oops, there was a problem connecting to the database. " + ex.Message)
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
 
 
@@ -141,4 +177,5 @@ Public Class frmDashboard
     Private Sub dgvDashboard_Click(sender As Object, e As EventArgs) Handles dgvDashboard.Click
         dgvDashboard.DefaultCellStyle.SelectionBackColor = Color.Orange
     End Sub
+
 End Class
