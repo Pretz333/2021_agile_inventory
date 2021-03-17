@@ -33,13 +33,14 @@ Public Class frmItems
 
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
-        dbConnection.Open()
         ds.Tables.Clear()
-        Dim selectStatement As String = "SELECT Item.ItemID, Category.Description, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]"
+        dbConnection.Open()
+        Dim cmd As SqlCommand = New SqlCommand("SELECT Item.ItemID, Category.Description, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]", dbConnection)
         If searchTerm IsNot String.Empty Then
-            selectStatement += " WHERE Item.Description LIKE '%" + searchTerm + "%'"
+            cmd.CommandText += " WHERE Item.Description LIKE @search OR Category.Description LIKE @search"
+            cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%")
         End If
-        dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
+        dataAdapter = New SqlDataAdapter(cmd)
         dataAdapter.Fill(ds)
         dgvItems.DataSource = ds.Tables(0)
         dbConnection.Close()

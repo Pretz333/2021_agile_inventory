@@ -30,13 +30,14 @@ Public Class frmCategories
 
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
-        dbConnection.Open()
         ds.Tables.Clear()
-        Dim selectStatement As String = "SELECT * FROM Category"
+        dbConnection.Open()
+        Dim cmd As SqlCommand = New SqlCommand("SELECT * FROM Category", dbConnection)
         If searchTerm IsNot String.Empty Then
-            selectStatement += " WHERE Description LIKE '%" + searchTerm + "%'"
+            cmd.CommandText += " WHERE Description LIKE @search"
+            cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%")
         End If
-        dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
+        dataAdapter = New SqlDataAdapter(cmd)
         dataAdapter.Fill(ds)
         dgvCategories.DataSource = ds.Tables(0)
         dbConnection.Close()

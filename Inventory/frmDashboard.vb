@@ -40,13 +40,14 @@ Public Class frmDashboard
 
     Public Sub LoadTableData(ByVal searchTerm As String)
         Dim dbConnection As SqlConnection = ConnectToDb()
-        Dim selectStatement As String = "SELECT Location.Description, Item.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Item on InventoryMain.ItemID = Item.ItemID INNER JOIN Location on InventoryMain.LocationID = Location.LocationID"
+        Dim cmd As SqlCommand = New SqlCommand("SELECT Location.Description, Item.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Item on InventoryMain.ItemID = Item.ItemID INNER JOIN Location on InventoryMain.LocationID = Location.LocationID", dbConnection)
         ds.Tables.Clear()
         dbConnection.Open()
         If searchTerm IsNot String.Empty Then
-            selectStatement += " WHERE Item.Description LIKE '%" + searchTerm + "%' OR Location.Description LIKE '%" + searchTerm + "%'"
+            cmd.CommandText += " WHERE Item.Description LIKE @search OR Location.Description LIKE @search"
+            cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%")
         End If
-        dataAdapter = New SqlDataAdapter(selectStatement, dbConnection)
+        dataAdapter = New SqlDataAdapter(cmd)
         dataAdapter.Fill(ds)
         dgvDashboard.DataSource = ds.Tables(0)
         dbConnection.Close()
