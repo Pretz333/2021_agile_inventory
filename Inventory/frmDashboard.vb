@@ -1,7 +1,7 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.SQLite
 
 Public Class frmDashboard
-    Dim dataAdapter As New SqlDataAdapter
+    Dim dataAdapter As New SQLiteDataAdapter
     Dim ds As New DataSet
 
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -24,7 +24,7 @@ Public Class frmDashboard
         dgvDashboard.Columns.Item(3).HeaderText = "Actual Count"
     End Sub
 
-    Private Function ConnectToDb() As SqlConnection
+    Private Function ConnectToDb() As SQLiteConnection
         'This gives the full path into the bin/debug folder
         Dim strPath As String = Application.StartupPath
         Dim intPathLength As Integer = strPath.Length
@@ -32,22 +32,22 @@ Public Class frmDashboard
         'This strips off the bin/debug folder to point into your project folder.
         strPath = strPath.Substring(0, intPathLength - 25)
 
-        Dim strconnection As String = "Server=(LocalDB)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=" + strPath + "Inventory.mdf"
-        Dim dbConnection As New SqlConnection(strconnection)
+        Dim strconnection As String = "Data Source= " + strPath + "Inventory.db"
+        Dim dbConnection As New SQLiteConnection(strconnection)
 
         Return dbConnection
     End Function
 
     Public Sub LoadTableData(ByVal searchTerm As String)
-        Dim dbConnection As SqlConnection = ConnectToDb()
-        Dim cmd As SqlCommand = New SqlCommand("SELECT Location.Description, Item.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Item on InventoryMain.ItemID = Item.ItemID INNER JOIN Location on InventoryMain.LocationID = Location.LocationID", dbConnection)
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
+        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT Location.Description, Item.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Item on InventoryMain.ItemID = Item.ItemID INNER JOIN Location on InventoryMain.LocationID = Location.LocationID", dbConnection)
         ds.Tables.Clear()
         dbConnection.Open()
         If searchTerm IsNot String.Empty Then
             cmd.CommandText += " WHERE Item.Description LIKE @search OR Location.Description LIKE @search"
             cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%")
         End If
-        dataAdapter = New SqlDataAdapter(cmd)
+        dataAdapter = New SQLiteDataAdapter(cmd)
         dataAdapter.Fill(ds)
         dgvDashboard.DataSource = ds.Tables(0)
         dbConnection.Close()
@@ -60,9 +60,9 @@ Public Class frmDashboard
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
 
-        Dim cmd As New SqlCommand("", dbConnection)
+        Dim cmd As New SQLiteCommand("", dbConnection)
         Dim LocationID As String
         Dim ItemID As String
 
@@ -148,12 +148,12 @@ Public Class frmDashboard
 
     Private Sub btnResetCounts_Click(sender As Object, e As EventArgs) Handles btnResetCounts.Click
 
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         Dim selectStatement As String = "Update InventoryMain set ExpectedCount = @val, ActualCount = @val "
 
         ds.Tables.Clear()
         dbConnection.Open()
-        Dim saveCommand As New SqlCommand(selectStatement, dbConnection)
+        Dim saveCommand As New SQLiteCommand(selectStatement, dbConnection)
 
         saveCommand.Parameters.AddWithValue("@val", 0)
 

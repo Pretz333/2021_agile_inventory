@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {}
+    "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {}
   },
   "projects": {
-    "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {
+    "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
+        "projectUniqueName": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
         "projectName": "Inventory",
-        "projectPath": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
-        "packagesPath": "C:\\Users\\gabby\\.nuget\\packages\\",
-        "outputPath": "C:\\ASPNET\\AgileProgramming\\2021_agile_inventory\\Inventory\\obj\\",
+        "projectPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\Inventory.vbproj",
+        "packagesPath": "C:\\Users\\L\\.nuget\\packages\\",
+        "outputPath": "D:\\sch\\agile\\2021_agile_inventory\\Inventory\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\gabby\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\L\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,9 +44,9 @@
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
           "dependencies": {
-            "System.Data.SqlClient": {
+            "System.Data.SQLite": {
               "target": "Package",
-              "version": "[4.8.2, )"
+              "version": "[1.0.113.7, )"
             }
           },
           "imports": [
@@ -63,7 +67,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

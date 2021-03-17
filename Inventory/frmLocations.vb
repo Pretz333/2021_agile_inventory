@@ -1,8 +1,8 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.SQLite
 
 Public Class frmLocations
     Dim ds As New DataSet
-    Dim dataAdapter As SqlDataAdapter
+    Dim dataAdapter As SQLiteDataAdapter
 
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.CenterToScreen()
@@ -14,7 +14,7 @@ Public Class frmLocations
     End Sub
 
     'Set up connection to database
-    Private Function ConnectToDb() As SqlConnection
+    Private Function ConnectToDb() As SQLiteConnection
         'This gives the full path into the bin/debug folder
         Dim strPath As String = Application.StartupPath
         Dim intPathLength As Integer = strPath.Length
@@ -22,22 +22,22 @@ Public Class frmLocations
         'This strips off the bin/debug folder to point into your project folder.
         strPath = strPath.Substring(0, intPathLength - 25)
 
-        Dim strconnection As String = "Server=(LocalDB)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=" + strPath + "Inventory.mdf"
-        Dim dbConnection As New SqlConnection(strconnection)
+        Dim strconnection As String = "Data Source= " + strPath + "Inventory.db"
+        Dim dbConnection As New SQLiteConnection(strconnection)
 
         Return dbConnection
     End Function
 
     Public Sub LoadTableData(ByVal searchTerm As String)
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         ds.Tables.Clear()
         dbConnection.Open()
-        Dim cmd As SqlCommand = New SqlCommand("SELECT * FROM Location", dbConnection)
+        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT * FROM Location", dbConnection)
         If searchTerm IsNot String.Empty Then
             cmd.CommandText += " WHERE Description LIKE @search"
             cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%")
         End If
-        dataAdapter = New SqlDataAdapter(cmd)
+        dataAdapter = New SQLiteDataAdapter(cmd)
         dataAdapter.Fill(ds)
         dvgLocations.DataSource = ds.Tables(0)
         dbConnection.Close()
@@ -50,7 +50,7 @@ Public Class frmLocations
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            Dim cmd As SqlCommandBuilder = New SqlCommandBuilder(dataAdapter)
+            Dim cmd As SQLiteCommandBuilder = New SQLiteCommandBuilder(dataAdapter)
             Dim changes As DataSet = ds.GetChanges()
             If changes IsNot Nothing Then
                 dataAdapter.Update(changes)
@@ -90,10 +90,10 @@ Public Class frmLocations
     End Sub
 
     Private Sub btnAssociate_Click(sender As Object, e As EventArgs) Handles btnAssociate.Click
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         dbConnection.Open()
         Try
-            Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to add to a Location", "Add Category to a Location") + "%'", dbConnection)
+            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to add to a Location", "Add Category to a Location") + "%'", dbConnection)
             Dim CategoryID As String = cmd.ExecuteScalar()
             cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE '%" + InputBox("Search for a Location to add the Category to", "Add Category to a Location") + "%'"
             Dim LocationID As String = cmd.ExecuteScalar()
@@ -107,7 +107,7 @@ Public Class frmLocations
                     MessageBox.Show("Your changes were saved", "Changes Saved")
                     cmd.CommandText = "SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID
                     Dim items As List(Of String) = New List(Of String)
-                    Dim reader As SqlDataReader = cmd.ExecuteReader()
+                    Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                     While reader.Read()
                         items.Add(reader.Item(0).ToString())
                     End While
@@ -126,10 +126,10 @@ Public Class frmLocations
     End Sub
 
     Private Sub btnDisassociate_Click(sender As Object, e As EventArgs) Handles btnDisassociate.Click
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         dbConnection.Open()
         Try
-            Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to remove from a Location", "Remove Category from a Location") + "%'", dbConnection)
+            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to remove from a Location", "Remove Category from a Location") + "%'", dbConnection)
             Dim CategoryID As String = cmd.ExecuteScalar()
             cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE '%" + InputBox("Search for a Location to Remove the Category from", "Remove Category from a Location") + "%'"
             Dim LocationID As String = cmd.ExecuteScalar()
@@ -143,7 +143,7 @@ Public Class frmLocations
                     MessageBox.Show("Your changes were saved", "Changes Saved")
                     cmd.CommandText = "SELECT ItemID FROM Item WHERE CategoryID = " + CategoryID
                     Dim items As List(Of String) = New List(Of String)
-                    Dim reader As SqlDataReader = cmd.ExecuteReader()
+                    Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                     While reader.Read()
                         items.Add(reader.Item(0).ToString())
                     End While

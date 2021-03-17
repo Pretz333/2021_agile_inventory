@@ -1,8 +1,8 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.SQLite
 
 Public Class frmCategories
     Dim ds As New DataSet
-    Dim dataAdapter As SqlDataAdapter
+    Dim dataAdapter As SQLiteDataAdapter
 
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.CenterToScreen()
@@ -14,7 +14,7 @@ Public Class frmCategories
     End Sub
 
     'Set up connection to database
-    Private Function ConnectToDb() As SqlConnection
+    Private Function ConnectToDb() As SQLiteConnection
         'This gives the full path into the bin/debug folder
         Dim strPath As String = Application.StartupPath
         Dim intPathLength As Integer = strPath.Length
@@ -22,22 +22,22 @@ Public Class frmCategories
         'This strips off the bin/debug folder to point into your project folder.
         strPath = strPath.Substring(0, intPathLength - 25)
 
-        Dim strconnection As String = "Server=(LocalDB)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=" + strPath + "Inventory.mdf"
-        Dim dbConnection As New SqlConnection(strconnection)
+        Dim strconnection As String = "Data Source= " + strPath + "Inventory.db"
+        Dim dbConnection As New SQLiteConnection(strconnection)
 
         Return dbConnection
     End Function
 
     Public Sub LoadTableData(ByVal searchTerm As String)
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         ds.Tables.Clear()
         dbConnection.Open()
-        Dim cmd As SqlCommand = New SqlCommand("SELECT * FROM Category", dbConnection)
+        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT * FROM Category", dbConnection)
         If searchTerm IsNot String.Empty Then
             cmd.CommandText += " WHERE Description LIKE @search"
             cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%")
         End If
-        dataAdapter = New SqlDataAdapter(cmd)
+        dataAdapter = New SQLiteDataAdapter(cmd)
         dataAdapter.Fill(ds)
         dgvCategories.DataSource = ds.Tables(0)
         dbConnection.Close()
@@ -50,7 +50,7 @@ Public Class frmCategories
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            Dim cmd As SqlCommandBuilder = New SqlCommandBuilder(dataAdapter)
+            Dim cmd As SQLiteCommandBuilder = New SQLiteCommandBuilder(dataAdapter)
             Dim changes As DataSet = ds.GetChanges()
             If changes IsNot Nothing Then
                 dataAdapter.Update(changes)

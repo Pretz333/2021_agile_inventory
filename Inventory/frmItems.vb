@@ -1,8 +1,8 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.SQLite
 
 Public Class frmItems
     Dim ds As New DataSet
-    Dim dataAdapter As SqlDataAdapter
+    Dim dataAdapter As SQLiteDataAdapter
 
     Private Sub frmCategories_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.CenterToScreen()
@@ -17,7 +17,7 @@ Public Class frmItems
     End Sub
 
     'Set up connection to database
-    Private Function ConnectToDb() As SqlConnection
+    Private Function ConnectToDb() As SQLiteConnection
         'This gives the full path into the bin/debug folder
         Dim strPath As String = Application.StartupPath
         Dim intPathLength As Integer = strPath.Length
@@ -25,22 +25,22 @@ Public Class frmItems
         'This strips off the bin/debug folder to point into your project folder.
         strPath = strPath.Substring(0, intPathLength - 25)
 
-        Dim strconnection As String = "Server=(LocalDB)\MSSQLLocalDB;Integrated Security=true;AttachDbFileName=" + strPath + "Inventory.mdf"
-        Dim dbConnection As New SqlConnection(strconnection)
+        Dim strconnection As String = "Data Source= " + strPath + "Inventory.db"
+        Dim dbConnection As New SQLiteConnection(strconnection)
 
         Return dbConnection
     End Function
 
     Public Sub LoadTableData(ByVal searchTerm As String)
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         ds.Tables.Clear()
         dbConnection.Open()
-        Dim cmd As SqlCommand = New SqlCommand("SELECT Item.ItemID, Category.Description, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]", dbConnection)
+        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT Item.ItemID, Category.Description, Item.Description FROM [Item] INNER JOIN [Category] ON Item.[CategoryID] = Category.[CategoryID]", dbConnection)
         If searchTerm IsNot String.Empty Then
             cmd.CommandText += " WHERE Item.Description LIKE @search OR Category.Description LIKE @search"
             cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%")
         End If
-        dataAdapter = New SqlDataAdapter(cmd)
+        dataAdapter = New SQLiteDataAdapter(cmd)
         dataAdapter.Fill(ds)
         dgvItems.DataSource = ds.Tables(0)
         dbConnection.Close()
@@ -49,10 +49,10 @@ Public Class frmItems
     Private Function GetCategoryComboBoxColumn() As DataGridViewComboBoxColumn
         Dim dataTable As New DataTable
         Dim cboColumnCategory As New DataGridViewComboBoxColumn
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         Using dbConnection
             Dim categorySelectStatement As String = "SELECT Description FROM Category"
-            dataAdapter = New SqlDataAdapter(categorySelectStatement, dbConnection)
+            dataAdapter = New SQLiteDataAdapter(categorySelectStatement, dbConnection)
             dataAdapter.Fill(dataTable)
 
             For Each dataRow As DataRow In dataTable.Rows
@@ -72,9 +72,9 @@ Public Class frmItems
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
 
-        Dim cmd As New SqlCommand("", dbConnection)
+        Dim cmd As New SQLiteCommand("", dbConnection)
         Dim CategoryID As String
         Try
             dbConnection.Open()
@@ -123,12 +123,12 @@ Public Class frmItems
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         Dim itemDescription As String = InputBox("Please type in the description of the item:", "Add new Item")
         Dim itemCategory As String = InputBox("Please search for a category to add the item to:", "Add new Item")
         Try
             dbConnection.Open()
-            Dim cmd As SqlCommand = New SqlCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + itemCategory + "%'", dbConnection)
+            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + itemCategory + "%'", dbConnection)
             Dim CategoryID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
                 MessageBox.Show("The category you entered doesn't exist.", "Oops")
@@ -143,7 +143,7 @@ Public Class frmItems
 
                     'Query CategoryLocation for all locations that use the CategoryID of the item
                     cmd.CommandText = "SELECT LocationID FROM CategoryLocation WHERE CategoryID = " + CategoryID
-                    Dim reader As SqlDataReader = cmd.ExecuteReader()
+                    Dim reader As SQLiteDataReader = cmd.ExecuteReader()
                     Dim locations As List(Of String) = New List(Of String)
                     While reader.Read()
                         locations.Add(reader.Item(0).ToString())
@@ -166,11 +166,11 @@ Public Class frmItems
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        Dim dbConnection As SqlConnection = ConnectToDb()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         Dim ItemID As String = InputBox("Please type in the ItemID of the item:", "Delete a Item")
         Try
             dbConnection.Open()
-            Dim cmd As SqlCommand = New SqlCommand("DELETE FROM Item WHERE ItemID = " + ItemID, dbConnection)
+            Dim cmd As SQLiteCommand = New SQLiteCommand("DELETE FROM Item WHERE ItemID = " + ItemID, dbConnection)
             If cmd.ExecuteNonQuery > 0 Then
                 MessageBox.Show("Successfully deleted", "Changss Saved")
                 cmd.CommandText = "DELETE FROM InventoryMain WHERE ItemID = " + ItemID
