@@ -1,4 +1,9 @@
 ﻿Imports System.Data.SQLite
+Imports System.IO
+Imports iText.Kernel.Pdf
+Imports iText.Layout
+Imports iText.Layout.Element
+Imports iText.Layout.Properties
 
 Public Class frmExport
 
@@ -78,8 +83,6 @@ Public Class frmExport
     Private Sub btnExport_export_Click(sender As Object, e As EventArgs) Handles btnExport_export.Click
         ' Check if a path was given and if an export type was selected
         If (mExportPath.Length >= 1 And cbExport_exportType.SelectedIndex >= 0) Then
-            ' Show the user a heads up
-            MessageBox.Show("Just a heads up, you will be exporting to " + mExportPath + " with the file type as " + cbExport_exportType.SelectedItem.ToString, "Heads up")
             exportInventory()
         End If
     End Sub
@@ -106,21 +109,43 @@ Public Class frmExport
         dbConnection.Open()
         Dim reader As SQLiteDataReader = cmd.ExecuteReader()
 
+        ' Use a different writing method for CSV or PDF
         If cbExport_exportType.SelectedIndex = 0 Then 'CSV
+            mExportPath += "\Inventory.csv"
             While reader.Read()
 
             End While
         ElseIf cbExport_exportType.SelectedIndex = 1 Then 'PDF
+            mExportPath += "\Inventory.pdf"
+            Dim pdf As PdfDocument = New PdfDocument(New PdfWriter(New FileStream(mExportPath, FileMode.Create, FileAccess.Write)))
+            Dim doc As Document = New Document(pdf)
+            Dim tbl As Table = New Table(UnitValue.CreatePercentArray(5)).UseAllAvailableWidth()
+            tbl.AddHeaderCell("Location")
+            tbl.AddHeaderCell("Category")
+            tbl.AddHeaderCell("Item")
+            tbl.AddHeaderCell("Expected Count")
+            tbl.AddHeaderCell("Actual Count")
             While reader.Read()
-
+                tbl.AddCell(reader.Item(0).ToString())
+                tbl.AddCell(reader.Item(1).ToString())
+                tbl.AddCell(reader.Item(2).ToString())
+                tbl.AddCell(reader.Item(3).ToString())
+                tbl.AddCell(reader.Item(4).ToString())
             End While
+            doc.Add(tbl)
+            doc.Close()
         End If
-        MessageBox.Show("Successfully exported", "Success!")
+
+        reader.Close()
+        dbConnection.Close()
+        MessageBox.Show("Successfully exported to " + mExportPath, "Success!")
     End Sub
 
     ' Export subroutine
     Private Sub importInventory()
         ' Verify the import CSV is setup as Location, Item, Category, Expected, Actual
+
+        ' Delete and recreate all tables
 
         ' For each row in the CSV:
         ' Read the Location field, add it to Location if it doesn't exist
