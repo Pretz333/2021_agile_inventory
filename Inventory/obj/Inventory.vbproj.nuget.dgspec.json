@@ -47,6 +47,10 @@
             "System.Data.SQLite": {
               "target": "Package",
               "version": "[1.0.113.7, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[7.1.14, )"
             }
           },
           "imports": [

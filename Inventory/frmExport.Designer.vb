@@ -175,7 +175,7 @@ Partial Class frmExport
         '
         Me.cbExport_exportType.AllowDrop = True
         Me.cbExport_exportType.FormattingEnabled = True
-        Me.cbExport_exportType.Items.AddRange(New Object() {"*.csv (Comma Separated Values)"})
+        Me.cbExport_exportType.Items.AddRange(New Object() {"*.csv", "*.pdf"})
         Me.cbExport_exportType.Location = New System.Drawing.Point(10, 234)
         Me.cbExport_exportType.Name = "cbExport_exportType"
         Me.cbExport_exportType.Size = New System.Drawing.Size(151, 28)

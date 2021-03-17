@@ -1,4 +1,6 @@
-﻿Public Class frmExport
+﻿Imports System.Data.SQLite
+
+Public Class frmExport
 
     ' Member variables for export and import sections
     Dim mExportPath As String
@@ -6,16 +8,11 @@
 
     Dim mImportPath As String
 
-
-
-
     Private Sub frmExport_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.CenterToScreen()
 
-        ' Set the export type combo box index to the first and only element
+        ' Set the export type combo box index to the first element
         cbExport_exportType.SelectedIndex = 0
-        ' Disable the export combo box (for now.)
-        cbExport_exportType.Enabled = False
 
         ' Disable the export button
         btnExport_export.Enabled = False
@@ -23,11 +20,22 @@
         btnImport_import.Enabled = False
     End Sub
 
+    'Set up connection to database
+    Private Function ConnectToDb() As SQLiteConnection
+        'This gives the full path into the bin/debug folder
+        Dim strPath As String = Application.StartupPath
+        Dim intPathLength As Integer = strPath.Length
 
+        'This strips off the bin/debug folder to point into your project folder.
+        strPath = strPath.Substring(0, intPathLength - 25)
 
+        Dim strconnection As String = "Data Source= " + strPath + "Inventory.db"
+        Dim dbConnection As New SQLiteConnection(strconnection)
 
-    ' Opens a dialog to select an IMPORT location
-    ' and verifies if its all good.
+        Return dbConnection
+    End Function
+
+    ' Opens a dialog to select an IMPORT location and verifies if its all good.
     Private Sub btnImport_selectLocation_Click(sender As Object, e As EventArgs) Handles btnImport_selectLocation.Click
         ' Open a file browser dialog
         import_FolderBrowserDialog.ShowDialog()
@@ -46,11 +54,7 @@
         End If
     End Sub
 
-
-
-
-    ' Opens a dialog to select an EXPORT location
-    ' and verifies if its all good.
+    ' Opens a dialog to select an EXPORT location and verifies if its all good.
     Private Sub btnExport_selectLocation_Click(sender As Object, e As EventArgs) Handles btnExport_selectLocation.Click
         ' Open a file browser dialog
         export_FolderBrowserDialog.ShowDialog()
@@ -69,9 +73,6 @@
         End If
     End Sub
 
-
-
-
     ' Export button. Check if the folder path and export type are valid, then
     ' show the user what they've selected as a heads up.
     Private Sub btnExport_export_Click(sender As Object, e As EventArgs) Handles btnExport_export.Click
@@ -83,9 +84,6 @@
         End If
     End Sub
 
-
-
-
     ' Import button. Check if the folder path is valid.
     Private Sub btnImport_import_Click(sender As Object, e As EventArgs) Handles btnImport_import.Click
         ' Check if the import path is valid (janky, but it works)
@@ -96,7 +94,6 @@
         End If
     End Sub
 
-
     ' Invalid path message box
     Private Sub invalidPathDialog(ByVal mPath As String)
         MessageBox.Show("The location " + mPath + "isn't valid. Try picking another location", "Oops.")
@@ -104,18 +101,34 @@
 
     ' Import subroutine
     Private Sub exportInventory()
-        ' Do some crazy magic exporting crap
-        ' ...
-        ' ...
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
+        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT Location.Description, Category.Description, Item.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Location ON InventoryMain.LocationID = Location.LocationID INNER JOIN Item ON InventoryMain.ItemID = Item.ItemID INNER JOIN Category ON Item.CategoryID = Category.CategoryID ORDER BY Location.Description, Category.Description, Item.Description", dbConnection)
+        dbConnection.Open()
+        Dim reader As SQLiteDataReader = cmd.ExecuteReader()
+
+        If cbExport_exportType.SelectedIndex = 0 Then 'CSV
+            While reader.Read()
+
+            End While
+        ElseIf cbExport_exportType.SelectedIndex = 1 Then 'PDF
+            While reader.Read()
+
+            End While
+        End If
+        MessageBox.Show("Successfully exported", "Success!")
     End Sub
 
     ' Export subroutine
     Private Sub importInventory()
-        ' Do some crazy magic importing crap
-        ' ...
-        ' ...
-    End Sub
+        ' Verify the import CSV is setup as Location, Item, Category, Expected, Actual
 
+        ' For each row in the CSV:
+        ' Read the Location field, add it to Location if it doesn't exist
+        ' Read the Category field, add it to Category if it doesn't exist
+        ' Add the Item and Category to the Item table
+        ' Add the Location-Category pair to CategoryLocation if it doesn't exist
+        ' Add the Location-Item pair and the two counts to InventoryMain
+    End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
         frmDashboard.Show()
