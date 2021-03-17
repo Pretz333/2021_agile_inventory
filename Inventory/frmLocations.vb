@@ -59,6 +59,7 @@ Public Class frmLocations
         Catch ex As Exception
             MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
+        LoadTableData(String.Empty)
     End Sub
 
     Private Sub dvgLocations_Click(sender As Object, e As EventArgs) Handles dvgLocations.Click
