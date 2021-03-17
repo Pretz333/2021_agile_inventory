@@ -60,6 +60,7 @@ Public Class frmCategories
             MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
         End Try
         LoadTableData(String.Empty)
+        frmDashboard.LoadTableData(String.Empty)
     End Sub
 
     Private Sub dgvCategories_Click(sender As Object, e As EventArgs) Handles dgvCategories.Click
