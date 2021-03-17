@@ -91,7 +91,7 @@ Public Class frmExport
 
     Private Sub exportInventory()
         Dim dbConnection As SQLiteConnection = ConnectToDb()
-        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT Location.Description, Category.Description, Item.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Location ON InventoryMain.LocationID = Location.LocationID INNER JOIN Item ON InventoryMain.ItemID = Item.ItemID INNER JOIN Category ON Item.CategoryID = Category.CategoryID ORDER BY Location.Description, Category.Description, Item.Description", dbConnection)
+        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT Location.Description, Item.Description, Category.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Location ON InventoryMain.LocationID = Location.LocationID INNER JOIN Item ON InventoryMain.ItemID = Item.ItemID INNER JOIN Category ON Item.CategoryID = Category.CategoryID ORDER BY Location.Description, Category.Description, Item.Description", dbConnection)
         dbConnection.Open()
         Dim reader As SQLiteDataReader = cmd.ExecuteReader()
 
@@ -107,8 +107,8 @@ Public Class frmExport
             Dim doc As Document = New Document(pdf)
             Dim tbl As Table = New Table(UnitValue.CreatePercentArray(5)).UseAllAvailableWidth()
             tbl.AddHeaderCell("Location")
-            tbl.AddHeaderCell("Category")
             tbl.AddHeaderCell("Item")
+            tbl.AddHeaderCell("Category")
             tbl.AddHeaderCell("Expected Count")
             tbl.AddHeaderCell("Actual Count")
             While reader.Read()
