@@ -102,7 +102,7 @@ Partial Class frmItems
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
         Me.btnNavExport.TabIndex = 10
-        Me.btnNavExport.Text = "Export"
+        Me.btnNavExport.Text = "Data"
         Me.btnNavExport.UseVisualStyleBackColor = True
         '
         'txtSearch

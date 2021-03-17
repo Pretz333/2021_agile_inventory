@@ -45,7 +45,7 @@ Partial Class frmExport
         Me.btnImport_selectLocation = New System.Windows.Forms.Button()
         Me.lblImport_selectedLocation = New System.Windows.Forms.Label()
         Me.lblImportInfo = New System.Windows.Forms.Label()
-        Me.import_FolderBrowserDialog = New System.Windows.Forms.FolderBrowserDialog()
+        Me.fdImport = New System.Windows.Forms.OpenFileDialog()
         Me.gbExport.SuspendLayout()
         Me.gbImport.SuspendLayout()
         Me.SuspendLayout()
@@ -102,7 +102,7 @@ Partial Class frmExport
         Me.btnNavExport.Name = "btnNavExport"
         Me.btnNavExport.Size = New System.Drawing.Size(94, 29)
         Me.btnNavExport.TabIndex = 6
-        Me.btnNavExport.Text = "Export"
+        Me.btnNavExport.Text = "Data"
         Me.btnNavExport.UseVisualStyleBackColor = True
         '
         'lblExportInfo
@@ -269,6 +269,10 @@ Partial Class frmExport
         Me.lblImportInfo.Text = "Import an entire inventory from exported *.csv files. Note, this will rewrite you" &
     "r entire inventory."
         '
+        'fdImport
+        '
+        Me.fdImport.FileName = "fdimport"
+        '
         'frmExport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 20.0!)
@@ -316,5 +320,5 @@ Partial Class frmExport
     Friend WithEvents btnImport_selectLocation As Button
     Friend WithEvents lblImport_selectedLocation As Label
     Friend WithEvents lblImportInfo As Label
-    Friend WithEvents import_FolderBrowserDialog As FolderBrowserDialog
+    Friend WithEvents fdImport As OpenFileDialog
 End Class

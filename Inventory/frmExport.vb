@@ -38,8 +38,8 @@ Public Class frmExport
     ' Opens a dialog to select an IMPORT location and verifies if its all good.
     Private Sub btnImport_selectLocation_Click(sender As Object, e As EventArgs) Handles btnImport_selectLocation.Click
         ' Open a file browser dialog and set the path to a variable
-        import_FolderBrowserDialog.ShowDialog()
-        mImportPath = import_FolderBrowserDialog.SelectedPath
+        fdImport.ShowDialog()
+        mImportPath = fdImport.FileName
 
         ' Check if the user gave an actual path
         If mImportPath.Length > 0 Then
@@ -77,7 +77,6 @@ Public Class frmExport
     Private Sub btnImport_import_Click(sender As Object, e As EventArgs) Handles btnImport_import.Click
         ' Check if the import path is valid (janky, but it works)
         If mImportPath.Length >= 1 Then
-            'MessageBox.Show("Importing of the Inventory is not implemented at this time.", "Sorry!")
             ' Show the user a warning
             MessageBox.Show("Just a heads up, the entire inventory will be replaced with the new inventory you're about to import!", "Heads up")
             importInventory()
@@ -128,120 +127,128 @@ Public Class frmExport
     End Sub
 
     Private Sub importInventory()
-        'Verify the path is a csv file
-        If mImportPath.EndsWith(".csv") Then
-            ' Get all info from the file
-            Dim dt As DataTable = New DataTable()
-            Dim csvReader As FileIO.TextFieldParser = New FileIO.TextFieldParser(mImportPath)
-            csvReader.SetDelimiters(New String() {","})
-            Dim colFields As String() = csvReader.ReadFields()
-            For Each column As String In colFields
-                Dim col As DataColumn = New DataColumn(column)
-                dt.Columns.Add(col)
-            Next
-            While Not csvReader.EndOfData
-                Dim fieldData As String() = csvReader.ReadFields()
-                dt.Rows.Add(fieldData)
-            End While
-            csvReader.Close()
+        Try
+            'Verify the path is a csv file
+            If mImportPath.EndsWith(".csv") Then
+                ' Get all info from the file
+                Dim dt As DataTable = New DataTable()
+                Dim csvReader As FileIO.TextFieldParser = New FileIO.TextFieldParser(mImportPath)
+                csvReader.SetDelimiters(New String() {","})
+                Dim colFields As String() = csvReader.ReadFields()
+                For Each column As String In colFields
+                    Dim col As DataColumn = New DataColumn(column)
+                    dt.Columns.Add(col)
+                Next
+                While Not csvReader.EndOfData
+                    Dim fieldData As String() = csvReader.ReadFields()
+                    dt.Rows.Add(fieldData)
+                End While
+                csvReader.Close()
 
-            ' Verify the import CSV is setup as Location, Category, Item, Expected, Actual
-            If dt.Columns(0).ToString().ToLower() = "location" And dt.Columns(2).ToString().ToLower() = "item" And dt.Columns(1).ToString().ToLower() = "category" And dt.Columns(3).ToString().ToLower() = "expected" And dt.Columns(4).ToString().ToLower() = "actual" Then
-                'Further error checking
-                If dt.Rows.Count > 1 And Not dt.Rows.ToString = String.Empty Then
-                    ' Delete all data in tables
-                    Dim dbConnection As SQLiteConnection = ConnectToDb()
-                    Dim cmd As SQLiteCommand = New SQLiteCommand("TRUNCATE TABLE InventoryMain", dbConnection)
-                    cmd.ExecuteNonQuery()
-                    cmd.CommandText = "TRUNCATE TABLE CategoryLocation"
-                    cmd.ExecuteNonQuery()
-                    cmd.CommandText = "TRUNCATE TABLE Item"
-                    cmd.ExecuteNonQuery()
-                    cmd.CommandText = "TRUNCATE TABLE Category"
-                    cmd.ExecuteNonQuery()
-                    cmd.CommandText = "TRUNCATE TABLE Location"
-                    cmd.ExecuteNonQuery()
+                ' Verify the import CSV is setup as Location, Category, Item, Expected, Actual
+                If dt.Columns(0).ToString().ToLower() = "location" And dt.Columns(2).ToString().ToLower() = "item" And dt.Columns(1).ToString().ToLower() = "category" And dt.Columns(3).ToString().ToLower() = "expected count" And dt.Columns(4).ToString().ToLower() = "actual count" Then
+                    'Further error checking
+                    If dt.Rows.Count > 1 And Not dt.Rows.ToString = String.Empty Then
+                        ' Delete all data in tables
+                        Dim dbConnection As SQLiteConnection = ConnectToDb()
+                        dbConnection.Open()
+                        Dim cmd As SQLiteCommand = New SQLiteCommand("DELETE FROM InventoryMain", dbConnection)
+                        cmd.ExecuteNonQuery()
+                        cmd.CommandText = "DELETE FROM CategoryLocation"
+                        cmd.ExecuteNonQuery()
+                        cmd.CommandText = "DELETE FROM Item"
+                        cmd.ExecuteNonQuery()
+                        cmd.CommandText = "DELETE FROM Category"
+                        cmd.ExecuteNonQuery()
+                        cmd.CommandText = "DELETE FROM Location"
+                        cmd.ExecuteNonQuery()
 
-                    ' Setup
-                    Dim locInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO Location (Description) VALUES (@val)", dbConnection)
-                    locInsert.Parameters.Add("@val", DbType.String)
-                    Dim catInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO Category (Description) VALUES (@val)", dbConnection)
-                    catInsert.Parameters.Add("@val", DbType.String)
-                    Dim itemInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO Item (Description, CategoryID) VALUES (@val, @catid)", dbConnection)
-                    itemInsert.Parameters.Add("@val", DbType.String)
-                    itemInsert.Parameters.Add("@catid", DbType.Int32)
-                    Dim loccatInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO CategoryLocation (CategoryID, LocationID) VALUES (@cat, @loc)", dbConnection)
-                    loccatInsert.Parameters.Add("@cat", DbType.Int32)
-                    loccatInsert.Parameters.Add("@loc", DbType.Int32)
-                    Dim invInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO InventoryMain (LocationID, ItemID, ExpectedCount, ActualCount) VALUES (@loc, @item, 0, 0)", dbConnection)
-                    invInsert.Parameters.Add("@loc", DbType.Int32)
-                    invInsert.Parameters.Add("@item", DbType.Int32)
-                    Dim findItem As SQLiteCommand = New SQLiteCommand("SELECT ItemID FROM Item WHERE Item.Description = @val", dbConnection)
-                    findItem.Parameters.Add("@val", DbType.String)
-                    Dim findCat As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Category.Description = @val", dbConnection)
-                    findCat.Parameters.Add("@val", DbType.String)
-                    Dim findLoc As SQLiteCommand = New SQLiteCommand("SELECT LocationID FROM Location WHERE Location.Description = @val", dbConnection)
-                    findLoc.Parameters.Add("@val", DbType.String)
-                    Dim locList As List(Of String) = New List(Of String)
-                    Dim catList As List(Of String) = New List(Of String)
-                    Dim loccatList As List(Of Integer()) = New List(Of Integer())
-                    Dim loccat(2) As Integer
-                    Dim loc As String
-                    Dim cat As String
-                    Dim item As String
-                    Dim catID As String
+                        ' Setup
+                        Dim locInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO Location (Description) VALUES (@val)", dbConnection)
+                        locInsert.Parameters.Add("@val", DbType.String)
+                        Dim catInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO Category (Description) VALUES (@val)", dbConnection)
+                        catInsert.Parameters.Add("@val", DbType.String)
+                        Dim itemInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO Item (Description, CategoryID) VALUES (@val, @catid)", dbConnection)
+                        itemInsert.Parameters.Add("@val", DbType.String)
+                        itemInsert.Parameters.Add("@catid", DbType.Int32)
+                        Dim loccatInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO CategoryLocation (CategoryID, LocationID) VALUES (@cat, @loc)", dbConnection)
+                        loccatInsert.Parameters.Add("@cat", DbType.Int32)
+                        loccatInsert.Parameters.Add("@loc", DbType.Int32)
+                        Dim invInsert As SQLiteCommand = New SQLiteCommand("INSERT INTO InventoryMain (LocationID, ItemID, ExpectedCount, ActualCount) VALUES (@loc, @item, 0, 0)", dbConnection)
+                        invInsert.Parameters.Add("@loc", DbType.Int32)
+                        invInsert.Parameters.Add("@item", DbType.Int32)
+                        Dim findItem As SQLiteCommand = New SQLiteCommand("SELECT ItemID FROM Item WHERE Item.Description = @val", dbConnection)
+                        findItem.Parameters.Add("@val", DbType.String)
+                        Dim findCat As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Category.Description = @val", dbConnection)
+                        findCat.Parameters.Add("@val", DbType.String)
+                        Dim findLoc As SQLiteCommand = New SQLiteCommand("SELECT LocationID FROM Location WHERE Location.Description = @val", dbConnection)
+                        findLoc.Parameters.Add("@val", DbType.String)
+                        Dim locList As List(Of String) = New List(Of String)
+                        Dim catList As List(Of String) = New List(Of String)
+                        Dim loccatList As List(Of Integer()) = New List(Of Integer())
+                        Dim loccat(2) As Integer
+                        Dim loc As String
+                        Dim cat As String
+                        Dim item As String
+                        Dim catID As String
 
-                    ' For each row in the CSV:
-                    For i As Integer = 0 To dt.Rows.Count - 1
-                        ' Read the Location field, add it to Location if it doesn't exist
-                        loc = dt.Rows(i).Item(0).ToString()
-                        If Not locList.IndexOf(loc) = -1 Then
-                            locList.Add(loc)
-                            locInsert.Parameters(0).Value = loc
-                            locInsert.ExecuteNonQuery()
-                        End If
+                        ' For each row in the CSV:
+                        For i As Integer = 0 To dt.Rows.Count - 1
+                            ' Read the Location field, add it to Location if it doesn't exist
+                            loc = dt.Rows(i).Item(0).ToString()
+                            If locList.IndexOf(loc) = -1 Then
+                                locList.Add(loc)
+                                locInsert.Parameters(0).Value = loc
+                                locInsert.ExecuteNonQuery()
+                            End If
 
-                        ' Read the Category field, add it to Category if it doesn't exist
-                        cat = dt.Rows(i).Item(1).ToString()
-                        If Not catList.IndexOf(cat) = -1 Then
-                            catList.Add(cat)
-                            catInsert.Parameters(0).Value = cat
-                            catInsert.ExecuteNonQuery()
-                        End If
+                            ' Read the Category field, add it to Category if it doesn't exist
+                            cat = dt.Rows(i).Item(1).ToString()
+                            If catList.IndexOf(cat) = -1 Then
+                                catList.Add(cat)
+                                catInsert.Parameters(0).Value = cat
+                                catInsert.ExecuteNonQuery()
+                            End If
 
-                        ' Add the Item and Category to the Item table
-                        findCat.Parameters(0).Value = cat
-                        item = dt.Rows(i).Item(2).ToString()
-                        itemInsert.Parameters(0).Value = item
-                        catID = findCat.ExecuteScalar()
-                        itemInsert.Parameters(1).Value = catID
-                        itemInsert.ExecuteNonQuery()
+                            ' Add the Item and Category to the Item table
+                            findCat.Parameters(0).Value = cat
+                            item = dt.Rows(i).Item(2).ToString()
+                            itemInsert.Parameters(0).Value = item
+                            catID = findCat.ExecuteScalar()
+                            itemInsert.Parameters(1).Value = catID
+                            itemInsert.ExecuteNonQuery()
 
-                        ' Add the Location-Category pair to CategoryLocation if it doesn't exist
-                        findLoc.Parameters(0).Value = loc
-                        loccat(1) = findLoc.ExecuteScalar()
-                        loccat(0) = catID
-                        If Not loccatList.IndexOf(loccat) = -1 Then
-                            loccatInsert.Parameters(0).Value = loccat(0)
-                            loccatInsert.Parameters(1).Value = loccat(1)
-                            loccatInsert.ExecuteNonQuery()
-                        End If
+                            ' Add the Location-Category pair to CategoryLocation if it doesn't exist
+                            findLoc.Parameters(0).Value = loc
+                            loccat(1) = findLoc.ExecuteScalar()
+                            loccat(0) = catID
+                            If loccatList.IndexOf(loccat) = -1 Then
+                                loccatList.Add(loccat)
+                                loccatInsert.Parameters(0).Value = loccat(0)
+                                loccatInsert.Parameters(1).Value = loccat(1)
+                                loccatInsert.ExecuteNonQuery()
+                            End If
 
-                        ' Add the Location-Item pair and the two counts to InventoryMain
-                        invInsert.Parameters(0).Value = loccat(1)
-                        findItem.Parameters(0).Value = item
-                        invInsert.Parameters(1).Value = findItem.ExecuteScalar().ToString()
-                        invInsert.ExecuteNonQuery()
-                    Next
+                            ' Add the Location-Item pair and the two counts to InventoryMain
+                            invInsert.Parameters(0).Value = loccat(1)
+                            findItem.Parameters(0).Value = item
+                            invInsert.Parameters(1).Value = findItem.ExecuteScalar().ToString()
+                            invInsert.ExecuteNonQuery()
+                        Next
+                        dbConnection.Close()
+                        MessageBox.Show("Improt successful!", "Import Success!")
+                    Else
+                        MessageBox.Show("There is no data in this file", "Import Error")
+                    End If
                 Else
-                    MessageBox.Show("There is no data in this file", "Import Error")
+                    MessageBox.Show("The columns should be in this order with these titles: Location, Item, Category, Expected, Actual", "Import Error")
                 End If
             Else
-                MessageBox.Show("The columns should be in this order with these titles: Location, Item, Category, Expected, Actual", "Import Error")
+                MessageBox.Show("The file you selected is not a CSV file, please select a CSV file.", "Import Error")
             End If
-        Else
-            MessageBox.Show("The file you selected is not a CSV file, please select a CSV file.", "Import Error")
-        End If
+        Catch ex As Exception
+            MessageBox.Show("The import failed, here's the details on why: " + ex.ToString(), "Import Error")
+        End Try
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
@@ -267,5 +274,4 @@ Public Class frmExport
     Private Sub btnNavExport_Click(sender As Object, e As EventArgs) Handles btnNavExport.Click
         'Already on this page
     End Sub
-
 End Class
