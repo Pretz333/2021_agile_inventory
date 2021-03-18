@@ -125,8 +125,8 @@ Public Class frmExport
             Dim doc As Document = New Document(pdf)
             Dim tbl As Table = New Table(UnitValue.CreatePercentArray(5)).UseAllAvailableWidth()
             tbl.AddHeaderCell("Location")
-            tbl.AddHeaderCell("Item")
             tbl.AddHeaderCell("Category")
+            tbl.AddHeaderCell("Item")
             tbl.AddHeaderCell("Expected Count")
             tbl.AddHeaderCell("Actual Count")
             While reader.Read()
@@ -166,7 +166,7 @@ Public Class frmExport
                 csvReader.Close()
 
                 ' Verify the import CSV is setup as Location, Category, Item, Expected, Actual
-                If dt.Columns(0).ToString().ToLower() = "location" And dt.Columns(2).ToString().ToLower() = "item" And dt.Columns(1).ToString().ToLower() = "category" And dt.Columns(3).ToString().ToLower() = "expected count" And dt.Columns(4).ToString().ToLower() = "actual count" Then
+                If dt.Columns(0).ToString() = "Location" And dt.Columns(1).ToString() = "Category" And dt.Columns(2).ToString() = "Item" And dt.Columns(3).ToString() = "Expected Count" And dt.Columns(4).ToString() = "Actual Count" Then
                     'Further error checking
                     If dt.Rows.Count > 1 And Not dt.Rows.ToString = String.Empty Then
                         ' Delete all data in tables
@@ -261,7 +261,7 @@ Public Class frmExport
                         MessageBox.Show("There is no data in this file", "Import Error")
                     End If
                 Else
-                    MessageBox.Show("The columns should be in this order with these titles: Location, Item, Category, Expected, Actual", "Import Error")
+                    MessageBox.Show("The columns should be in this order with these titles: Location, Category, Item, Expected Count, Actual Count", "Import Error")
                 End If
             Else
                 MessageBox.Show("The file you selected is not a CSV file, please select a CSV file.", "Import Error")

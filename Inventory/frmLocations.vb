@@ -95,9 +95,12 @@ Public Class frmLocations
         Dim dbConnection As SQLiteConnection = ConnectToDb()
         dbConnection.Open()
         Try
-            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to add to a Location", "Add Category to a Location") + "%'", dbConnection)
+            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE @search", dbConnection)
+            cmd.Parameters.Add("@search", DbType.String)
+            cmd.Parameters(0).Value = "%" + InputBox("Search for a Category to add to a Location", "Add Category to a Location") + "%"
             Dim CategoryID As String = cmd.ExecuteScalar()
-            cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE '%" + InputBox("Search for a Location to add the Category to", "Add Category to a Location") + "%'"
+            cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE @search"
+            cmd.Parameters(0).Value = "%" + InputBox("Search for a Location to add the Category to", "Add Category to a Location") + "%"
             Dim LocationID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
                 MessageBox.Show("The category you entered does not exist!", "Oops")
@@ -131,9 +134,12 @@ Public Class frmLocations
         Dim dbConnection As SQLiteConnection = ConnectToDb()
         dbConnection.Open()
         Try
-            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + InputBox("Search for a Category to remove from a Location", "Remove Category from a Location") + "%'", dbConnection)
+            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE @search", dbConnection)
+            cmd.Parameters.Add("@search", DbType.String)
+            cmd.Parameters(0).Value = "%" + InputBox("Search for a Category to remove from a Location", "Remove Category from a Location") + "%"
             Dim CategoryID As String = cmd.ExecuteScalar()
-            cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE '%" + InputBox("Search for a Location to Remove the Category from", "Remove Category from a Location") + "%'"
+            cmd.CommandText = "SELECT LocationID FROM Location WHERE Description LIKE @search"
+            cmd.Parameters(0).Value = "%" + InputBox("Search for a Location to remove the Category from", "Remove Category from a Location") + "%"
             Dim LocationID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
                 MessageBox.Show("The category you entered does not exist!", "Oops")
