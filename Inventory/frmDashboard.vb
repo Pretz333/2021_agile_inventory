@@ -68,7 +68,7 @@ Public Class frmDashboard
 
         Try
             dbConnection.Open()
-            For i As Integer = 0 To dgvDashboard.Rows.Count - 2 'The last row is blank
+            For i As Integer = 0 To dgvDashboard.Rows.Count - 1
                 cmd.CommandText = "SELECT LocationID FROM Location WHERE Description = @search"
                 cmd.Parameters.Add("@search", DbType.String)
                 cmd.Parameters(0).Value = dgvDashboard.Rows.Item(i).Cells(0).Value.ToString()
@@ -163,7 +163,7 @@ Public Class frmDashboard
         Dim saveCommand As New SQLiteCommand(selectStatement, dbConnection)
 
         Try
-            If saveCommand.ExecuteNonQuery = dgvDashboard.Rows.Count - 2 Then
+            If saveCommand.ExecuteNonQuery = dgvDashboard.Rows.Count - 1 Then
                 MessageBox.Show("All Item counts were successfuly set to zero.", "Task Complete")
             Else
                 MessageBox.Show("Sorry, it looks like the counts couldn't be reset!", "Task Failed")

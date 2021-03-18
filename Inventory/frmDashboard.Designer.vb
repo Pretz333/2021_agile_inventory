@@ -38,6 +38,8 @@ Partial Class frmDashboard
         '
         'dgvDashboard
         '
+        Me.dgvDashboard.AllowUserToAddRows = False
+        Me.dgvDashboard.AllowUserToDeleteRows = False
         Me.dgvDashboard.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgvDashboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvDashboard.Location = New System.Drawing.Point(112, 85)
