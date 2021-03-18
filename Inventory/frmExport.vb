@@ -147,6 +147,7 @@ Public Class frmExport
     End Sub
 
     Private Sub importInventory()
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
         Try
             'Verify the path is a csv file
             If mImportPath.EndsWith(".csv") Then
@@ -170,7 +171,6 @@ Public Class frmExport
                     'Further error checking
                     If dt.Rows.Count > 1 And Not dt.Rows.ToString = String.Empty Then
                         ' Delete all data in tables
-                        Dim dbConnection As SQLiteConnection = ConnectToDb()
                         dbConnection.Open()
                         Dim cmd As SQLiteCommand = New SQLiteCommand("DELETE FROM InventoryMain", dbConnection)
                         cmd.ExecuteNonQuery()
@@ -255,7 +255,6 @@ Public Class frmExport
                             invInsert.Parameters(1).Value = findItem.ExecuteScalar().ToString()
                             invInsert.ExecuteNonQuery()
                         Next
-                        dbConnection.Close()
                         MessageBox.Show("Import successful!", "Import Success!")
                     Else
                         MessageBox.Show("There is no data in this file", "Import Error")
@@ -269,6 +268,7 @@ Public Class frmExport
         Catch ex As Exception
             MessageBox.Show("The import failed, here's the details on why: " + ex.ToString(), "Import Error")
         End Try
+        dbConnection.Close()
     End Sub
 
     Private Sub btnNavDashboard_Click(sender As Object, e As EventArgs) Handles btnNavDashboard.Click
