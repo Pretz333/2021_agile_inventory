@@ -90,60 +90,35 @@ Public Class frmExport
 
     Private Sub exportInventory()
         Dim dbConnection As SQLiteConnection = ConnectToDb()
-        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT Location.Description, Item.Description, Category.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Location ON InventoryMain.LocationID = Location.LocationID INNER JOIN Item ON InventoryMain.ItemID = Item.ItemID INNER JOIN Category ON Item.CategoryID = Category.CategoryID ORDER BY Location.Description, Category.Description, Item.Description", dbConnection)
+        Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT Location.Description, Category.Description, Item.Description, ExpectedCount, ActualCount FROM InventoryMain INNER JOIN Location ON InventoryMain.LocationID = Location.LocationID INNER JOIN Item ON InventoryMain.ItemID = Item.ItemID INNER JOIN Category ON Item.CategoryID = Category.CategoryID ORDER BY Location.Description, Category.Description, Item.Description", dbConnection)
         dbConnection.Open()
         Dim reader As SQLiteDataReader = cmd.ExecuteReader()
 
         ' Use a different writing method for CSV or PDF
         If cbExport_exportType.SelectedIndex = 0 Then 'CSV
             mExportPath += "\Inventory.csv"
-
-
             ' Stream writer for CSV file.
-            Dim csvFile As StreamWriter = Nothing
-
-
+            Dim csvFile As StreamWriter = New StreamWriter(mExportPath)
             Try
-
-
-                ' Stream writer for CSV file.
-                csvFile = New StreamWriter(mExportPath)
-
                 ' Add the headers to the CSV file.
-                csvFile.WriteLine(String.Format("""{0}"",""{1}""," _
-                                       & """{2}"",""{3}""",
-                                       reader.GetName(0),
-                                       reader.GetName(1),
-                                       reader.GetName(2),
-                                       reader.GetName(3)))
+                csvFile.WriteLine("Location,Category,Item,Expected Count,Actual Count")
 
                 ' Construct CSV file data rows.
                 While reader.Read()
-
                     ' Add line from reader object to new CSV file.
-                    csvFile.WriteLine(String.Format("""{0}"",""{1}""," _
-                                       & """{2}"",""{3}""",
-                                       reader(0),
-                                       reader(1),
-                                       reader(2),
-                                       reader(3)))
-
+                    csvFile.WriteLine(String.Format("{0},{1},{2},{3},{4}",
+                            reader(0), reader(1), reader(2),
+                            reader(3), reader(4)))
                 End While
 
-
             Catch ex As Exception
-
                 ' Message stating export unsuccessful.
                 MsgBox("Data export unsuccessful." + ex.Message)
                 End
-
             Finally
-
                 ' Close the  CSV file.
                 csvFile.Close()
-
             End Try
-
         ElseIf cbExport_exportType.SelectedIndex = 1 Then 'PDF
             mExportPath += "\Inventory.pdf"
             Dim pdf As PdfDocument = New PdfDocument(New PdfWriter(New FileStream(mExportPath, FileMode.Create, FileAccess.Write)))
@@ -168,6 +143,7 @@ Public Class frmExport
         reader.Close()
         dbConnection.Close()
         MessageBox.Show("Successfully exported to " + mExportPath, "Success!")
+        mExportPath = mExportPath.Substring(0, mExportPath.Length - 14) 'prevents an error if they click the export button twice
     End Sub
 
     Private Sub importInventory()
@@ -280,7 +256,7 @@ Public Class frmExport
                             invInsert.ExecuteNonQuery()
                         Next
                         dbConnection.Close()
-                        MessageBox.Show("Improt successful!", "Import Success!")
+                        MessageBox.Show("Import successful!", "Import Success!")
                     Else
                         MessageBox.Show("There is no data in this file", "Import Error")
                     End If
