@@ -74,17 +74,19 @@ Public Class frmItems
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Dim dbConnection As SQLiteConnection = ConnectToDb()
 
-        Dim cmd As New SQLiteCommand("", dbConnection)
         Dim CategoryID As String
         Try
             dbConnection.Open()
             For i As Integer = 0 To dgvItems.Rows.Count - 1
-                cmd.CommandText = "SELECT CategoryID FROM Category WHERE Description LIKE '%" + dgvItems.Rows.Item(i).Cells(1).Value.ToString() + "%'"
+                Dim cmd As New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE @search", dbConnection)
+                cmd.Parameters.Add("@search", DbType.String)
+                cmd.Parameters(0).Value = "%" + dgvItems.Rows.Item(i).Cells(1).Value.ToString() + "%"
                 CategoryID = cmd.ExecuteScalar()
                 If CategoryID Is Nothing Then
-                    MessageBox.Show("The category you entered on row '" + i.ToString + "' doesn't exist", "Oops")
+                    MessageBox.Show("The category you entered on row #" + i.ToString() + " can't be found", "Oops")
                 Else
-                    cmd.CommandText = "UPDATE Item SET CategoryID = " + CategoryID + ", Description = '" + dgvItems.Rows.Item(i).Cells(2).Value.ToString() + "' WHERE ItemID = " + dgvItems.Rows(i).Cells(0).Value.ToString()
+                    cmd.CommandText = "UPDATE Item SET CategoryID = " + CategoryID + ", Description = @search WHERE ItemID = " + dgvItems.Rows(i).Cells(0).Value.ToString()
+                    cmd.Parameters(0).Value = dgvItems.Rows.Item(i).Cells(2).Value.ToString()
                     cmd.ExecuteNonQuery()
                 End If
             Next
@@ -125,20 +127,22 @@ Public Class frmItems
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         Dim dbConnection As SQLiteConnection = ConnectToDb()
         Dim itemDescription As String = InputBox("Please type in the description of the item:", "Add new Item")
-        Dim itemCategory As String = InputBox("Please search for a category to add the item to:", "Add new Item")
         Try
             dbConnection.Open()
-            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE '%" + itemCategory + "%'", dbConnection)
+            Dim cmd As SQLiteCommand = New SQLiteCommand("SELECT CategoryID FROM Category WHERE Description LIKE @search", dbConnection)
+            cmd.Parameters.Add("@search", DbType.String)
+            cmd.Parameters(0).Value = "%" + InputBox("Please search for a category to add the item to:", "Add new Item") + "%"
             Dim CategoryID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
-                MessageBox.Show("The category you entered doesn't exist.", "Oops")
+                MessageBox.Show("The category you entered can't be found.", "Oops")
             Else
-                cmd.CommandText = "INSERT INTO Item (CategoryID, Description) VALUES (" + CategoryID + ", '" + itemDescription + "')"
+                cmd.CommandText = "INSERT INTO Item (CategoryID, Description) VALUES (" + CategoryID + ", @search)"
+                cmd.Parameters(0).Value = itemDescription
                 If cmd.ExecuteNonQuery() > 0 Then
                     MessageBox.Show("Successfully added!", "Changes Saved")
 
                     'Get the ItemID
-                    cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = '" + itemDescription + "'"
+                    cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = @search"
                     Dim ItemID As String = cmd.ExecuteScalar()
 
                     'Query CategoryLocation for all locations that use the CategoryID of the item
@@ -170,10 +174,12 @@ Public Class frmItems
         Dim ItemID As String = InputBox("Please type in the ItemID of the item:", "Delete a Item")
         Try
             dbConnection.Open()
-            Dim cmd As SQLiteCommand = New SQLiteCommand("DELETE FROM Item WHERE ItemID = " + ItemID, dbConnection)
+            Dim cmd As SQLiteCommand = New SQLiteCommand("DELETE FROM Item WHERE ItemID = @id", dbConnection)
+            cmd.Parameters.Add("@id", DbType.String)
+            cmd.Parameters(0).Value = ItemID
             If cmd.ExecuteNonQuery > 0 Then
                 MessageBox.Show("Successfully deleted", "Changss Saved")
-                cmd.CommandText = "DELETE FROM InventoryMain WHERE ItemID = " + ItemID
+                cmd.CommandText = "DELETE FROM InventoryMain WHERE ItemID = @id"
                 frmDashboard.LoadTableData(String.Empty)
             End If
         Catch ex As Exception

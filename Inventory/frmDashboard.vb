@@ -69,10 +69,19 @@ Public Class frmDashboard
         Try
             dbConnection.Open()
             For i As Integer = 0 To dgvDashboard.Rows.Count - 2 'The last row is blank
-                cmd.CommandText = "SELECT LocationID FROM Location WHERE Description = '" + dgvDashboard.Rows.Item(i).Cells(0).Value.ToString() + "'"
+                cmd.CommandText = "SELECT LocationID FROM Location WHERE Description = @search"
+                cmd.Parameters.Add("@search", DbType.String)
+                cmd.Parameters(0).Value = dgvDashboard.Rows.Item(i).Cells(0).Value.ToString()
                 LocationID = cmd.ExecuteScalar()
-                cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = '" + dgvDashboard.Rows.Item(i).Cells(1).Value.ToString() + "'"
+                cmd.CommandText = "SELECT ItemID FROM Item WHERE Description = @search"
+                cmd.Parameters(0).Value = dgvDashboard.Rows.Item(i).Cells(1).Value.ToString()
                 ItemID = cmd.ExecuteScalar()
+
+                If LocationID Is Nothing Then
+                    MessageBox.Show("The LocationID on row #" + i.ToString() + "was not found.", "Failed to Update Counts")
+                ElseIf ItemID Is Nothing Then
+                    MessageBox.Show("The ItemID on row #" + i.ToString() + "was not found.", "Failed to Update Counts")
+                End If
 
                 ' Get the expected count and actual count cells from the table
                 Dim sExpectedCount As Integer = dgvDashboard.Rows.Item(i).Cells(2).Value
@@ -83,7 +92,6 @@ Public Class frmDashboard
                     ' Throw an exception preventing the rest of the code from executing
                     Throw New Exception("number_positive_exception")
                 End If
-
                 cmd.CommandText = "UPDATE InventoryMain SET ExpectedCount = " + sExpectedCount.ToString + ", ActualCount = " + sActualCount.ToString + " WHERE LocationID = " + LocationID + " AND ItemID = " + ItemID
                 If cmd.ExecuteNonQuery() = 0 Then
                     Throw New Exception("update_failed")
@@ -92,7 +100,6 @@ Public Class frmDashboard
             Next
             MessageBox.Show("Successfully updated counts!", "Changes Saved") 'If it fails, it'll be caught by the try-catch
         Catch ex As Exception
-
 
             ' See which exception happened to give the user a more in-depth answer
             If ex.Message.ToString.Equals("number_positive_exception") Then
@@ -149,18 +156,15 @@ Public Class frmDashboard
     Private Sub btnResetCounts_Click(sender As Object, e As EventArgs) Handles btnResetCounts.Click
 
         Dim dbConnection As SQLiteConnection = ConnectToDb()
-        Dim selectStatement As String = "Update InventoryMain set ExpectedCount = @val, ActualCount = @val "
+        Dim selectStatement As String = "Update InventoryMain set ExpectedCount = 0, ActualCount = 0"
 
         ds.Tables.Clear()
         dbConnection.Open()
         Dim saveCommand As New SQLiteCommand(selectStatement, dbConnection)
 
-        saveCommand.Parameters.AddWithValue("@val", 0)
-
-
         Try
-            If saveCommand.ExecuteNonQuery > 0 Then
-                MessageBox.Show("All item counts were successfuly set to zero.", "Task Complete")
+            If saveCommand.ExecuteNonQuery = dgvDashboard.Rows.Count - 2 Then
+                MessageBox.Show("All Item counts were successfuly set to zero.", "Task Complete")
             Else
                 MessageBox.Show("Sorry, it looks like the counts couldn't be reset!", "Task Failed")
             End If
