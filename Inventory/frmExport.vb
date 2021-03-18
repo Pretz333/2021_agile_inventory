@@ -97,9 +97,53 @@ Public Class frmExport
         ' Use a different writing method for CSV or PDF
         If cbExport_exportType.SelectedIndex = 0 Then 'CSV
             mExportPath += "\Inventory.csv"
-            While reader.Read()
 
-            End While
+
+            ' Stream writer for CSV file.
+            Dim csvFile As StreamWriter = Nothing
+
+
+            Try
+
+
+                ' Stream writer for CSV file.
+                csvFile = New StreamWriter(mExportPath)
+
+                ' Add the headers to the CSV file.
+                csvFile.WriteLine(String.Format("""{0}"",""{1}""," _
+                                       & """{2}"",""{3}""",
+                                       reader.GetName(0),
+                                       reader.GetName(1),
+                                       reader.GetName(2),
+                                       reader.GetName(3)))
+
+                ' Construct CSV file data rows.
+                While reader.Read()
+
+                    ' Add line from reader object to new CSV file.
+                    csvFile.WriteLine(String.Format("""{0}"",""{1}""," _
+                                       & """{2}"",""{3}""",
+                                       reader(0),
+                                       reader(1),
+                                       reader(2),
+                                       reader(3)))
+
+                End While
+
+
+            Catch ex As Exception
+
+                ' Message stating export unsuccessful.
+                MsgBox("Data export unsuccessful." + ex.Message)
+                End
+
+            Finally
+
+                ' Close the  CSV file.
+                csvFile.Close()
+
+            End Try
+
         ElseIf cbExport_exportType.SelectedIndex = 1 Then 'PDF
             mExportPath += "\Inventory.pdf"
             Dim pdf As PdfDocument = New PdfDocument(New PdfWriter(New FileStream(mExportPath, FileMode.Create, FileAccess.Write)))
