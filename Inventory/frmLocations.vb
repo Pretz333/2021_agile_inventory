@@ -103,9 +103,9 @@ Public Class frmLocations
             cmd.Parameters(0).Value = "%" + InputBox("Search for a Location to add the Category to", "Add Category to a Location") + "%"
             Dim LocationID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
-                MessageBox.Show("The category you entered does not exist!", "Oops")
+                MessageBox.Show("The category you entered could not be found.", "Oops")
             ElseIf LocationID Is Nothing Then
-                MessageBox.Show("The location you entered does not exist!", "Oops")
+                MessageBox.Show("The location you entered could not be found.", "Oops")
             Else
                 cmd.CommandText = "INSERT INTO CategoryLocation (LocationID, CategoryID) VALUES (" + LocationID + ", " + CategoryID + ")"
                 If cmd.ExecuteNonQuery() > 0 Then
@@ -142,9 +142,9 @@ Public Class frmLocations
             cmd.Parameters(0).Value = "%" + InputBox("Search for a Location to remove the Category from", "Remove Category from a Location") + "%"
             Dim LocationID As String = cmd.ExecuteScalar()
             If CategoryID Is Nothing Then
-                MessageBox.Show("The category you entered does not exist!", "Oops")
+                MessageBox.Show("The category you entered could not be found.", "Oops")
             ElseIf LocationID Is Nothing Then
-                MessageBox.Show("The location you entered does not exist!", "Oops")
+                MessageBox.Show("The location you entered could not be found.", "Oops")
             Else
                 cmd.CommandText = "DELETE FROM CategoryLocation WHERE LocationID = " + LocationID + " AND CategoryID = " + CategoryID
                 If cmd.ExecuteNonQuery() > 0 Then

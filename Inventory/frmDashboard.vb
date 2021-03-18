@@ -78,9 +78,9 @@ Public Class frmDashboard
                 ItemID = cmd.ExecuteScalar()
 
                 If LocationID Is Nothing Then
-                    MessageBox.Show("The LocationID on row #" + i.ToString() + "was not found.", "Failed to Update Counts")
+                    MessageBox.Show("The LocationID on row #" + (i + 1).ToString() + "was not found.", "Failed to Update Counts")
                 ElseIf ItemID Is Nothing Then
-                    MessageBox.Show("The ItemID on row #" + i.ToString() + "was not found.", "Failed to Update Counts")
+                    MessageBox.Show("The ItemID on row #" + (i + 1).ToString() + "was not found.", "Failed to Update Counts")
                 End If
 
                 ' Get the expected count and actual count cells from the table
@@ -92,7 +92,9 @@ Public Class frmDashboard
                     ' Throw an exception preventing the rest of the code from executing
                     Throw New Exception("number_positive_exception")
                 End If
+
                 cmd.CommandText = "UPDATE InventoryMain SET ExpectedCount = " + sExpectedCount.ToString + ", ActualCount = " + sActualCount.ToString + " WHERE LocationID = " + LocationID + " AND ItemID = " + ItemID
+
                 If cmd.ExecuteNonQuery() = 0 Then
                     Throw New Exception("update_failed")
                 End If
@@ -112,6 +114,30 @@ Public Class frmDashboard
 
         End Try
         dbConnection.Close()
+    End Sub
+
+    Private Sub btnResetCounts_Click(sender As Object, e As EventArgs) Handles btnResetCounts.Click
+
+        Dim dbConnection As SQLiteConnection = ConnectToDb()
+        Dim selectStatement As String = "Update InventoryMain set ExpectedCount = 0, ActualCount = 0"
+
+        ds.Tables.Clear()
+        dbConnection.Open()
+        Dim saveCommand As New SQLiteCommand(selectStatement, dbConnection)
+
+        Try
+            If saveCommand.ExecuteNonQuery() > 0 Then
+                MessageBox.Show("All Item counts were successfuly set to zero.", "Task Complete")
+            Else
+                MessageBox.Show("Sorry, it looks like the counts couldn't be reset!", "Task Failed")
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
+        End Try
+
+
+        dbConnection.Close()
+        LoadTableData(String.Empty)
     End Sub
 
     ' This event handles errors regarding the Expected Count and Actual Count cells.
@@ -151,32 +177,6 @@ Public Class frmDashboard
         Me.Hide()
         frmExport.Show()
         Me.CenterToScreen()
-    End Sub
-
-    Private Sub btnResetCounts_Click(sender As Object, e As EventArgs) Handles btnResetCounts.Click
-
-        Dim dbConnection As SQLiteConnection = ConnectToDb()
-        Dim selectStatement As String = "Update InventoryMain set ExpectedCount = 0, ActualCount = 0"
-
-        ds.Tables.Clear()
-        dbConnection.Open()
-        Dim saveCommand As New SQLiteCommand(selectStatement, dbConnection)
-
-        Try
-            If saveCommand.ExecuteNonQuery = dgvDashboard.Rows.Count - 1 Then
-                MessageBox.Show("All Item counts were successfuly set to zero.", "Task Complete")
-            Else
-                MessageBox.Show("Sorry, it looks like the counts couldn't be reset!", "Task Failed")
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Something bad happened while working with the database. Here's the details: " + ex.Message, "Database Error")
-        End Try
-
-
-        dbConnection.Close()
-        Dim frmDashboard As New frmDashboard
-        frmDashboard.Show()
-        Me.Dispose(False)
     End Sub
 
     Private Sub dgvDashboard_Click(sender As Object, e As EventArgs) Handles dgvDashboard.Click

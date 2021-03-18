@@ -83,7 +83,7 @@ Public Class frmItems
                 cmd.Parameters(0).Value = "%" + dgvItems.Rows.Item(i).Cells(1).Value.ToString() + "%"
                 CategoryID = cmd.ExecuteScalar()
                 If CategoryID Is Nothing Then
-                    MessageBox.Show("The category you entered on row #" + i.ToString() + " can't be found", "Oops")
+                    MessageBox.Show("The category you entered on row #" + (i + 1).ToString() + " can't be found", "Oops")
                 Else
                     cmd.CommandText = "UPDATE Item SET CategoryID = " + CategoryID + ", Description = @search WHERE ItemID = " + dgvItems.Rows(i).Cells(0).Value.ToString()
                     cmd.Parameters(0).Value = dgvItems.Rows.Item(i).Cells(2).Value.ToString()
